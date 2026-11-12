@@ -177,7 +177,8 @@
         <div class="max-w-5xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
             <div class="flex items-center gap-3 cursor-pointer" onclick="switchMainView('CUSTOMER'); goToCustomerStep(1);">
                 <div class="relative w-11 h-11 rounded-2xl overflow-hidden bg-pink-50 border border-pink-200 flex items-center justify-center shadow-md shrink-0">
-                    <img src="https://i.postimg.cc/NMm8qb9R/att-q-De-QXe-Usgwr-Kg8Gtoqwfe-SUKfb-J1v1a-BXj-Peg18e-Pl-A.jpg"
+                    <img id="headerLogoImg"
+                         src="https://i.postimg.cc/NMm8qb9R/att-q-De-QXe-Usgwr-Kg8Gtoqwfe-SUKfb-J1v1a-BXj-Peg18e-Pl-A.jpg"
                          alt="diginae.cam Logo"
                          class="w-full h-full object-cover">
                 </div>
@@ -261,7 +262,8 @@
 
                 <!-- หน้าแรก แบนเนอร์ด้านบน (แสดงเฉพาะหน้าหลัก Step 1 ไม่โดนตัด object-contain) -->
                 <div class="boutique-shell rounded-[28px] p-2 sm:p-3 overflow-hidden bg-white">
-                    <img src="https://i.postimg.cc/FFWGSqrV/att-dgfk5wmjb-F-q-A9X1x4KIpoub8d-ZG37K2c0i-Tt2Bo4s.jpg"
+                    <img id="homeBannerImg"
+                         src="https://i.postimg.cc/FFWGSqrV/att-dgfk5wmjb-F-q-A9X1x4KIpoub8d-ZG37K2c0i-Tt2Bo4s.jpg"
                          alt="diginae.cam Banner"
                          class="w-full h-auto max-h-[360px] object-contain mx-auto rounded-2xl">
                 </div>
@@ -423,7 +425,8 @@
                                 <i class="fa-solid fa-sparkles text-pink-500 mr-1"></i> อุปกรณ์เสริมเพิ่มเติม
                             </label>
                             <div class="p-3 rounded-2xl bg-pink-50/50 border border-pink-200 flex items-center gap-3">
-                                <img src="https://i.postimg.cc/3Rpmdw9b/att-5Sswf-Qmoq-Dt-D6p-U-D3Px-KTAd2u-TVlcu-Xi-Ty-De-ECsn-0.jpg"
+                                <img id="accessoryPreviewImg"
+                                     src="https://i.postimg.cc/3Rpmdw9b/att-5Sswf-Qmoq-Dt-D6p-U-D3Px-KTAd2u-TVlcu-Xi-Ty-De-ECsn-0.jpg"
                                      alt="อุปกรณ์เสริม"
                                      onclick="window.open(this.src, '_blank')"
                                      class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-contain bg-white border border-pink-200 p-1 shrink-0 cursor-pointer transition hover:scale-105"
@@ -450,7 +453,8 @@
                                 <i class="fa-solid fa-location-dot text-pink-500 mr-1"></i> เลือกสถานที่นัดรับกล้อง *
                             </label>
                             <div class="rounded-2xl overflow-hidden border border-pink-200 bg-pink-50/40 p-1.5">
-                                <img src="https://i.postimg.cc/NfXT0P5d/att-WOglxk8j-4sz-UE1Ug-A0G-URRm-MStj-N9-f-Eicdjw-OQ68.jpg"
+                                <img id="pickupGuideImg"
+                                     src="https://i.postimg.cc/NfXT0P5d/att-WOglxk8j-4sz-UE1Ug-A0G-URRm-MStj-N9-f-Eicdjw-OQ68.jpg"
                                      alt="สถานที่นัดรับกล้อง"
                                      class="w-full h-auto max-h-60 object-contain mx-auto rounded-xl">
                             </div>
@@ -517,12 +521,14 @@
                 <!-- รูปเงื่อนไข 2 รูป วางคู่กันขนาดเท่ากันและไม่โดนตัด -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
                     <div class="rounded-2xl border border-pink-200 bg-pink-50/30 p-2 flex items-center justify-center">
-                        <img src="https://i.postimg.cc/1tS7WNbQ/att-Nq-ZEti6g-WRsg-DGVRs-RR-j-GYXBXE8Oi-NBQor2WRspy1Q.jpg"
+                        <img id="rulesSheetImg1"
+                             src="https://i.postimg.cc/1tS7WNbQ/att-Nq-ZEti6g-WRsg-DGVRs-RR-j-GYXBXE8Oi-NBQor2WRspy1Q.jpg"
                              alt="เงื่อนไขการเช่าแผ่นที่ 1"
                              class="w-full h-full max-h-[540px] object-contain rounded-xl">
                     </div>
                     <div class="rounded-2xl border border-pink-200 bg-pink-50/30 p-2 flex items-center justify-center">
-                        <img src="https://i.postimg.cc/6Q9VPJtk/att-jm4Ygf-Dw-Adn-Kq5TMuopnfi-C1r-YZt-N2LCl-Lc-LO0Ss6c-Y.jpg"
+                        <img id="rulesSheetImg2"
+                             src="https://i.postimg.cc/6Q9VPJtk/att-jm4Ygf-Dw-Adn-Kq5TMuopnfi-C1r-YZt-N2LCl-Lc-LO0Ss6c-Y.jpg"
                              alt="เงื่อนไขการเช่าแผ่นที่ 2"
                              class="w-full h-full max-h-[540px] object-contain rounded-xl">
                     </div>
@@ -749,7 +755,8 @@
 
                 <!-- รูปแสดงหลังจากโอนเงินเรียบร้อยแล้ว -->
                 <div class="rounded-2xl overflow-hidden border border-pink-200 bg-pink-50/40 p-2">
-                    <img src="https://i.postimg.cc/brWQB7dr/att-YMKz-BHd09hc0yjx5Jix-Ko-Hr-Xh3zl-R-0mpju-Tf-JBY65Y.jpg"
+                    <img id="successBannerImg"
+                         src="https://i.postimg.cc/brWQB7dr/att-YMKz-BHd09hc0yjx5Jix-Ko-Hr-Xh3zl-R-0mpju-Tf-JBY65Y.jpg"
                          alt="ขอบคุณที่ใช้บริการ diginae.cam"
                          class="w-full h-auto max-h-80 object-contain mx-auto rounded-xl">
                 </div>
@@ -911,33 +918,96 @@
                 </div>
 
                 <!-- Tab 5: Shop Settings -->
-                <div id="admTab_SETTINGS" class="hidden boutique-shell rounded-[28px] p-4 sm:p-5 space-y-4">
-                    <h3 class="text-base sm:text-lg font-extrabold text-pink-950">ตั้งค่าข้อมูลร้าน & บัญชีรับโอน</h3>
+                <div id="admTab_SETTINGS" class="hidden boutique-shell rounded-[28px] p-4 sm:p-5 space-y-5">
+                    <h3 class="text-base sm:text-lg font-extrabold text-pink-950">ตั้งค่าข้อมูลร้าน, รูปภาพเว็บไซต์ & สถานที่นัดรับ</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                         <div>
                             <label class="font-bold text-pink-900">ชื่อร้าน</label>
-                            <input type="text" id="admSetShopName" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                            <input type="text" id="admSetShopName" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
                         </div>
                         <div>
                             <label class="font-bold text-pink-900">คำอธิบายร้าน</label>
-                            <input type="text" id="admSetShopDesc" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                            <input type="text" id="admSetShopDesc" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
                         </div>
                         <div>
                             <label class="font-bold text-pink-900">ชื่อธนาคาร</label>
-                            <input type="text" id="admSetBankName" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                            <input type="text" id="admSetBankName" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
                         </div>
                         <div>
                             <label class="font-bold text-pink-900">เลขบัญชี</label>
-                            <input type="text" id="admSetAccNo" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                            <input type="text" id="admSetAccNo" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
                         </div>
                         <div>
                             <label class="font-bold text-pink-900">ชื่อบัญชี</label>
-                            <input type="text" id="admSetAccName" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                            <input type="text" id="admSetAccName" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
                         </div>
                         <div>
-                            <label class="font-bold text-pink-900">ลิงก์รูป QR Code</label>
-                            <input type="text" id="admSetQrUrl" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                            <label class="font-bold text-pink-900">ลิงก์รูป QR Code รับโอนเงิน</label>
+                            <input type="url" id="admSetQrUrl" oninput="refreshAdminSiteImagesPreview()" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
                         </div>
+                    </div>
+
+                    <!-- จัดการรูปภาพต่างๆ บนหน้าเว็บไซต์ -->
+                    <div class="p-4 rounded-2xl bg-pink-50/70 border border-pink-200 space-y-3 text-xs">
+                        <div>
+                            <h4 class="text-sm font-extrabold text-pink-950 flex items-center gap-1.5">
+                                <i class="fa-regular fa-images text-pink-500"></i>
+                                <span>จัดการรูปภาพต่างๆ บนเว็บไซต์ (วางลิงก์ URL รูปภาพ)</span>
+                            </h4>
+                            <p class="text-[11px] text-pink-600">สามารถเปลี่ยนรูปโลโก้ แบนเนอร์หน้าแรก รูปสถานที่นัดรับ รูปเงื่อนไขทั้ง 2 แผ่น รูปอุปกรณ์เสริม และรูปหน้าจองสำเร็จได้ตลอดเวลา</p>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="font-bold text-pink-900">1. รูปโลโก้ร้าน (มุมซ้ายบน)</label>
+                                <input type="url" id="admSetLogoUrl" oninput="refreshAdminSiteImagesPreview()" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-pink-200 bg-white font-bold mt-1">
+                            </div>
+                            <div>
+                                <label class="font-bold text-pink-900">2. รูปแบนเนอร์หน้าแรก (ด้านบนสุด)</label>
+                                <input type="url" id="admSetBannerUrl" oninput="refreshAdminSiteImagesPreview()" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-pink-200 bg-white font-bold mt-1">
+                            </div>
+                            <div>
+                                <label class="font-bold text-pink-900">3. รูปป้ายสถานที่นัดรับกล้อง (หน้า 1)</label>
+                                <input type="url" id="admSetPickupImgUrl" oninput="refreshAdminSiteImagesPreview()" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-pink-200 bg-white font-bold mt-1">
+                            </div>
+                            <div>
+                                <label class="font-bold text-pink-900">4. รูปประกอบอุปกรณ์เสริม (+29฿)</label>
+                                <input type="url" id="admSetAccessoryImgUrl" oninput="refreshAdminSiteImagesPreview()" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-pink-200 bg-white font-bold mt-1">
+                            </div>
+                            <div>
+                                <label class="font-bold text-pink-900">5. รูปเงื่อนไขการเช่า แผ่นที่ 1 (หน้า 2)</label>
+                                <input type="url" id="admSetRuleImg1Url" oninput="refreshAdminSiteImagesPreview()" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-pink-200 bg-white font-bold mt-1">
+                            </div>
+                            <div>
+                                <label class="font-bold text-pink-900">6. รูปเงื่อนไขการเช่า แผ่นที่ 2 (หน้า 2)</label>
+                                <input type="url" id="admSetRuleImg2Url" oninput="refreshAdminSiteImagesPreview()" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-pink-200 bg-white font-bold mt-1">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="font-bold text-pink-900">7. รูปแสดงหน้าส่งข้อมูลสำเร็จหลังโอนเงิน (หน้า 5)</label>
+                                <input type="url" id="admSetSuccessImgUrl" oninput="refreshAdminSiteImagesPreview()" placeholder="https://..." class="w-full px-3.5 py-2 rounded-xl border border-pink-200 bg-white font-bold mt-1">
+                            </div>
+                        </div>
+
+                        <!-- แถบดูตัวอย่างรูปภาพทั้งหมดแบบย่อ -->
+                        <div id="admSiteImagesPreviewRow" class="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-2"></div>
+                    </div>
+
+                    <!-- จัดการสถานที่นัดรับกล้อง (เพิ่ม / แก้ไข / ลบได้) -->
+                    <div class="p-4 rounded-2xl bg-pink-50/70 border border-pink-200 space-y-3 text-xs">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div>
+                                <h4 class="text-sm font-extrabold text-pink-950 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-location-dot text-pink-500"></i>
+                                    <span>จัดการตัวเลือกสถานที่นัดรับกล้อง (แก้ไข / เพิ่ม / ลบ)</span>
+                                </h4>
+                                <p class="text-[11px] text-pink-600">รายการที่ตั้งค่าด้านล่างจะไปแสดงในช่องดรอปดาวน์ “เลือกสถานที่นัดรับกล้อง” หน้าแรกทันที (ระบบจะมีตัวเลือก “อื่น ๆ (ระบุสถานที่เอง)” ต่อท้ายให้อัตโนมัติ)</p>
+                            </div>
+                            <button type="button" onclick="addAdminPickupLocationRow()" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-pink-100 text-pink-900 border border-pink-200 font-extrabold text-[11px] shadow-sm transition shrink-0">
+                                + เพิ่มสถานที่นัดรับ
+                            </button>
+                        </div>
+
+                        <div id="admPickupLocationsEditorList" class="space-y-2"></div>
                     </div>
 
                     <!-- ตั้งค่าการแจ้งเตือน Telegram -->
@@ -1034,17 +1104,56 @@
                     <label class="font-extrabold text-pink-950">รายละเอียด / เงื่อนไขในป๊อปอัพสินค้า *</label>
                     <textarea id="admCamDesc" rows="4" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1"></textarea>
                 </div>
-                <div>
-                    <label class="font-extrabold text-pink-950">ราคาเริ่มต้น 3 ชม. (ราคาปกติ)</label>
-                    <input type="number" id="admCamHourly" value="200" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
+
+                <!-- ตารางจัดการเรทราคารายชั่วโมง (แก้ไขชั่วโมง / ราคาปกติ / ราคาผู้ติดตาม ได้ทั้งหมด) -->
+                <div class="sm:col-span-2 p-3.5 rounded-2xl bg-pink-50/60 border border-pink-200 space-y-2.5">
+                    <div class="flex items-center justify-between gap-2">
+                        <div>
+                            <h4 class="font-extrabold text-pink-950 flex items-center gap-1.5">
+                                <i class="fa-regular fa-clock text-pink-500"></i>
+                                <span>⏰ ตารางราคาเช่ารายชั่วโมง</span>
+                            </h4>
+                            <p class="text-[11px] text-pink-600">แก้ไขจำนวนชั่วโมง ราคาปกติ และราคาผู้ติดตามได้ทุกช่วงเวลา</p>
+                        </div>
+                        <button type="button" onclick="addAdminHourlyTierRow()" class="px-3 py-1 rounded-full bg-white hover:bg-pink-100 text-pink-800 border border-pink-200 font-extrabold text-[11px] shadow-sm shrink-0">
+                            + เพิ่มช่วงชั่วโมง
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-12 gap-1.5 px-1 text-[10px] font-extrabold text-pink-600">
+                        <div class="col-span-3">จำนวนชั่วโมง</div>
+                        <div class="col-span-4">ราคาปกติ (฿)</div>
+                        <div class="col-span-4">ผู้ติดตาม (฿)</div>
+                        <div class="col-span-1 text-center">ลบ</div>
+                    </div>
+                    <div id="admCamHourlyTiersList" class="space-y-1.5"></div>
                 </div>
-                <div>
-                    <label class="font-extrabold text-pink-950">ราคาเช่า 1 วัน (ราคาปกติ)</label>
-                    <input type="number" id="admCamDaily" value="350" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
-                </div>
-                <div>
-                    <label class="font-extrabold text-pink-950">ราคาเช่า 1 วัน (ราคาผู้ติดตาม)</label>
-                    <input type="number" id="admCamFollowerDaily" value="299" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
+
+                <!-- ตารางจัดการเรทราคารายวัน (แก้ไขจำนวนวัน / ราคาปกติ / ราคาผู้ติดตาม ได้ทั้งหมด) -->
+                <div class="sm:col-span-2 p-3.5 rounded-2xl bg-pink-50/60 border border-pink-200 space-y-2.5">
+                    <div class="flex items-center justify-between gap-2">
+                        <div>
+                            <h4 class="font-extrabold text-pink-950 flex items-center gap-1.5">
+                                <i class="fa-regular fa-calendar-days text-pink-500"></i>
+                                <span>📅 ตารางราคาเช่ารายวัน</span>
+                            </h4>
+                            <p class="text-[11px] text-pink-600">แก้ไขจำนวนวัน ราคาปกติ และราคาผู้ติดตามได้ทุกวัน</p>
+                        </div>
+                        <button type="button" onclick="addAdminDailyTierRow()" class="px-3 py-1 rounded-full bg-white hover:bg-pink-100 text-pink-800 border border-pink-200 font-extrabold text-[11px] shadow-sm shrink-0">
+                            + เพิ่มจำนวนวัน
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-12 gap-1.5 px-1 text-[10px] font-extrabold text-pink-600">
+                        <div class="col-span-3">จำนวนวัน</div>
+                        <div class="col-span-4">ราคาปกติ (฿)</div>
+                        <div class="col-span-4">ผู้ติดตาม (฿)</div>
+                        <div class="col-span-1 text-center">ลบ</div>
+                    </div>
+                    <div id="admCamDailyTiersList" class="space-y-1.5"></div>
+
+                    <div class="pt-2 border-t border-pink-200/70 flex items-center justify-between gap-2">
+                        <label class="font-extrabold text-pink-900 text-[11px]">ราคาเช่าเพิ่มเมื่อเกินจำนวนวันสูงสุด (บาท/วัน):</label>
+                        <input type="number" id="admCamExtraDayRate" value="150" class="w-24 px-3 py-1.5 rounded-xl border border-pink-200 bg-white font-extrabold text-pink-950 text-center">
+                    </div>
                 </div>
 
                 <!-- วางลิงก์รูปภาพ -->
@@ -1227,6 +1336,24 @@ alter table public.bookings enable row level security;</pre>
 - ไม่มีการปรับราคาย้อนหลังทุกกรณี
 - เมื่อร้านแจ้งว่าคิวเต็มแล้ว กรุณาอ่านรายละเอียดก่อนกรอกข้อมูล`;
 
+        const DEFAULT_SITE_IMAGES = {
+            logoUrl: 'https://i.postimg.cc/NMm8qb9R/att-q-De-QXe-Usgwr-Kg8Gtoqwfe-SUKfb-J1v1a-BXj-Peg18e-Pl-A.jpg',
+            bannerUrl: 'https://i.postimg.cc/FFWGSqrV/att-dgfk5wmjb-F-q-A9X1x4KIpoub8d-ZG37K2c0i-Tt2Bo4s.jpg',
+            pickupGuideUrl: 'https://i.postimg.cc/NfXT0P5d/att-WOglxk8j-4sz-UE1Ug-A0G-URRm-MStj-N9-f-Eicdjw-OQ68.jpg',
+            accessoryUrl: 'https://i.postimg.cc/3Rpmdw9b/att-5Sswf-Qmoq-Dt-D6p-U-D3Px-KTAd2u-TVlcu-Xi-Ty-De-ECsn-0.jpg',
+            ruleImg1Url: 'https://i.postimg.cc/1tS7WNbQ/att-Nq-ZEti6g-WRsg-DGVRs-RR-j-GYXBXE8Oi-NBQor2WRspy1Q.jpg',
+            ruleImg2Url: 'https://i.postimg.cc/6Q9VPJtk/att-jm4Ygf-Dw-Adn-Kq5TMuopnfi-C1r-YZt-N2LCl-Lc-LO0Ss6c-Y.jpg',
+            successImgUrl: 'https://i.postimg.cc/brWQB7dr/att-YMKz-BHd09hc0yjx5Jix-Ko-Hr-Xh3zl-R-0mpju-Tf-JBY65Y.jpg'
+        };
+
+        const DEFAULT_PICKUP_LOCATIONS = [
+            'หน้าสวนมิ่งขวัญ',
+            'สนามฟุตบอลหญ้าเทียม L Soccer Park',
+            'หน้าร้าน PPK (picpokket) หน้าสถานีตำรวจ',
+            'คาเฟ่ 90\'A',
+            'กาแฟพันธุ์ไทย สาขาสุไหงโกลก'
+        ];
+
         function getInitialEmptyState() {
             return {
                 shop: {
@@ -1239,14 +1366,8 @@ alter table public.bookings enable row level security;</pre>
                     rulesVersion: 'v1.2',
                     telegramBotToken: '',
                     telegramChatId: '',
-                    pickupLocations: [
-                        'หน้าร้าน diginae.cam (ตัวเมืองสุไหงโกลก)',
-                        'ห้างบิ๊กซี สุไหงโกลก (Big C)',
-                        'สถานีรถไฟสุไหงโกลก',
-                        'สวนสาธารณะสิรินธร (สวนรื่นอรุณ)',
-                        'หน้าโรงพยาบาลสุไหงโกลก',
-                        'ด่านพรมแดนสุไหงโกลก'
-                    ]
+                    siteImages: { ...DEFAULT_SITE_IMAGES },
+                    pickupLocations: [...DEFAULT_PICKUP_LOCATIONS]
                 },
                 cameras: [],
                 blockedDates: [],
@@ -1256,6 +1377,7 @@ alter table public.bookings enable row level security;</pre>
         }
 
         let appData = getInitialEmptyState();
+        let adminTempPickupLocations = [];
         let isAdminLoggedIn = false;
         let currentCameraCategory = 'ALL';
         let bookmarkedCameras = {};
@@ -1270,6 +1392,8 @@ alter table public.bookings enable row level security;</pre>
 
         let editingAdminCameraId = null;
         let modalTempUnits = [];
+        let modalTempHourlyTiers = [];
+        let modalTempDailyTiers = [];
         let activeDocModalBookingCode = null;
         let activePresetKey = '1D';
 
@@ -1366,18 +1490,24 @@ alter table public.bookings enable row level security;</pre>
 
                 if (shopRes.data) {
                     const rawPickup = shopRes.data.pickup_locations;
-                    let parsedLocs = appData.shop.pickupLocations;
+                    let parsedLocs = [...DEFAULT_PICKUP_LOCATIONS];
                     let tgToken = '';
                     let tgChatId = '';
+                    let customImages = {};
 
                     if (Array.isArray(rawPickup)) {
-                        parsedLocs = rawPickup;
+                        const isOldDefault = rawPickup.length === 6 && rawPickup[0] === 'หน้าร้าน diginae.cam (ตัวเมืองสุไหงโกลก)';
+                        parsedLocs = isOldDefault ? [...DEFAULT_PICKUP_LOCATIONS] : rawPickup;
                     } else if (rawPickup && typeof rawPickup === 'object') {
                         if (Array.isArray(rawPickup.locations) && rawPickup.locations.length) {
-                            parsedLocs = rawPickup.locations;
+                            const isOldDefault = rawPickup.locations.length === 6 && rawPickup.locations[0] === 'หน้าร้าน diginae.cam (ตัวเมืองสุไหงโกลก)';
+                            parsedLocs = isOldDefault ? [...DEFAULT_PICKUP_LOCATIONS] : rawPickup.locations;
                         }
                         tgToken = rawPickup.telegramBotToken || '';
                         tgChatId = rawPickup.telegramChatId || '';
+                        if (rawPickup.siteImages && typeof rawPickup.siteImages === 'object') {
+                            customImages = rawPickup.siteImages;
+                        }
                     }
 
                     appData.shop = {
@@ -1390,6 +1520,15 @@ alter table public.bookings enable row level security;</pre>
                         rulesVersion: shopRes.data.rules_version || 'v1.2',
                         telegramBotToken: tgToken,
                         telegramChatId: tgChatId,
+                        siteImages: {
+                            logoUrl: customImages.logoUrl || DEFAULT_SITE_IMAGES.logoUrl,
+                            bannerUrl: customImages.bannerUrl || DEFAULT_SITE_IMAGES.bannerUrl,
+                            pickupGuideUrl: customImages.pickupGuideUrl || DEFAULT_SITE_IMAGES.pickupGuideUrl,
+                            accessoryUrl: customImages.accessoryUrl || DEFAULT_SITE_IMAGES.accessoryUrl,
+                            ruleImg1Url: customImages.ruleImg1Url || DEFAULT_SITE_IMAGES.ruleImg1Url,
+                            ruleImg2Url: customImages.ruleImg2Url || DEFAULT_SITE_IMAGES.ruleImg2Url,
+                            successImgUrl: customImages.successImgUrl || DEFAULT_SITE_IMAGES.successImgUrl
+                        },
                         pickupLocations: parsedLocs
                     };
                 }
@@ -2057,7 +2196,7 @@ alter table public.bookings enable row level security;</pre>
                 ];
 
             const dTiers = Array.isArray(cam.dailyTiers) && cam.dailyTiers.length > 0
-                ? cam.dailyTiers
+                ? [...cam.dailyTiers].sort((a, b) => Number(a.days) - Number(b.days))
                 : [
                     { days: 1, normal: cam.dailyRate || 350, follower: cam.followerDailyRate || (cam.dailyRate - 30) },
                     { days: 2, normal: (cam.dailyRate || 350) * 2, follower: (cam.followerDailyRate || 300) * 2 },
@@ -2066,25 +2205,38 @@ alter table public.bookings enable row level security;</pre>
                     { days: 7, normal: (cam.dailyRate || 350) * 7, follower: (cam.followerDailyRate || 300) * 7 }
                 ];
 
+            const maxTierObj = dTiers[dTiers.length - 1] || { days: 1, normal: 350, follower: 299 };
+            const maxDefinedDays = Number(maxTierObj.days) || 1;
+
             const getDayPrice = (dCount) => {
-                const exact = dTiers.find(t => t.days === dCount);
-                if (exact) return isFollower ? exact.follower : exact.normal;
-                const d1 = getDayPrice(1);
-                if (dCount === 4) {
-                    const d3 = getDayPrice(3);
-                    const d5 = getDayPrice(5);
-                    return Math.min(d3 + d1, d5);
+                const exact = dTiers.find(t => Number(t.days) === dCount);
+                if (exact) return isFollower ? Number(exact.follower) : Number(exact.normal);
+
+                const d1Exact = dTiers.find(t => Number(t.days) === 1) || dTiers[0];
+                const d1Price = d1Exact ? (isFollower ? Number(d1Exact.follower) : Number(d1Exact.normal)) : 300;
+
+                if (dCount > maxDefinedDays) {
+                    const maxBasePrice = isFollower ? Number(maxTierObj.follower) : Number(maxTierObj.normal);
+                    return maxBasePrice + ((dCount - maxDefinedDays) * (Number(cam.extraDayRate) || 150));
                 }
-                if (dCount === 6) {
-                    const d5 = getDayPrice(5);
-                    const d7 = getDayPrice(7);
-                    return Math.min(d5 + d1, d7);
+
+                // กรณีเลือกจำนวนวันที่อยู่ระหว่างกลาง (เช่น 4 วัน หรือ 6 วัน หากไม่ได้ตั้งตรงๆ)
+                const lowerTiers = dTiers.filter(t => Number(t.days) < dCount);
+                const upperTiers = dTiers.filter(t => Number(t.days) > dCount);
+                if (lowerTiers.length > 0) {
+                    const low = lowerTiers[lowerTiers.length - 1];
+                    const lowPrice = isFollower ? Number(low.follower) : Number(low.normal);
+                    const diffDays = dCount - Number(low.days);
+                    const calcFromLow = lowPrice + (diffDays * d1Price);
+                    if (upperTiers.length > 0) {
+                        const up = upperTiers[0];
+                        const upPrice = isFollower ? Number(up.follower) : Number(up.normal);
+                        return Math.min(calcFromLow, upPrice);
+                    }
+                    return calcFromLow;
                 }
-                if (dCount > 7) {
-                    const d7 = getDayPrice(7);
-                    return d7 + ((dCount - 7) * (cam.extraDayRate || 150));
-                }
-                return dCount * d1;
+
+                return dCount * d1Price;
             };
 
             if (totalHours < 12) {
@@ -3275,29 +3427,143 @@ alter table public.bookings enable row level security;</pre>
                 document.getElementById('admCamModalTitle').textContent = `แก้ไขข้อมูล: ${cam.name}`;
                 document.getElementById('admCamName').value = cam.name;
                 document.getElementById('admCamDesc').value = cam.description || FOLLOWER_CONDITION_TEXT;
-                document.getElementById('admCamHourly').value = cam.hourlyRate || 200;
-                document.getElementById('admCamDaily').value = cam.dailyRate || 350;
-                document.getElementById('admCamFollowerDaily').value = cam.followerDailyRate || 299;
+                document.getElementById('admCamExtraDayRate').value = cam.extraDayRate || 150;
                 document.getElementById('admCamImg1').value = cam.gallery?.[0] || cam.image || '';
                 document.getElementById('admCamImg2').value = cam.gallery?.[1] || '';
                 document.getElementById('admCamImg3').value = cam.gallery?.[2] || '';
+
+                modalTempHourlyTiers = Array.isArray(cam.hourlyTiers) && cam.hourlyTiers.length > 0
+                    ? JSON.parse(JSON.stringify(cam.hourlyTiers))
+                    : [
+                        { hours: 3, normal: cam.hourlyRate || 200, follower: Math.max(0, (cam.hourlyRate || 200) - 21) },
+                        { hours: 6, normal: cam.pack4HrRate || 260, follower: Math.max(0, (cam.pack4HrRate || 260) - 11) },
+                        { hours: 8, normal: (cam.pack4HrRate || 260) + 30, follower: (cam.pack4HrRate || 260) + 9 }
+                    ];
+
+                modalTempDailyTiers = Array.isArray(cam.dailyTiers) && cam.dailyTiers.length > 0
+                    ? JSON.parse(JSON.stringify(cam.dailyTiers))
+                    : [
+                        { days: 1, normal: cam.dailyRate || 350, follower: cam.followerDailyRate || 299 },
+                        { days: 2, normal: 650, follower: 599 },
+                        { days: 3, normal: 790, follower: 699 },
+                        { days: 5, normal: 990, follower: 899 },
+                        { days: 7, normal: 1199, follower: 1099 }
+                    ];
+
                 modalTempUnits = JSON.parse(JSON.stringify(cam.units || [{ code: 'CAM-01', status: 'READY' }]));
             } else {
                 document.getElementById('admCamModalTitle').textContent = 'เพิ่มรุ่นกล้องใหม่เข้าระบบ';
                 document.getElementById('admCamName').value = '';
                 document.getElementById('admCamDesc').value = FOLLOWER_CONDITION_TEXT;
-                document.getElementById('admCamHourly').value = 200;
-                document.getElementById('admCamDaily').value = 350;
-                document.getElementById('admCamFollowerDaily').value = 299;
+                document.getElementById('admCamExtraDayRate').value = 150;
                 document.getElementById('admCamImg1').value = 'https://i.postimg.cc/LsffBwNw/att-6g9B-0a-NBMb4z-YOw-Ny-JZsj-Xzuc-Ap-Pkp2X4tz-Ym-Suoag.jpg';
                 document.getElementById('admCamImg2').value = '';
                 document.getElementById('admCamImg3').value = '';
+
+                modalTempHourlyTiers = [
+                    { hours: 3, normal: 200, follower: 179 },
+                    { hours: 6, normal: 260, follower: 249 },
+                    { hours: 8, normal: 290, follower: 269 }
+                ];
+                modalTempDailyTiers = [
+                    { days: 1, normal: 350, follower: 299 },
+                    { days: 2, normal: 650, follower: 599 },
+                    { days: 3, normal: 790, follower: 699 },
+                    { days: 5, normal: 990, follower: 899 },
+                    { days: 7, normal: 1199, follower: 1099 }
+                ];
                 modalTempUnits = [{ code: 'CAM-01', status: 'READY' }];
             }
 
+            renderAdminModalPriceTierLists();
             refreshAdminCamImgPreviews();
             renderAdminModalUnitsList();
             document.getElementById('adminCameraModal').classList.remove('hidden');
+        }
+
+        function renderAdminModalPriceTierLists() {
+            const hContainer = document.getElementById('admCamHourlyTiersList');
+            const dContainer = document.getElementById('admCamDailyTiersList');
+
+            if (hContainer) {
+                hContainer.innerHTML = modalTempHourlyTiers.map((t, idx) => `
+                    <div class="grid grid-cols-12 gap-1.5 items-center bg-white p-1.5 rounded-xl border border-pink-200">
+                        <div class="col-span-3 flex items-center gap-1">
+                            <input type="number" min="1" max="23" value="${t.hours}" oninput="modalTempHourlyTiers[${idx}].hours = Number(this.value) || 1" class="w-full px-2 py-1.5 rounded-lg border border-pink-200 text-xs font-extrabold text-pink-950 text-center">
+                            <span class="text-[10px] font-bold text-pink-500 shrink-0">ชม.</span>
+                        </div>
+                        <div class="col-span-4">
+                            <input type="number" min="0" value="${t.normal}" oninput="modalTempHourlyTiers[${idx}].normal = Number(this.value) || 0" class="w-full px-2.5 py-1.5 rounded-lg border border-pink-200 text-xs font-bold text-pink-950 text-center" placeholder="ราคาปกติ">
+                        </div>
+                        <div class="col-span-4">
+                            <input type="number" min="0" value="${t.follower}" oninput="modalTempHourlyTiers[${idx}].follower = Number(this.value) || 0" class="w-full px-2.5 py-1.5 rounded-lg border border-pink-200 bg-pink-50/40 text-xs font-extrabold text-pink-900 text-center" placeholder="ผู้ติดตาม">
+                        </div>
+                        <div class="col-span-1 flex justify-center">
+                            ${modalTempHourlyTiers.length > 1 ? `
+                                <button type="button" onclick="removeAdminHourlyTierRow(${idx})" class="w-7 h-7 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            ` : `<span class="text-pink-300 text-[10px]">-</span>`}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            if (dContainer) {
+                dContainer.innerHTML = modalTempDailyTiers.map((t, idx) => `
+                    <div class="grid grid-cols-12 gap-1.5 items-center bg-white p-1.5 rounded-xl border border-pink-200">
+                        <div class="col-span-3 flex items-center gap-1">
+                            <input type="number" min="1" max="60" value="${t.days}" oninput="modalTempDailyTiers[${idx}].days = Number(this.value) || 1" class="w-full px-2 py-1.5 rounded-lg border border-pink-200 text-xs font-extrabold text-pink-950 text-center">
+                            <span class="text-[10px] font-bold text-pink-500 shrink-0">วัน</span>
+                        </div>
+                        <div class="col-span-4">
+                            <input type="number" min="0" value="${t.normal}" oninput="modalTempDailyTiers[${idx}].normal = Number(this.value) || 0" class="w-full px-2.5 py-1.5 rounded-lg border border-pink-200 text-xs font-bold text-pink-950 text-center" placeholder="ราคาปกติ">
+                        </div>
+                        <div class="col-span-4">
+                            <input type="number" min="0" value="${t.follower}" oninput="modalTempDailyTiers[${idx}].follower = Number(this.value) || 0" class="w-full px-2.5 py-1.5 rounded-lg border border-pink-200 bg-pink-50/40 text-xs font-extrabold text-pink-900 text-center" placeholder="ผู้ติดตาม">
+                        </div>
+                        <div class="col-span-1 flex justify-center">
+                            ${modalTempDailyTiers.length > 1 ? `
+                                <button type="button" onclick="removeAdminDailyTierRow(${idx})" class="w-7 h-7 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            ` : `<span class="text-pink-300 text-[10px]">-</span>`}
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function addAdminHourlyTierRow() {
+            const last = modalTempHourlyTiers[modalTempHourlyTiers.length - 1] || { hours: 3, normal: 200, follower: 179 };
+            modalTempHourlyTiers.push({
+                hours: Number(last.hours) + 2,
+                normal: Number(last.normal) + 50,
+                follower: Number(last.follower) + 50
+            });
+            renderAdminModalPriceTierLists();
+        }
+
+        function removeAdminHourlyTierRow(idx) {
+            if (modalTempHourlyTiers.length <= 1) return;
+            modalTempHourlyTiers.splice(idx, 1);
+            renderAdminModalPriceTierLists();
+        }
+
+        function addAdminDailyTierRow() {
+            const last = modalTempDailyTiers[modalTempDailyTiers.length - 1] || { days: 1, normal: 350, follower: 299 };
+            modalTempDailyTiers.push({
+                days: Number(last.days) + 1,
+                normal: Number(last.normal) + 200,
+                follower: Number(last.follower) + 200
+            });
+            renderAdminModalPriceTierLists();
+        }
+
+        function removeAdminDailyTierRow(idx) {
+            if (modalTempDailyTiers.length <= 1) return;
+            modalTempDailyTiers.splice(idx, 1);
+            renderAdminModalPriceTierLists();
         }
 
         function refreshAdminCamImgPreviews() {
@@ -3374,9 +3640,7 @@ alter table public.bookings enable row level security;</pre>
         async function saveAdminCameraModal() {
             const name = document.getElementById('admCamName').value.trim();
             const desc = document.getElementById('admCamDesc').value.trim();
-            const hourly = Number(document.getElementById('admCamHourly').value) || 200;
-            const daily = Number(document.getElementById('admCamDaily').value) || 350;
-            const followerDaily = Number(document.getElementById('admCamFollowerDaily').value) || 299;
+            const extraDayRate = Number(document.getElementById('admCamExtraDayRate')?.value) || 150;
             const gallery = [
                 document.getElementById('admCamImg1').value.trim(),
                 document.getElementById('admCamImg2').value.trim(),
@@ -3388,22 +3652,34 @@ alter table public.bookings enable row level security;</pre>
                 return;
             }
 
+            // เรียงลำดับชั่วโมงและวันจากน้อยไปมาก เพื่อให้ตารางและการคำนวณราคาเป็นระเบียบ
+            const sortedHourlyTiers = [...modalTempHourlyTiers]
+                .map(t => ({
+                    hours: Math.max(1, Number(t.hours) || 1),
+                    normal: Math.max(0, Number(t.normal) || 0),
+                    follower: Math.max(0, Number(t.follower) || 0)
+                }))
+                .sort((a, b) => a.hours - b.hours);
+
+            const sortedDailyTiers = [...modalTempDailyTiers]
+                .map(t => ({
+                    days: Math.max(1, Number(t.days) || 1),
+                    normal: Math.max(0, Number(t.normal) || 0),
+                    follower: Math.max(0, Number(t.follower) || 0)
+                }))
+                .sort((a, b) => a.days - b.days);
+
+            const firstHourly = sortedHourlyTiers[0] || { hours: 3, normal: 200, follower: 179 };
+            const secondHourly = sortedHourlyTiers[1] || firstHourly;
+            const firstDaily = sortedDailyTiers.find(d => d.days === 1) || sortedDailyTiers[0] || { days: 1, normal: 350, follower: 299 };
+
+            const hourly = firstHourly.normal;
+            const pack4Hr = secondHourly.normal;
+            const daily = firstDaily.normal;
+            const followerDaily = firstDaily.follower;
+
             try {
                 if (editingAdminCameraId) {
-                    const existingCam = appData.cameras.find(c => c.id === editingAdminCameraId);
-                    const updatedHourlyTiers = existingCam?.hourlyTiers?.length ? existingCam.hourlyTiers : [
-                        { hours: 3, normal: hourly, follower: Math.max(0, hourly - 21) },
-                        { hours: 6, normal: hourly + 60, follower: hourly + 49 },
-                        { hours: 8, normal: hourly + 90, follower: hourly + 69 }
-                    ];
-                    const updatedDailyTiers = existingCam?.dailyTiers?.length ? existingCam.dailyTiers : [
-                        { days: 1, normal: daily, follower: followerDaily },
-                        { days: 2, normal: daily * 2 - 50, follower: followerDaily * 2 },
-                        { days: 3, normal: daily * 3 - 260, follower: followerDaily * 3 - 200 },
-                        { days: 5, normal: daily * 3 - 60, follower: followerDaily * 3 },
-                        { days: 7, normal: daily * 3 + 149, follower: followerDaily * 3 + 200 }
-                    ];
-
                     const { error } = await supabaseClient
                         .from('cameras')
                         .update({
@@ -3412,11 +3688,13 @@ alter table public.bookings enable row level security;</pre>
                             image: gallery[0],
                             gallery,
                             hourly_rate: hourly,
+                            pack_4hr_rate: pack4Hr,
                             daily_rate: daily,
                             follower_daily_rate: followerDaily,
                             deposit: 0,
-                            hourly_tiers: updatedHourlyTiers,
-                            daily_tiers: updatedDailyTiers,
+                            hourly_tiers: sortedHourlyTiers,
+                            daily_tiers: sortedDailyTiers,
+                            extra_day_rate: extraDayRate,
                             units: modalTempUnits
                         })
                         .eq('id', editingAdminCameraId);
@@ -3433,23 +3711,13 @@ alter table public.bookings enable row level security;</pre>
                             image: gallery[0],
                             gallery,
                             hourly_rate: hourly,
-                            pack_4hr_rate: hourly + 60,
+                            pack_4hr_rate: pack4Hr,
                             daily_rate: daily,
                             follower_daily_rate: followerDaily,
                             deposit: 0,
-                            hourly_tiers: [
-                                { hours: 3, normal: hourly, follower: Math.max(0, hourly - 21) },
-                                { hours: 6, normal: hourly + 60, follower: hourly + 49 },
-                                { hours: 8, normal: hourly + 90, follower: hourly + 69 }
-                            ],
-                            daily_tiers: [
-                                { days: 1, normal: daily, follower: followerDaily },
-                                { days: 2, normal: daily * 2 - 50, follower: followerDaily * 2 },
-                                { days: 3, normal: daily * 3 - 260, follower: followerDaily * 3 - 200 },
-                                { days: 5, normal: daily * 3 - 60, follower: followerDaily * 3 },
-                                { days: 7, normal: daily * 3 + 149, follower: followerDaily * 3 + 200 }
-                            ],
-                            extra_day_rate: 150,
+                            hourly_tiers: sortedHourlyTiers,
+                            daily_tiers: sortedDailyTiers,
+                            extra_day_rate: extraDayRate,
                             units: modalTempUnits,
                             sort_order: appData.cameras.length + 1
                         });
@@ -3460,7 +3728,7 @@ alter table public.bookings enable row level security;</pre>
                 closeAdminCameraModal();
                 await fetchPublicDataFromSupabase();
                 renderAdminAll();
-                showToast('บันทึกข้อมูลกล้องลงฐานข้อมูลเรียบร้อยแล้วค่ะ 🎀');
+                showToast('บันทึกตารางราคาและข้อมูลกล้องลงฐานข้อมูลเรียบร้อยแล้วค่ะ 🎀');
             } catch (err) {
                 console.error('Save camera error:', err);
                 showToast('ไม่สามารถบันทึกข้อมูลกล้องได้: ' + (err.message || ''));
@@ -3498,6 +3766,89 @@ alter table public.bookings enable row level security;</pre>
             document.getElementById('admSetQrUrl').value = appData.shop.qrCodeUrl;
             document.getElementById('admSetTgToken').value = appData.shop.telegramBotToken || '';
             document.getElementById('admSetTgChatId').value = appData.shop.telegramChatId || '';
+
+            const imgs = appData.shop.siteImages || DEFAULT_SITE_IMAGES;
+            document.getElementById('admSetLogoUrl').value = imgs.logoUrl || DEFAULT_SITE_IMAGES.logoUrl;
+            document.getElementById('admSetBannerUrl').value = imgs.bannerUrl || DEFAULT_SITE_IMAGES.bannerUrl;
+            document.getElementById('admSetPickupImgUrl').value = imgs.pickupGuideUrl || DEFAULT_SITE_IMAGES.pickupGuideUrl;
+            document.getElementById('admSetAccessoryImgUrl').value = imgs.accessoryUrl || DEFAULT_SITE_IMAGES.accessoryUrl;
+            document.getElementById('admSetRuleImg1Url').value = imgs.ruleImg1Url || DEFAULT_SITE_IMAGES.ruleImg1Url;
+            document.getElementById('admSetRuleImg2Url').value = imgs.ruleImg2Url || DEFAULT_SITE_IMAGES.ruleImg2Url;
+            document.getElementById('admSetSuccessImgUrl').value = imgs.successImgUrl || DEFAULT_SITE_IMAGES.successImgUrl;
+
+            adminTempPickupLocations = Array.isArray(appData.shop.pickupLocations) && appData.shop.pickupLocations.length
+                ? [...appData.shop.pickupLocations]
+                : [...DEFAULT_PICKUP_LOCATIONS];
+
+            renderAdminPickupLocationsEditor();
+            refreshAdminSiteImagesPreview();
+        }
+
+        function refreshAdminSiteImagesPreview() {
+            const previewEl = document.getElementById('admSiteImagesPreviewRow');
+            if (!previewEl) return;
+
+            const items = [
+                { label: 'โลโก้ร้าน', url: document.getElementById('admSetLogoUrl')?.value.trim() },
+                { label: 'แบนเนอร์หน้าแรก', url: document.getElementById('admSetBannerUrl')?.value.trim() },
+                { label: 'รูปสถานที่นัดรับ', url: document.getElementById('admSetPickupImgUrl')?.value.trim() },
+                { label: 'รูปอุปกรณ์เสริม', url: document.getElementById('admSetAccessoryImgUrl')?.value.trim() },
+                { label: 'รูปเงื่อนไข 1', url: document.getElementById('admSetRuleImg1Url')?.value.trim() },
+                { label: 'รูปเงื่อนไข 2', url: document.getElementById('admSetRuleImg2Url')?.value.trim() },
+                { label: 'รูป QR Code', url: document.getElementById('admSetQrUrl')?.value.trim() },
+                { label: 'รูปหน้าจองสำเร็จ', url: document.getElementById('admSetSuccessImgUrl')?.value.trim() }
+            ];
+
+            previewEl.innerHTML = items.map(item => `
+                <div class="p-2 rounded-xl bg-white border border-pink-200 flex flex-col items-center gap-1 text-center">
+                    <div class="w-full h-20 rounded-lg bg-pink-50/40 overflow-hidden flex items-center justify-center border border-pink-100">
+                        <img src="${item.url || ''}" alt="${item.label}" onerror="this.src='https://placehold.co/300x200/FDF2F8/9D174D?text=No+Image'" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <span class="text-[10px] font-extrabold text-pink-800 truncate w-full">${item.label}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminPickupLocationsEditor() {
+            const listEl = document.getElementById('admPickupLocationsEditorList');
+            if (!listEl) return;
+
+            if (!adminTempPickupLocations.length) {
+                listEl.innerHTML = `<div class="p-3 rounded-xl bg-white border border-pink-200 text-center text-pink-500 font-bold">ยังไม่มีสถานที่นัดรับ กด "+ เพิ่มสถานที่นัดรับ" ด้านบนได้เลยค่ะ</div>`;
+                return;
+            }
+
+            listEl.innerHTML = adminTempPickupLocations.map((loc, idx) => `
+                <div class="flex items-center gap-2 bg-white p-2 rounded-xl border border-pink-200">
+                    <span class="w-7 h-7 rounded-lg bg-pink-100 text-pink-800 font-extrabold text-[11px] flex items-center justify-center shrink-0">${idx + 1}</span>
+                    <input type="text"
+                           value="${loc.replace(/"/g, '&quot;')}"
+                           oninput="adminTempPickupLocations[${idx}] = this.value"
+                           placeholder="ระบุชื่อสถานที่นัดรับ เช่น หน้าสวนมิ่งขวัญ"
+                           class="flex-1 px-3 py-1.5 rounded-lg border border-pink-200 text-xs font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                    <button type="button"
+                            onclick="removeAdminPickupLocationRow(${idx})"
+                            class="px-2.5 py-1.5 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 font-extrabold text-[11px] flex items-center gap-1 shrink-0 transition"
+                            title="ลบสถานที่นี้">
+                        <i class="fa-regular fa-trash-can"></i>
+                        <span>ลบ</span>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function addAdminPickupLocationRow() {
+            adminTempPickupLocations.push('');
+            renderAdminPickupLocationsEditor();
+        }
+
+        function removeAdminPickupLocationRow(idx) {
+            if (adminTempPickupLocations.length <= 1) {
+                showToast('ต้องมีสถานที่นัดรับอย่างน้อย 1 แห่งค่ะ');
+                return;
+            }
+            adminTempPickupLocations.splice(idx, 1);
+            renderAdminPickupLocationsEditor();
         }
 
         async function saveAdminShopSettings() {
@@ -3510,10 +3861,30 @@ alter table public.bookings enable row level security;</pre>
             const telegramBotToken = document.getElementById('admSetTgToken').value.trim();
             const telegramChatId = document.getElementById('admSetTgChatId').value.trim();
 
+            const cleanedLocations = adminTempPickupLocations
+                .map(item => String(item || '').trim())
+                .filter(Boolean);
+
+            if (!cleanedLocations.length) {
+                showToast('กรุณาระบุสถานที่นัดรับอย่างน้อย 1 แห่งค่ะ');
+                return;
+            }
+
+            const siteImages = {
+                logoUrl: document.getElementById('admSetLogoUrl').value.trim() || DEFAULT_SITE_IMAGES.logoUrl,
+                bannerUrl: document.getElementById('admSetBannerUrl').value.trim() || DEFAULT_SITE_IMAGES.bannerUrl,
+                pickupGuideUrl: document.getElementById('admSetPickupImgUrl').value.trim() || DEFAULT_SITE_IMAGES.pickupGuideUrl,
+                accessoryUrl: document.getElementById('admSetAccessoryImgUrl').value.trim() || DEFAULT_SITE_IMAGES.accessoryUrl,
+                ruleImg1Url: document.getElementById('admSetRuleImg1Url').value.trim() || DEFAULT_SITE_IMAGES.ruleImg1Url,
+                ruleImg2Url: document.getElementById('admSetRuleImg2Url').value.trim() || DEFAULT_SITE_IMAGES.ruleImg2Url,
+                successImgUrl: document.getElementById('admSetSuccessImgUrl').value.trim() || DEFAULT_SITE_IMAGES.successImgUrl
+            };
+
             const pickupPayload = {
-                locations: Array.isArray(appData.shop.pickupLocations) ? appData.shop.pickupLocations : [],
+                locations: cleanedLocations,
                 telegramBotToken,
-                telegramChatId
+                telegramChatId,
+                siteImages
             };
 
             try {
@@ -3534,7 +3905,8 @@ alter table public.bookings enable row level security;</pre>
                 if (error) throw error;
 
                 await fetchPublicDataFromSupabase();
-                showToast('บันทึกการตั้งค่าร้านและ Telegram ลงฐานข้อมูลเรียบร้อยแล้วค่ะ 🌸');
+                loadAdminShopSettingsForm();
+                showToast('บันทึกรูปภาพเว็บไซต์ สถานที่นัดรับ และการตั้งค่าร้านเรียบร้อยแล้วค่ะ 🌸');
             } catch (err) {
                 console.error('Save shop settings error:', err);
                 showToast('บันทึกการตั้งค่าร้านไม่สำเร็จค่ะ');
@@ -3576,6 +3948,20 @@ alter table public.bookings enable row level security;</pre>
         function initAppUI() {
             document.getElementById('headerShopName').textContent = appData.shop.name;
             document.getElementById('headerShopDesc').textContent = `${appData.shop.description} 🌸`;
+
+            const imgs = appData.shop.siteImages || DEFAULT_SITE_IMAGES;
+            const setImgSrc = (id, url) => {
+                const el = document.getElementById(id);
+                if (el && url) el.src = url;
+            };
+            setImgSrc('headerLogoImg', imgs.logoUrl || DEFAULT_SITE_IMAGES.logoUrl);
+            setImgSrc('homeBannerImg', imgs.bannerUrl || DEFAULT_SITE_IMAGES.bannerUrl);
+            setImgSrc('pickupGuideImg', imgs.pickupGuideUrl || DEFAULT_SITE_IMAGES.pickupGuideUrl);
+            setImgSrc('accessoryPreviewImg', imgs.accessoryUrl || DEFAULT_SITE_IMAGES.accessoryUrl);
+            setImgSrc('rulesSheetImg1', imgs.ruleImg1Url || DEFAULT_SITE_IMAGES.ruleImg1Url);
+            setImgSrc('rulesSheetImg2', imgs.ruleImg2Url || DEFAULT_SITE_IMAGES.ruleImg2Url);
+            setImgSrc('successBannerImg', imgs.successImgUrl || DEFAULT_SITE_IMAGES.successImgUrl);
+            setImgSrc('payStepQrImg', appData.shop.qrCodeUrl);
 
             document.getElementById('inputPickupDate').value = currentBookingDraft.pickupDate;
             document.getElementById('inputPickupTime').value = currentBookingDraft.pickupTime;

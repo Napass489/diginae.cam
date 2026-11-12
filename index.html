@@ -1,0 +1,3080 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>diginae.cam — ร้านเช่ากล้องสุไหงโกลก | ระบบจองคิวเช่ากล้องออนไลน์</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Prompt &Mali -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: linear-gradient(180deg, #FFF7FA 0%, #FDF2F8 45%, #F9F5FF 100%);
+            color: #4A1D34;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .boutique-shell {
+            background: rgba(255, 255, 255, 0.94);
+            border: 1.5px solid #FCE8F0;
+            box-shadow: 0 16px 40px -10px rgba(219, 76, 135, 0.09);
+        }
+
+        .boutique-card {
+            background: #FFFFFF;
+            border-radius: 28px;
+            border: 1.5px solid #F8E2EC;
+            box-shadow: 0 8px 26px -6px rgba(219, 76, 135, 0.08);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .boutique-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 34px -8px rgba(219, 76, 135, 0.15);
+        }
+
+        .boutique-pill-active {
+            background: linear-gradient(135deg, #9D4EDD 0%, #DB4C87 100%);
+            color: #FFFFFF !important;
+            border-color: transparent !important;
+            box-shadow: 0 4px 14px rgba(181, 68, 168, 0.3);
+        }
+
+        .boutique-btn-action {
+            background: linear-gradient(135deg, #B55FE6 0%, #DB4C87 100%);
+            color: #FFFFFF;
+            transition: all 0.25s ease;
+        }
+        .boutique-btn-action:hover {
+            opacity: 0.95;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(196, 47, 108, 0.3);
+        }
+
+        .btn-rose {
+            background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+            color: #FFFFFF;
+            box-shadow: 0 8px 20px -4px rgba(219, 39, 119, 0.35);
+            transition: all 0.25s ease;
+        }
+        .btn-rose:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 24px -4px rgba(190, 24, 93, 0.45);
+        }
+
+        .cal-aesthetic-box {
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFF9FC 100%);
+            border: 1.5px solid #FCE8F0;
+            box-shadow: 0 14px 35px -8px rgba(219, 76, 135, 0.1);
+        }
+
+        .cal-cell {
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .cal-cell:hover:not(.cal-disabled) {
+            transform: translateY(-2px) scale(1.02);
+            z-index: 10;
+        }
+
+        .cal-range-connector {
+            background: linear-gradient(90deg, rgba(251, 207, 232, 0.55) 0%, rgba(233, 213, 255, 0.55) 100%);
+        }
+
+        /* Marquee Animation */
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+            display: inline-flex;
+            white-space: nowrap;
+            animation: marqueeScroll 22s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="pb-16 selection:bg-pink-200 selection:text-pink-900">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-pink-100 shadow-sm">
+        <div class="max-w-5xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchMainView('CUSTOMER'); goToCustomerStep(1);">
+                <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-pink-400 via-pink-500 to-purple-500 flex items-center justify-center text-white shadow-md">
+                    <i class="fa-solid fa-camera-retro text-lg"></i>
+                    <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-purple-600 text-white text-[9px] flex items-center justify-center border-2 border-white">✦</span>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <h1 id="headerShopName" class="text-lg sm:text-xl font-extrabold text-pink-950 tracking-tight">diginae.cam</h1>
+                        <span class="px-2 py-0.5 rounded-full bg-pink-100 text-pink-700 text-[10px] font-extrabold">Official</span>
+                    </div>
+                    <p id="headerShopDesc" class="text-xs text-pink-600 font-medium">ร้านเช่ากล้องสุไหงโกลก 🌸</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-1.5 sm:gap-2">
+                <button type="button" id="navBtnBook" onclick="switchMainView('CUSTOMER')" class="px-3.5 py-2 rounded-full text-xs sm:text-sm font-extrabold boutique-pill-active transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>จองเช่ากล้อง</span>
+                </button>
+                <button type="button" id="navBtnStatus" onclick="switchMainView('STATUS')" class="px-3.5 py-2 rounded-full text-xs sm:text-sm font-extrabold bg-white text-pink-900 border border-pink-200 hover:bg-pink-50 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>เช็คสถานะ</span>
+                </button>
+                <button type="button" id="navBtnAdmin" onclick="switchMainView('ADMIN')" class="px-3.5 py-2 rounded-full text-xs sm:text-sm font-extrabold bg-white text-pink-900 border border-pink-200 hover:bg-pink-50 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-user-shield text-pink-500"></i>
+                    <span>โหมดแอดมิน</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-3 sm:px-6 pt-4 space-y-4">
+
+        <!-- ==========================================
+             VIEW 1: CUSTOMER BOOKING FLOW (STEPS 1-5)
+        =========================================== -->
+        <section id="viewCustomer" class="space-y-4">
+
+            <!-- หน้าแรก แบนเนอร์ด้านบน (ไม่โดนตัด object-contain) -->
+            <div class="boutique-shell rounded-[28px] p-2 sm:p-3 overflow-hidden bg-white">
+                <img src="https://i.postimg.cc/FFWGSqrV/att-dgfk5wmjb-F-q-A9X1x4KIpoub8d-ZG37K2c0i-Tt2Bo4s.jpg"
+                     alt="diginae.cam Banner"
+                     class="w-full h-auto max-h-[360px] object-contain mx-auto rounded-2xl">
+            </div>
+
+            <!-- Single-line Stepper Navigation -->
+            <div class="boutique-shell rounded-[26px] p-2.5 sm:p-3.5">
+                <div class="grid grid-cols-4 gap-1.5 sm:gap-2.5 overflow-x-auto no-scrollbar">
+                    <button type="button" onclick="jumpToStepIfAllowed(1)" id="stepIndicator1" class="flex items-center justify-center gap-1.5 px-2.5 py-2.5 rounded-2xl font-extrabold text-[11px] sm:text-xs whitespace-nowrap transition boutique-pill-active">
+                        <span class="w-5 h-5 rounded-full bg-white/25 flex items-center justify-center text-[10px]">1</span>
+                        <span>เลือกกล้อง & วันเช่า</span>
+                    </button>
+                    <button type="button" onclick="jumpToStepIfAllowed(2)" id="stepIndicator2" class="flex items-center justify-center gap-1.5 px-2.5 py-2.5 rounded-2xl font-extrabold text-[11px] sm:text-xs whitespace-nowrap transition bg-pink-50/80 text-pink-900">
+                        <span class="w-5 h-5 rounded-full bg-pink-200/70 flex items-center justify-center text-[10px]">2</span>
+                        <span>กฎและเงื่อนไข</span>
+                    </button>
+                    <button type="button" onclick="jumpToStepIfAllowed(3)" id="stepIndicator3" class="flex items-center justify-center gap-1.5 px-2.5 py-2.5 rounded-2xl font-extrabold text-[11px] sm:text-xs whitespace-nowrap transition bg-pink-50/80 text-pink-900">
+                        <span class="w-5 h-5 rounded-full bg-pink-200/70 flex items-center justify-center text-[10px]">3</span>
+                        <span>ข้อมูลผู้เช่า</span>
+                    </button>
+                    <button type="button" onclick="jumpToStepIfAllowed(4)" id="stepIndicator4" class="flex items-center justify-center gap-1.5 px-2.5 py-2.5 rounded-2xl font-extrabold text-[11px] sm:text-xs whitespace-nowrap transition bg-pink-50/80 text-pink-900">
+                        <span class="w-5 h-5 rounded-full bg-pink-200/70 flex items-center justify-center text-[10px]">4</span>
+                        <span>ชำระเงิน & ยืนยัน</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Marquee Running Text Bar -->
+            <div class="boutique-shell rounded-full px-3.5 py-2 flex items-center gap-2.5 overflow-hidden">
+                <span class="w-7 h-7 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center shrink-0 text-xs">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </span>
+                <div class="overflow-hidden flex-1">
+                    <div class="marquee-track text-xs font-bold text-pink-900">
+                        <span class="mx-6">🌸 บริการเช่ากล้องดิจิตอลโทนสวย สุไหงโกลก เช็คคิวว่างเรียลไทม์ ดูแลด้วยใจทุกคิวค่ะ ✨</span>
+                        <span class="mx-6">🎀 พิเศษ! สิทธิ์ราคาผู้ติดตาม เพียงติดตาม TikTok หรือ IG ของร้านและส่งหลักฐานก่อนกรอกข้อมูลการเช่า 💗</span>
+                        <span class="mx-6">📸 เช่า 12 ชั่วโมงขึ้นไป คิดเป็นราคา 1 วัน • เช่าเกิน 7 วัน เพิ่มวันละ 150 บาท ✨</span>
+                    </div>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-pink-50 border border-pink-200 text-[11px] font-extrabold text-pink-800 shrink-0">
+                    🎀 ยินดีต้อนรับ
+                </span>
+            </div>
+
+            <!-- ==========================================
+                 STEP 1: เลือกรุ่นกล้อง + ปฏิทิน + วันเวลา + สถานที่รับ
+            =========================================== -->
+            <div id="customerStep1" class="space-y-5">
+
+                <!-- ส่วนที่ 1: รายการกล้องทั้งหมด -->
+                <div class="boutique-shell rounded-[32px] p-4 sm:p-6 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                            <span class="inline-block px-3 py-0.5 rounded-full bg-pink-100 text-pink-700 text-[11px] font-extrabold mb-1">diginae.cam Boutique</span>
+                            <h2 class="text-xl sm:text-2xl font-extrabold text-pink-950">รายการกล้องทั้งหมด</h2>
+                            <p class="text-xs text-pink-600">เลือกรุ่นกล้องที่คุณถูกใจเพื่อดูคิวว่างและคำนวณราคาเช่าอัตโนมัติ</p>
+                        </div>
+                        <span id="cameraTotalModelsBadge" class="px-3.5 py-1.5 rounded-full bg-pink-50 border border-pink-200 text-xs font-extrabold text-pink-800">
+                            ทั้งหมด 2 รุ่น
+                        </span>
+                    </div>
+
+                    <!-- Camera Cards Grid (2 Columns Boutique Style) -->
+                    <div id="cameraCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+                </div>
+
+                <!-- ส่วนที่ 2 & 3: ปฏิทินจอง + เลือกวันและเวลา + สรุปราคา + สถานที่นัดรับ -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+
+                    <!-- ปฏิทินเช็คคิวว่าง (7 Cols on LG) -->
+                    <div class="lg:col-span-7 cal-aesthetic-box rounded-[32px] p-4 sm:p-6 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div>
+                                <span class="text-[11px] font-extrabold text-purple-600 uppercase tracking-wider">Smart Queue Planner</span>
+                                <h3 class="text-lg sm:text-xl font-extrabold text-pink-950">ปฏิทินเช็คคิวว่าง & เลือกวันเช่า</h3>
+                                <p class="text-xs text-pink-600">แตะเลือก <strong>วันรับกล้อง</strong> และ <strong>วันคืนกล้อง</strong> บนปฏิทินได้ทันที</p>
+                            </div>
+                            <select id="calendarCameraFilter" onchange="onChangeCalendarFilter(this.value)" class="px-3.5 py-2 rounded-2xl bg-pink-50 border border-pink-200 text-xs font-extrabold text-pink-900 focus:outline-none">
+                            </select>
+                        </div>
+
+                        <!-- Selected Date Range Quick Pill Cards -->
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <div class="p-3 rounded-2xl bg-pink-50/80 border border-pink-200 flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-xl bg-pink-500 text-white flex items-center justify-center shrink-0">
+                                    <i class="fa-regular fa-calendar-check"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="text-[10px] font-bold text-pink-500">วันรับกล้อง</p>
+                                    <p id="calBannerPickup" class="text-xs sm:text-sm font-extrabold text-pink-950 truncate">-</p>
+                                </div>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-purple-50/80 border border-purple-200 flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-xl bg-purple-500 text-white flex items-center justify-center shrink-0">
+                                    <i class="fa-regular fa-calendar-plus"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="text-[10px] font-bold text-purple-600">วันคืนกล้อง</p>
+                                    <p id="calBannerReturn" class="text-xs sm:text-sm font-extrabold text-purple-950 truncate">-</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Month Switcher -->
+                        <div class="flex items-center justify-between bg-white rounded-2xl p-2 border border-pink-100 shadow-sm">
+                            <button type="button" onclick="changeCustomerCalendarMonth(-1)" class="w-9 h-9 rounded-xl hover:bg-pink-50 text-pink-800 flex items-center justify-center transition">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <div class="flex items-center gap-2">
+                                <span id="customerCalendarMonthLabel" class="text-sm sm:text-base font-extrabold text-pink-950"></span>
+                                <button type="button" onclick="jumpCalendarToToday()" class="px-2.5 py-0.5 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-800 text-[10px] font-extrabold transition">
+                                    วันนี้
+                                </button>
+                            </div>
+                            <button type="button" onclick="changeCustomerCalendarMonth(1)" class="w-9 h-9 rounded-xl hover:bg-pink-50 text-pink-800 flex items-center justify-center transition">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+
+                        <!-- Legend -->
+                        <div class="flex flex-wrap items-center justify-center gap-3 text-[11px] font-bold text-pink-800">
+                            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> ว่างพร้อมเช่า</span>
+                            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-rose-400"></span> คิวเต็ม/งดเช่า</span>
+                            <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span> วันที่เลือกอยู่</span>
+                        </div>
+
+                        <!-- Days Header -->
+                        <div class="grid grid-cols-7 gap-1.5 text-center text-[11px] font-extrabold text-pink-500">
+                            <div class="text-rose-500">อา</div>
+                            <div>จ</div>
+                            <div>อ</div>
+                            <div>พ</div>
+                            <div>พฤ</div>
+                            <div>ศ</div>
+                            <div class="text-purple-600">ส</div>
+                        </div>
+
+                        <!-- Calendar Grid -->
+                        <div id="customerCalendarGrid" class="grid grid-cols-7 gap-1.5"></div>
+                    </div>
+
+                    <!-- เลือกเวลา + สิทธิ์ราคา + สถานที่นัดรับ + สรุปราคา (5 Cols on LG) -->
+                    <div class="lg:col-span-5 boutique-shell rounded-[32px] p-4 sm:p-6 space-y-4">
+                        <h3 class="text-lg font-extrabold text-pink-950 flex items-center gap-2">
+                            <i class="fa-regular fa-clock text-pink-500"></i>
+                            <span>กำหนดวัน-เวลา & สถานที่รับกล้อง</span>
+                        </h3>
+
+                        <!-- Date & Time Inputs -->
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-extrabold text-pink-900 mb-1">วันที่รับกล้อง</label>
+                                <input type="date" id="inputPickupDate" onchange="onDateTimeInputChanged()" class="w-full px-3 py-2 rounded-2xl border border-pink-200 bg-white text-xs font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-extrabold text-pink-900 mb-1">เวลารับกล้อง</label>
+                                <input type="time" id="inputPickupTime" value="10:00" onchange="onDateTimeInputChanged()" class="w-full px-3 py-2 rounded-2xl border border-pink-200 bg-white text-xs font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-extrabold text-pink-900 mb-1">วันที่คืนกล้อง</label>
+                                <input type="date" id="inputReturnDate" onchange="onDateTimeInputChanged()" class="w-full px-3 py-2 rounded-2xl border border-pink-200 bg-white text-xs font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-extrabold text-pink-900 mb-1">เวลาคืนกล้อง</label>
+                                <input type="time" id="inputReturnTime" value="10:00" onchange="onDateTimeInputChanged()" class="w-full px-3 py-2 rounded-2xl border border-pink-200 bg-white text-xs font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                            </div>
+                        </div>
+
+                        <!-- Quick Hourly / Daily Preset Pills -->
+                        <div class="space-y-1.5">
+                            <span class="text-[11px] font-bold text-pink-600">ปุ่มลัดเลือกระยะเวลาเช่าฮิต:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <button type="button" onclick="applyQuickDurationHours(3)" class="px-2.5 py-1 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-800 border border-pink-200 text-[11px] font-bold transition">3 ชั่วโมง</button>
+                                <button type="button" onclick="applyQuickDurationHours(6)" class="px-2.5 py-1 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-800 border border-pink-200 text-[11px] font-bold transition">6 ชั่วโมง</button>
+                                <button type="button" onclick="applyQuickDurationHours(8)" class="px-2.5 py-1 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-800 border border-pink-200 text-[11px] font-bold transition">8 ชั่วโมง</button>
+                                <button type="button" onclick="applyQuickDurationDays(1)" class="px-2.5 py-1 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-800 border border-purple-200 text-[11px] font-bold transition">1 วัน</button>
+                                <button type="button" onclick="applyQuickDurationDays(2)" class="px-2.5 py-1 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-800 border border-purple-200 text-[11px] font-bold transition">2 วัน</button>
+                                <button type="button" onclick="applyQuickDurationDays(3)" class="px-2.5 py-1 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-800 border border-purple-200 text-[11px] font-bold transition">3 วัน</button>
+                            </div>
+                        </div>
+
+                        <!-- Availability Alert Box -->
+                        <div id="step1AvailabilityAlert" class="rounded-2xl p-3 text-xs font-bold flex items-center gap-2.5"></div>
+
+                        <!-- เลือกประเภทราคา (ราคาปกติ / ราคาผู้ติดตาม) -->
+                        <div class="space-y-2 pt-1">
+                            <label class="block text-xs sm:text-sm font-extrabold text-pink-950">
+                                <i class="fa-solid fa-ribbon text-pink-500 mr-1"></i> เลือกสิทธิ์ราคาเช่า
+                            </label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button type="button" id="rateTypeBtn_NORMAL" onclick="setBookingRateType('NORMAL')" class="py-2.5 px-3 rounded-2xl text-xs font-extrabold border transition boutique-pill-active">
+                                    ราคาปกติ
+                                </button>
+                                <button type="button" id="rateTypeBtn_FOLLOWER" onclick="setBookingRateType('FOLLOWER')" class="py-2.5 px-3 rounded-2xl text-xs font-extrabold border transition bg-white text-pink-800 border-pink-200 hover:bg-pink-50">
+                                    🎀 ราคาผู้ติดตาม
+                                </button>
+                            </div>
+                            <p class="text-[11px] text-pink-600 font-medium">* กรณีเลือก <strong>ราคาผู้ติดตาม</strong> ต้องส่งหลักฐานการติดตามร้าน (TikTok หรือ IG) ก่อนกรอกข้อมูลการเช่า</p>
+                        </div>
+
+                        <!-- ส่วนที่ 4: สถานที่นัดรับ (พร้อมรูปประกอบ) -->
+                        <div class="space-y-2.5 pt-1">
+                            <label class="block text-xs sm:text-sm font-extrabold text-pink-950">
+                                <i class="fa-solid fa-location-dot text-pink-500 mr-1"></i> เลือกสถานที่นัดรับกล้อง *
+                            </label>
+                            <div class="rounded-2xl overflow-hidden border border-pink-200 bg-pink-50/40 p-1.5">
+                                <img src="https://i.postimg.cc/NfXT0P5d/att-WOglxk8j-4sz-UE1Ug-A0G-URRm-MStj-N9-f-Eicdjw-OQ68.jpg"
+                                     alt="สถานที่นัดรับกล้อง"
+                                     class="w-full h-auto max-h-60 object-contain mx-auto rounded-xl">
+                            </div>
+                            <select id="selectPickupLocation" onchange="onPickupLocationChange(this.value)" class="w-full px-3.5 py-2.5 rounded-2xl border border-pink-200 bg-white text-xs sm:text-sm font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                            </select>
+                            <div id="customPickupLocationWrap" class="hidden">
+                                <input type="text" id="inputCustomPickupLocation" oninput="currentBookingDraft.customPickupLocation = this.value" placeholder="ระบุสถานที่นัดรับอื่นๆ ในสุไหงโกลก..." class="w-full px-3.5 py-2.5 rounded-2xl border border-pink-300 bg-pink-50/40 text-xs sm:text-sm font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                            </div>
+                        </div>
+
+                        <!-- Summary Box -->
+                        <div class="rounded-2xl bg-gradient-to-br from-pink-50 via-white to-purple-50 border border-pink-200 p-4 space-y-2 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-pink-600 font-medium">รุ่นกล้องที่เลือก:</span>
+                                <span id="sumStep1Camera" class="font-extrabold text-pink-950">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-pink-600 font-medium">วัน-เวลารับ:</span>
+                                <span id="sumStep1Start" class="font-bold text-pink-900">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-pink-600 font-medium">วัน-เวลาคืน:</span>
+                                <span id="sumStep1End" class="font-bold text-pink-900">-</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-pink-600 font-medium">ระยะเวลาเช่า:</span>
+                                <span id="sumStep1Duration" class="font-extrabold text-purple-700">-</span>
+                            </div>
+                            <div class="border-t border-pink-200/70 pt-2 flex justify-between">
+                                <span class="text-pink-600 font-medium">ค่าเช่ากล้อง:</span>
+                                <span id="sumStep1RentPrice" class="font-extrabold text-pink-900">฿0</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-pink-600 font-medium">เงินประกันเครื่อง (โอนคืนเมื่อคืนกล้อง):</span>
+                                <span id="sumStep1Deposit" class="font-bold text-pink-900">฿0</span>
+                            </div>
+                            <div class="border-t border-pink-200 pt-2 flex justify-between items-baseline">
+                                <span class="font-extrabold text-pink-950 text-sm">ยอดชำระรวมทั้งหมด:</span>
+                                <span id="sumStep1Total" class="text-lg font-extrabold text-pink-600">฿0</span>
+                            </div>
+                        </div>
+
+                        <button type="button" id="btnStep1Next" onclick="proceedFromStep1()" class="w-full py-3.5 rounded-2xl btn-rose font-extrabold text-sm flex items-center justify-center gap-2">
+                            <span>ดำเนินการต่อ</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 STEP 2: กฎและรายละเอียดการเช่า (แสดง 2 รูปคู่กันพอดีไม่โดนตัด)
+            =========================================== -->
+            <div id="customerStep2" class="hidden boutique-shell rounded-[32px] p-4 sm:p-7 space-y-5">
+                <div class="flex items-center justify-between gap-2 border-b border-pink-100 pb-3">
+                    <div>
+                        <span class="text-xs font-extrabold text-pink-500">Step 2 of 4</span>
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-pink-950">เงื่อนไขและข้อตกลงการเช่ากล้อง</h2>
+                        <p class="text-xs text-pink-600">กรุณาอ่านรายละเอียดเงื่อนไขทั้ง 2 แผ่นให้ครบถ้วนก่อนกดยอมรับ</p>
+                    </div>
+                    <span id="rulesVersionBadge" class="px-3 py-1 rounded-full bg-pink-100 text-pink-800 text-xs font-extrabold">เวอร์ชัน v1.2</span>
+                </div>
+
+                <!-- รูปเงื่อนไข 2 รูป วางคู่กันขนาดเท่ากันและไม่โดนตัด -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+                    <div class="rounded-2xl border border-pink-200 bg-pink-50/30 p-2 flex items-center justify-center">
+                        <img src="https://i.postimg.cc/1tS7WNbQ/att-Nq-ZEti6g-WRsg-DGVRs-RR-j-GYXBXE8Oi-NBQor2WRspy1Q.jpg"
+                             alt="เงื่อนไขการเช่าแผ่นที่ 1"
+                             class="w-full h-full max-h-[540px] object-contain rounded-xl">
+                    </div>
+                    <div class="rounded-2xl border border-pink-200 bg-pink-50/30 p-2 flex items-center justify-center">
+                        <img src="https://i.postimg.cc/6Q9VPJtk/att-jm4Ygf-Dw-Adn-Kq5TMuopnfi-C1r-YZt-N2LCl-Lc-LO0Ss6c-Y.jpg"
+                             alt="เงื่อนไขการเช่าแผ่นที่ 2"
+                             class="w-full h-full max-h-[540px] object-contain rounded-xl">
+                    </div>
+                </div>
+
+                <!-- Checkbox ยอมรับเงื่อนไข -->
+                <label class="flex items-start gap-3 p-4 rounded-2xl bg-pink-50/90 border-2 border-pink-200 cursor-pointer select-none">
+                    <input type="checkbox" id="checkboxAcceptRules" onchange="onToggleAcceptRules(this.checked)" class="mt-1 w-5 h-5 accent-pink-600 rounded">
+                    <span class="text-xs sm:text-sm font-extrabold text-pink-950">
+                        ข้าพเจ้าได้อ่านและยอมรับกฎระเบียบและเงื่อนไขการเช่าทั้งหมดแล้ว (ระบบจะบันทึกวันเวลาและเวอร์ชันเงื่อนไขเมื่อส่งคำขอจอง)
+                    </span>
+                </label>
+
+                <div class="flex items-center justify-between gap-3 pt-2">
+                    <button type="button" onclick="goToCustomerStep(1)" class="px-5 py-3 rounded-2xl bg-white hover:bg-pink-50 text-pink-900 border border-pink-200 font-extrabold text-xs sm:text-sm">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> ย้อนกลับ
+                    </button>
+                    <button type="button" id="btnStep2Next" onclick="proceedFromStep2()" disabled class="px-7 py-3.5 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm opacity-40 cursor-not-allowed">
+                        ดำเนินการต่อ <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 STEP 3: กรอกข้อมูลผู้เช่า & อัปโหลดเอกสารยืนยันตัวตน
+            =========================================== -->
+            <div id="customerStep3" class="hidden boutique-shell rounded-[32px] p-4 sm:p-7 space-y-5">
+                <div class="border-b border-pink-100 pb-3">
+                    <span class="text-xs font-extrabold text-pink-500">Step 3 of 4</span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-pink-950">กรอกข้อมูลผู้เช่า & ยืนยันตัวตน</h2>
+                    <p class="text-xs text-pink-600">ข้อมูลและเอกสารของคุณจะถูกเก็บรักษาเป็นความลับเฉพาะแอดมินผู้มีสิทธิ์ตรวจสอบเท่านั้น</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-extrabold text-pink-950 mb-1">ชื่อ - นามสกุล *</label>
+                        <input type="text" id="inputRenterName" placeholder="เช่น น.ส. พิมพ์ดาว สายหวาน" class="w-full px-4 py-2.5 rounded-2xl border border-pink-200 text-xs sm:text-sm font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-extrabold text-pink-950 mb-1">เบอร์โทรศัพท์ติดต่อ *</label>
+                        <input type="tel" id="inputRenterPhone" placeholder="เช่น 0812345678" class="w-full px-4 py-2.5 rounded-2xl border border-pink-200 text-xs sm:text-sm font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-extrabold text-pink-950 mb-1">ที่อยู่ปัจจุบัน *</label>
+                        <textarea id="inputRenterAddress" rows="2" placeholder="บ้านเลขที่ ถนน ตำบล อำเภอ จังหวัด..." class="w-full px-4 py-2.5 rounded-2xl border border-pink-200 text-xs sm:text-sm font-bold text-pink-950 focus:outline-none focus:border-pink-500"></textarea>
+                    </div>
+                    <div class="sm:col-span-2">
+                        <label class="block text-xs font-extrabold text-pink-950 mb-1">สถานที่ทำงาน / สถานศึกษาปัจจุบัน *</label>
+                        <input type="text" id="inputRenterWorkplace" placeholder="ระบุชื่อโรงเรียน / มหาวิทยาลัย / บริษัท หรือสถานที่ทำงาน" class="w-full px-4 py-2.5 rounded-2xl border border-pink-200 text-xs sm:text-sm font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                    </div>
+                </div>
+
+                <!-- คำแนะนำการปิดเลขบัตรประชาชน -->
+                <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-xs text-amber-900 space-y-1">
+                    <p class="font-extrabold"><i class="fa-solid fa-shield-halved text-amber-600 mr-1"></i> คำแนะนำด้านความปลอดภัยก่อนอัปโหลดเอกสารบัตรประชาชน:</p>
+                    <p>• กรุณาคาดทับหรือปิด <strong>เลขประจำตัวประชาชน 13 หลัก</strong> และ <strong>บาร์โค้ด</strong> บนบัตรให้เรียบร้อย โดยให้เห็นเฉพาะชื่อ-นามสกุลและรูปหน้าชัดเจน</p>
+                </div>
+
+                <!-- อัปโหลด 2 รูป -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- 1. รูปถ่ายคู่บัตรประชาชน -->
+                    <div class="p-4 rounded-2xl border-2 border-dashed border-pink-200 bg-pink-50/40 space-y-3 text-center">
+                        <p class="text-xs font-extrabold text-pink-950">1. รูปถ่ายคู่กับบัตรประชาชน (ปิดเลขบัตร) *</p>
+                        <div id="previewWrapSelfie" class="hidden space-y-2">
+                            <img id="previewImgSelfie" src="" alt="ตัวอย่างรูปคู่บัตร" class="w-full h-44 object-contain rounded-xl bg-white border border-pink-200 mx-auto">
+                            <button type="button" onclick="clearUploadedImage('SELFIE')" class="px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-[11px] font-bold">ลบรูป / เปลี่ยนรูป</button>
+                        </div>
+                        <label class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-pink-50 text-pink-800 border border-pink-200 text-xs font-extrabold cursor-pointer shadow-sm">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>เลือกรูปภาพจากเครื่อง</span>
+                            <input type="file" id="fileInputSelfie" accept="image/*" onchange="handleSecureFileUpload(event, 'SELFIE')" class="hidden">
+                        </label>
+                    </div>
+
+                    <!-- 2. รูปถ่ายบัตรประชาชน -->
+                    <div class="p-4 rounded-2xl border-2 border-dashed border-pink-200 bg-pink-50/40 space-y-3 text-center">
+                        <p class="text-xs font-extrabold text-pink-950">2. รูปถ่ายบัตรประชาชน (ปิดเลขบัตร) *</p>
+                        <div id="previewWrapIdCard" class="hidden space-y-2">
+                            <img id="previewImgIdCard" src="" alt="ตัวอย่างรูปบัตร" class="w-full h-44 object-contain rounded-xl bg-white border border-pink-200 mx-auto">
+                            <button type="button" onclick="clearUploadedImage('IDCARD')" class="px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-[11px] font-bold">ลบรูป / เปลี่ยนรูป</button>
+                        </div>
+                        <label class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-pink-50 text-pink-800 border border-pink-200 text-xs font-extrabold cursor-pointer shadow-sm">
+                            <i class="fa-solid fa-id-card"></i>
+                            <span>เลือกรูปภาพจากเครื่อง</span>
+                            <input type="file" id="fileInputIdCard" accept="image/*" onchange="handleSecureFileUpload(event, 'IDCARD')" class="hidden">
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ส่วนอัปโหลดหลักฐานการติดตามร้าน (แสดงเฉพาะเมื่อเลือก ราคาผู้ติดตาม) -->
+                <div id="followerProofUploadSection" class="hidden p-4 rounded-2xl border-2 border-dashed border-purple-300 bg-purple-50/50 space-y-3 text-center">
+                    <div class="space-y-1">
+                        <span class="inline-block px-3 py-0.5 rounded-full bg-purple-100 text-purple-800 text-[11px] font-extrabold">🎀 สิทธิ์ราคาผู้ติดตาม</span>
+                        <p class="text-xs font-extrabold text-purple-950">3. รูปแคปหลักฐานการติดตามร้าน (TikTok หรือ Instagram) *</p>
+                        <p class="text-[11px] text-purple-700">เนื่องจากคุณเลือกใช้สิทธิ์ราคาผู้ติดตาม กรุณาแนบภาพแคปหน้าจอที่กดติดตามร้านแล้ว</p>
+                    </div>
+                    <div id="previewWrapFollowerProof" class="hidden space-y-2">
+                        <img id="previewImgFollowerProof" src="" alt="ตัวอย่างหลักฐานผู้ติดตาม" class="w-full h-44 object-contain rounded-xl bg-white border border-purple-200 mx-auto">
+                        <button type="button" onclick="clearUploadedImage('FOLLOWER')" class="px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-[11px] font-bold">ลบรูป / เปลี่ยนรูป</button>
+                    </div>
+                    <label class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-purple-50 text-purple-800 border border-purple-200 text-xs font-extrabold cursor-pointer shadow-sm">
+                        <i class="fa-solid fa-heart text-pink-500"></i>
+                        <span>เลือกรูปหลักฐานการติดตาม</span>
+                        <input type="file" id="fileInputFollowerProof" accept="image/*" onchange="handleSecureFileUpload(event, 'FOLLOWER')" class="hidden">
+                    </label>
+                </div>
+
+                <div class="flex items-center justify-between gap-3 pt-2">
+                    <button type="button" onclick="goToCustomerStep(2)" class="px-5 py-3 rounded-2xl bg-white hover:bg-pink-50 text-pink-900 border border-pink-200 font-extrabold text-xs sm:text-sm">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> ย้อนกลับ
+                    </button>
+                    <button type="button" onclick="proceedFromStep3()" class="px-7 py-3.5 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm">
+                        ไปหน้าชำระเงิน <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 STEP 4: ชำระเงินและยืนยันการจอง
+            =========================================== -->
+            <div id="customerStep4" class="hidden boutique-shell rounded-[32px] p-4 sm:p-7 space-y-5">
+                <div class="border-b border-pink-100 pb-3">
+                    <span class="text-xs font-extrabold text-pink-500">Step 4 of 4</span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-pink-950">ชำระเงินและยืนยันคำขอจอง</h2>
+                    <p class="text-xs text-pink-600">โอนชำระค่าเช่าพร้อมเงินประกัน และแนบสลิปเพื่อส่งให้แอดมินตรวจสอบ</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+                    <!-- ข้อมูลบัญชีและ QR Code -->
+                    <div class="md:col-span-6 p-4 sm:p-5 rounded-3xl bg-gradient-to-b from-pink-50/90 to-white border border-pink-200 space-y-4 text-center">
+                        <div class="inline-block px-4 py-1 rounded-full bg-pink-600 text-white text-xs font-extrabold">
+                            ยอดที่ต้องโอนชำระ: <span id="payStepTotalAmount">฿0</span>
+                        </div>
+
+                        <div class="bg-white p-3 rounded-2xl border border-pink-200 max-w-xs mx-auto shadow-sm">
+                            <img id="payStepQrImg"
+                                 src="https://i.postimg.cc/6QWGYWzc/att-3WI5Ryjo1c-Cn3n-Jst-HZ-KFIOp4Y4Hn-QTNh17f-Ec-Gurg.jpg"
+                                 alt="QR Code สำหรับโอนเงิน"
+                                 class="w-full h-auto max-h-72 object-contain mx-auto rounded-xl">
+                        </div>
+
+                        <div class="p-3.5 rounded-2xl bg-white border border-pink-200 text-left space-y-1.5 text-xs">
+                            <div class="flex justify-between items-center">
+                                <span class="text-pink-600 font-bold">ธนาคาร:</span>
+                                <span id="payStepBankName" class="font-extrabold text-pink-950">ธนาคารกสิกร</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-pink-600 font-bold">เลขที่บัญชี:</span>
+                                <div class="flex items-center gap-2">
+                                    <span id="payStepAccNo" class="font-extrabold text-pink-950 text-sm">1541435685</span>
+                                    <button type="button" onclick="copyBankAccountNo()" class="px-2.5 py-1 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-800 text-[11px] font-extrabold">
+                                        คัดลอก
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-pink-600 font-bold">ชื่อบัญชี:</span>
+                                <span id="payStepAccName" class="font-extrabold text-pink-950">ตรีรินทร์ กิจสุวรรณวัชร์</span>
+                            </div>
+                            <p class="text-[11px] font-extrabold text-rose-600 pt-1 text-center">*สแกนคิวอาร์โค้ดไม่ได้โอนบัญชี*</p>
+                        </div>
+
+                        <!-- อัปโหลดสลิปโอนเงิน -->
+                        <div class="p-4 rounded-2xl border-2 border-dashed border-pink-300 bg-pink-50/40 space-y-2.5">
+                            <p class="text-xs font-extrabold text-pink-950">แนบสลิปหลักฐานการโอนเงิน *</p>
+                            <div id="previewWrapSlip" class="hidden space-y-2">
+                                <img id="previewImgSlip" src="" alt="ตัวอย่างสลิป" class="w-full h-44 object-contain rounded-xl bg-white border border-pink-200 mx-auto">
+                                <button type="button" onclick="clearUploadedImage('SLIP')" class="px-3 py-1 rounded-full bg-rose-100 text-rose-700 text-[11px] font-bold">ลบรูป / เปลี่ยนสลิป</button>
+                            </div>
+                            <label class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-pink-50 text-pink-800 border border-pink-200 text-xs font-extrabold cursor-pointer shadow-sm">
+                                <i class="fa-solid fa-receipt"></i>
+                                <span>เลือกไฟล์รูปสลิปโอนเงิน</span>
+                                <input type="file" id="fileInputSlip" accept="image/*" onchange="handleSecureFileUpload(event, 'SLIP')" class="hidden">
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- สรุปรายการจองก่อนส่ง -->
+                    <div class="md:col-span-6 p-4 sm:p-5 rounded-3xl bg-white border border-pink-200 space-y-3 text-xs">
+                        <h3 class="text-base font-extrabold text-pink-950 border-b border-pink-100 pb-2">สรุปรายการจองของคุณ</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between"><span class="text-pink-600">รุ่นกล้อง:</span><span id="sumStep4Camera" class="font-extrabold text-pink-950">-</span></div>
+                            <div class="flex justify-between"><span class="text-pink-600">วัน-เวลารับกล้อง:</span><span id="sumStep4Pickup" class="font-bold text-pink-900">-</span></div>
+                            <div class="flex justify-between"><span class="text-pink-600">วัน-เวลาคืนกล้อง:</span><span id="sumStep4Return" class="font-bold text-pink-900">-</span></div>
+                            <div class="flex justify-between"><span class="text-pink-600">ระยะเวลาเช่า:</span><span id="sumStep4Duration" class="font-extrabold text-purple-700">-</span></div>
+                            <div class="flex justify-between"><span class="text-pink-600">สถานที่นัดรับ:</span><span id="sumStep4Location" class="font-bold text-pink-900 text-right">-</span></div>
+                            <div class="border-t border-pink-100 pt-2 flex justify-between"><span class="text-pink-600">ชื่อผู้เช่า:</span><span id="sumStep4RenterName" class="font-bold text-pink-950">-</span></div>
+                            <div class="flex justify-between"><span class="text-pink-600">เบอร์โทรศัพท์:</span><span id="sumStep4RenterPhone" class="font-bold text-pink-950">-</span></div>
+                            <div class="border-t border-pink-100 pt-2 flex justify-between"><span class="text-pink-600">ค่าเช่า:</span><span id="sumStep4Rent" class="font-bold text-pink-950">-</span></div>
+                            <div class="flex justify-between"><span class="text-pink-600">เงินประกันเครื่อง:</span><span id="sumStep4Deposit" class="font-bold text-pink-950">-</span></div>
+                            <div class="border-t border-pink-200 pt-2 flex justify-between items-baseline">
+                                <span class="text-sm font-extrabold text-pink-950">ยอดรวมสุทธิ:</span>
+                                <span id="sumStep4Total" class="text-lg font-extrabold text-pink-600">-</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-2xl bg-pink-50 border border-pink-200 text-[11px] text-pink-800">
+                            <strong>หมายเหตุ:</strong> การส่งข้อมูลสำเร็จจะอยู่ในสถานะ <strong>“รอตรวจสอบ”</strong> จนกว่าแอดมินจะตรวจสอบเอกสารและอนุมัติคิวเช่าค่ะ
+                        </div>
+
+                        <div class="flex items-center justify-between gap-2 pt-2">
+                            <button type="button" onclick="goToCustomerStep(3)" class="px-4 py-3 rounded-2xl bg-white hover:bg-pink-50 text-pink-900 border border-pink-200 font-extrabold text-xs">
+                                <i class="fa-solid fa-arrow-left mr-1"></i> ย้อนกลับ
+                            </button>
+                            <button type="button" id="btnSubmitBookingFinal" onclick="submitBookingRequest()" class="flex-1 py-3.5 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm">
+                                <i class="fa-solid fa-paper-plane mr-1"></i> ส่งข้อมูลการจอง
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 STEP 5: ส่งข้อมูลสำเร็จ (พร้อมรูปประกอบหลังจากโอนเงินเรียบร้อยแล้ว)
+            =========================================== -->
+            <div id="customerStep5" class="hidden boutique-shell rounded-[32px] p-5 sm:p-8 text-center max-w-xl mx-auto space-y-5">
+                <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-3xl shadow-sm">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="space-y-1">
+                    <h2 class="text-2xl font-extrabold text-pink-950">ส่งข้อมูลการจองสำเร็จ!</h2>
+                    <p class="text-xs text-pink-600">ระบบได้รับข้อมูลของคุณแล้ว กรุณารอแอดมินตรวจสอบและยืนยันคิวเช่า</p>
+                </div>
+
+                <!-- รูปแสดงหลังจากโอนเงินเรียบร้อยแล้ว -->
+                <div class="rounded-2xl overflow-hidden border border-pink-200 bg-pink-50/40 p-2">
+                    <img src="https://i.postimg.cc/brWQB7dr/att-YMKz-BHd09hc0yjx5Jix-Ko-Hr-Xh3zl-R-0mpju-Tf-JBY65Y.jpg"
+                         alt="ขอบคุณที่ใช้บริการ diginae.cam"
+                         class="w-full h-auto max-h-80 object-contain mx-auto rounded-xl">
+                </div>
+
+                <div class="p-4 rounded-2xl bg-pink-50 border border-pink-200 space-y-2 text-xs text-left">
+                    <div class="flex items-center justify-between border-b border-pink-200 pb-2">
+                        <span class="font-bold text-pink-700">รหัสการจองของคุณ:</span>
+                        <div class="flex items-center gap-2">
+                            <span id="successBookingCode" class="text-base font-extrabold text-pink-950">CAM-000001</span>
+                            <button type="button" onclick="copyBookingCode()" class="px-2.5 py-1 rounded-full bg-white border border-pink-200 text-pink-700 text-[11px] font-bold">คัดลอก</button>
+                        </div>
+                    </div>
+                    <div class="flex justify-between"><span class="text-pink-600">รุ่นกล้อง:</span><span id="successCameraName" class="font-extrabold text-pink-950">-</span></div>
+                    <div class="flex justify-between"><span class="text-pink-600">วัน-เวลารับคืน:</span><span id="successDateTime" class="font-bold text-pink-900">-</span></div>
+                    <div class="flex justify-between"><span class="text-pink-600">สถานที่นัดรับ:</span><span id="successPickupLoc" class="font-bold text-pink-900">-</span></div>
+                    <div class="flex justify-between"><span class="text-pink-600">ยอดชำระรวม:</span><span id="successTotalPay" class="font-extrabold text-pink-600">-</span></div>
+                    <div class="flex justify-between items-center pt-1">
+                        <span class="text-pink-600">สถานะปัจจุบัน:</span>
+                        <span class="px-3 py-0.5 rounded-full bg-amber-100 text-amber-800 font-extrabold text-[11px]">⏳ รอตรวจสอบ</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-center gap-2.5 pt-2">
+                    <button type="button" onclick="openStatusCheckWithCurrentCode()" class="px-5 py-3 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm">
+                        <i class="fa-solid fa-magnifying-glass mr-1"></i> ตรวจสอบสถานะการจอง
+                    </button>
+                    <button type="button" onclick="goToCustomerStep(1)" class="px-5 py-3 rounded-2xl bg-white hover:bg-pink-50 text-pink-900 border border-pink-200 font-extrabold text-xs sm:text-sm">
+                        กลับหน้าหลัก
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 2: หน้าตรวจสอบสถานะการจอง & ดาวน์โหลดใบเช่า
+        =========================================== -->
+        <section id="viewStatus" class="hidden boutique-shell rounded-[32px] p-4 sm:p-7 max-w-2xl mx-auto space-y-5">
+            <div>
+                <span class="text-xs font-extrabold text-pink-500">Booking Status Tracker</span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-pink-950">ตรวจสอบสถานะการจอง</h2>
+                <p class="text-xs text-pink-600">กรอกรหัสการจอง (เช่น CAM-000001) คู่กับเบอร์โทรศัพท์ที่ใช้จอง</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+                <input type="text" id="statusSearchCode" placeholder="รหัสการจอง เช่น CAM-000001" class="sm:col-span-5 px-4 py-2.5 rounded-2xl border border-pink-200 text-xs sm:text-sm font-bold text-pink-950">
+                <input type="tel" id="statusSearchPhone" placeholder="เบอร์โทรศัพท์ที่ใช้จอง (เช่น 0812345678)" class="sm:col-span-5 px-4 py-2.5 rounded-2xl border border-pink-200 text-xs sm:text-sm font-bold text-pink-950">
+                <button type="button" onclick="searchBookingStatus()" class="sm:col-span-2 py-2.5 px-4 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm">
+                    ค้นหา
+                </button>
+            </div>
+
+            <div class="text-[11px] text-pink-600 bg-pink-50/70 p-2.5 rounded-xl border border-pink-100">
+                💡 <strong>ทดสอบ Demo:</strong> ลองค้นหารหัส <button type="button" onclick="fillDemoStatusSearch('CAM-000001','0812345678')" class="underline font-extrabold text-pink-800">CAM-000001 (เบอร์ 0812345678)</button> เพื่อทดสอบดาวน์โหลดใบยืนยันการเช่า
+            </div>
+
+            <div id="statusSearchResultBox" class="space-y-4"></div>
+        </section>
+
+        <!-- ==========================================
+             VIEW 3: ระบบหลังบ้าน (ADMIN DASHBOARD)
+        =========================================== -->
+        <section id="viewAdmin" class="hidden space-y-4">
+            <!-- Admin Login Card -->
+            <div id="adminLoginCard" class="boutique-shell rounded-[32px] p-6 max-w-md mx-auto space-y-4 text-center">
+                <div class="w-12 h-12 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-extrabold text-pink-950">เข้าสู่ระบบแอดมิน diginae.cam</h2>
+                    <p class="text-xs text-pink-600">รหัสทดสอบ Demo: ชื่อผู้ใช้ <strong>admin</strong> / รหัสผ่าน <strong>1234</strong></p>
+                </div>
+                <div class="space-y-2.5 text-left">
+                    <input type="text" id="adminUserInput" value="admin" placeholder="ชื่อผู้ใช้แอดมิน" class="w-full px-4 py-2.5 rounded-2xl border border-pink-200 text-xs font-bold text-pink-950">
+                    <input type="password" id="adminPassInput" value="1234" placeholder="รหัสผ่าน" class="w-full px-4 py-2.5 rounded-2xl border border-pink-200 text-xs font-bold text-pink-950">
+                </div>
+                <button type="button" onclick="loginAdmin()" class="w-full py-3 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm">
+                    เข้าสู่ระบบหลังบ้าน
+                </button>
+            </div>
+
+            <!-- Admin Dashboard Content -->
+            <div id="adminDashboardWrap" class="hidden space-y-4">
+                <!-- Admin Menu Pills -->
+                <div class="boutique-shell rounded-[26px] p-3 flex flex-wrap items-center gap-2">
+                    <button type="button" onclick="switchAdminTab('OVERVIEW')" id="admTabBtn_OVERVIEW" class="px-3.5 py-2 rounded-full text-xs font-extrabold boutique-pill-active">1. ภาพรวม</button>
+                    <button type="button" onclick="switchAdminTab('BOOKINGS')" id="admTabBtn_BOOKINGS" class="px-3.5 py-2 rounded-full text-xs font-extrabold bg-white text-pink-900 border border-pink-200">2. รายการจอง & ผู้เช่า</button>
+                    <button type="button" onclick="switchAdminTab('CALENDAR')" id="admTabBtn_CALENDAR" class="px-3.5 py-2 rounded-full text-xs font-extrabold bg-white text-pink-900 border border-pink-200">3. จัดการปฏิทิน/บล็อกวัน</button>
+                    <button type="button" onclick="switchAdminTab('CAMERAS')" id="admTabBtn_CAMERAS" class="px-3.5 py-2 rounded-full text-xs font-extrabold bg-white text-pink-900 border border-pink-200">4. จัดการข้อมูลกล้อง</button>
+                    <button type="button" onclick="switchAdminTab('SETTINGS')" id="admTabBtn_SETTINGS" class="px-3.5 py-2 rounded-full text-xs font-extrabold bg-white text-pink-900 border border-pink-200">5. ตั้งค่าร้าน & กฎ</button>
+                    <button type="button" onclick="logoutAdmin()" class="ml-auto px-3.5 py-2 rounded-full text-xs font-extrabold bg-rose-50 text-rose-700 border border-rose-200">ออกจากระบบ</button>
+                </div>
+
+                <!-- Tab 1: Overview -->
+                <div id="admTab_OVERVIEW" class="space-y-4">
+                    <div id="adminOverviewCards" class="grid grid-cols-2 sm:grid-cols-5 gap-3"></div>
+                    <div class="boutique-shell rounded-[28px] p-4 sm:p-5 space-y-3">
+                        <h3 class="text-base font-extrabold text-pink-950">รายการจองล่าสุด</h3>
+                        <div id="adminRecentBookingsList" class="space-y-2.5"></div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Manage Bookings & Renter Docs -->
+                <div id="admTab_BOOKINGS" class="hidden boutique-shell rounded-[28px] p-4 sm:p-5 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h3 class="text-base sm:text-lg font-extrabold text-pink-950">จัดการรายการจอง & ตรวจเอกสารผู้เช่า</h3>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="adminBookingSearchInput" oninput="renderAdminBookings()" placeholder="ค้นหารหัส/ชื่อ/เบอร์..." class="px-3 py-1.5 rounded-full border border-pink-200 text-xs font-bold">
+                            <select id="adminBookingStatusFilter" onchange="renderAdminBookings()" class="px-3 py-1.5 rounded-full border border-pink-200 text-xs font-bold">
+                                <option value="ALL">ทุกสถานะ</option>
+                                <option value="รอตรวจสอบ">รอตรวจสอบ</option>
+                                <option value="รอชำระเงิน">รอชำระเงิน</option>
+                                <option value="ยืนยันการจอง">ยืนยันการจอง</option>
+                                <option value="กำลังเช่า">กำลังเช่า</option>
+                                <option value="คืนกล้องแล้ว">คืนกล้องแล้ว</option>
+                                <option value="ไม่อนุมัติ">ไม่อนุมัติ</option>
+                                <option value="ยกเลิก">ยกเลิก</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="adminBookingsList" class="space-y-3"></div>
+                </div>
+
+                <!-- Tab 3: Calendar & Block Dates -->
+                <div id="admTab_CALENDAR" class="hidden boutique-shell rounded-[28px] p-4 sm:p-5 space-y-4">
+                    <h3 class="text-base sm:text-lg font-extrabold text-pink-950">จัดการปฏิทิน & บล็อกวันหยุดร้าน</h3>
+                    <div class="flex flex-wrap items-end gap-2">
+                        <div>
+                            <label class="block text-xs font-bold text-pink-800 mb-1">เลือกวันที่ต้องการบล็อก/ปลดบล็อก</label>
+                            <input type="date" id="adminBlockDateInput" class="px-3.5 py-2 rounded-xl border border-pink-200 text-xs font-bold">
+                        </div>
+                        <button type="button" onclick="toggleAdminBlockDate()" class="px-4 py-2 rounded-xl btn-rose text-xs font-extrabold">
+                            บล็อก / ปลดบล็อกวันที่เลือก
+                        </button>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-pink-800 mb-2">รายการวันที่ถูกบล็อกไม่ให้จอง:</p>
+                        <div id="adminBlockedDatesList" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Manage Cameras -->
+                <div id="admTab_CAMERAS" class="hidden boutique-shell rounded-[28px] p-4 sm:p-5 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-extrabold text-pink-950">จัดการข้อมูลกล้อง & จำนวนเครื่อง</h3>
+                            <p class="text-xs text-pink-600">กำหนดจำนวนเครื่องของแต่ละรุ่นเพื่อให้ระบบหักคิวว่างอัตโนมัติเมื่อมีลูกค้าจอง</p>
+                        </div>
+                        <button type="button" onclick="openAdminCameraModal(null)" class="px-4 py-2 rounded-full btn-rose text-xs font-extrabold">
+                            + เพิ่มรุ่นกล้องใหม่
+                        </button>
+                    </div>
+                    <div id="adminCamerasList" class="space-y-3"></div>
+                </div>
+
+                <!-- Tab 5: Shop Settings -->
+                <div id="admTab_SETTINGS" class="hidden boutique-shell rounded-[28px] p-4 sm:p-5 space-y-4">
+                    <h3 class="text-base sm:text-lg font-extrabold text-pink-950">ตั้งค่าข้อมูลร้าน & บัญชีรับโอน</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div>
+                            <label class="font-bold text-pink-900">ชื่อร้าน</label>
+                            <input type="text" id="admSetShopName" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold text-pink-900">คำอธิบายร้าน</label>
+                            <input type="text" id="admSetShopDesc" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold text-pink-900">ชื่อธนาคาร</label>
+                            <input type="text" id="admSetBankName" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold text-pink-900">เลขบัญชี</label>
+                            <input type="text" id="admSetAccNo" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold text-pink-900">ชื่อบัญชี</label>
+                            <input type="text" id="admSetAccName" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                        </div>
+                        <div>
+                            <label class="font-bold text-pink-900">ลิงก์รูป QR Code</label>
+                            <input type="text" id="admSetQrUrl" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
+                        </div>
+                    </div>
+                    <button type="button" onclick="saveAdminShopSettings()" class="px-5 py-2.5 rounded-2xl btn-rose text-xs font-extrabold">
+                        บันทึกการตั้งค่าร้าน
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================
+         MODAL 1: ป๊อปอัพดูตัวอย่างสินค้า (1:1 Image + เลื่อนซ้ายขวา + ตารางราคาผู้ติดตาม)
+    =========================================== -->
+    <div id="cameraDetailModal" class="hidden fixed inset-0 z-50 bg-pink-950/50 backdrop-blur-sm flex items-center justify-center p-3">
+        <div class="bg-white rounded-[32px] max-w-md w-full max-h-[92vh] overflow-y-auto p-4 sm:p-6 space-y-4 border border-pink-200 shadow-2xl">
+            <div class="flex items-center justify-between gap-2">
+                <h3 id="modalCamName" class="text-lg font-extrabold text-pink-950">ชื่อรุ่นกล้อง</h3>
+                <button type="button" onclick="closeCameraDetailModal()" class="w-8 h-8 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- 1:1 Square Gallery Slider -->
+            <div class="relative aspect-square w-full rounded-2xl overflow-hidden bg-pink-50 border border-pink-100">
+                <img id="modalCamSquareImg" src="" alt="รูปตัวอย่างกล้อง" class="w-full h-full object-cover">
+                <button type="button" id="modalSlidePrevBtn" onclick="stepModalGallery(-1)" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 hover:bg-white text-pink-900 shadow flex items-center justify-center">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button type="button" id="modalSlideNextBtn" onclick="stepModalGallery(1)" class="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/85 hover:bg-white text-pink-900 shadow flex items-center justify-center">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+                <span id="modalSlideCounter" class="absolute bottom-2.5 right-2.5 px-2.5 py-0.5 rounded-full bg-pink-950/70 text-white text-[10px] font-bold">1 / 1</span>
+            </div>
+
+            <!-- ตารางราคาเช่ารายชั่วโมง & รายวัน -->
+            <div id="modalCamRates" class="p-3.5 rounded-2xl bg-pink-50/60 border border-pink-100"></div>
+
+            <!-- เงื่อนไขการรับสิทธิ์ราคาผู้ติดตาม -->
+            <div id="modalCamDesc"></div>
+
+            <button type="button" id="modalSelectBtn" class="w-full py-3 rounded-2xl boutique-btn-action font-extrabold text-sm">
+                เลือกเช่ารุ่นนี้
+            </button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL 2: ป๊อปอัพเพิ่ม/แก้ไขกล้อง (Admin)
+    =========================================== -->
+    <div id="adminCameraModal" class="hidden fixed inset-0 z-50 bg-pink-950/50 backdrop-blur-sm flex items-center justify-center p-3">
+        <div class="bg-white rounded-[32px] max-w-xl w-full max-h-[92vh] overflow-y-auto p-5 sm:p-6 space-y-4 border border-pink-200 shadow-2xl">
+            <div class="flex items-center justify-between">
+                <div>
+                    <span class="text-[11px] font-extrabold text-pink-500">Camera Inventory Management</span>
+                    <h3 id="admCamModalTitle" class="text-lg font-extrabold text-pink-950">เพิ่ม/แก้ไขรุ่นกล้อง</h3>
+                </div>
+                <button type="button" onclick="closeAdminCameraModal()" class="w-8 h-8 rounded-full bg-pink-50 text-pink-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="sm:col-span-2">
+                    <label class="font-extrabold text-pink-950">ชื่อรุ่นกล้อง *</label>
+                    <input type="text" id="admCamName" placeholder="เช่น 💗 รุ่น Canon IXY 31 S" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="font-extrabold text-pink-950">รายละเอียด / เงื่อนไขในป๊อปอัพสินค้า *</label>
+                    <textarea id="admCamDesc" rows="4" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1"></textarea>
+                </div>
+                <div>
+                    <label class="font-extrabold text-pink-950">ราคาเริ่มต้น 3 ชม. (ราคาปกติ)</label>
+                    <input type="number" id="admCamHourly" value="200" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
+                </div>
+                <div>
+                    <label class="font-extrabold text-pink-950">ราคาเช่า 1 วัน (ราคาปกติ)</label>
+                    <input type="number" id="admCamDaily" value="350" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
+                </div>
+                <div>
+                    <label class="font-extrabold text-pink-950">ราคาเช่า 1 วัน (ราคาผู้ติดตาม)</label>
+                    <input type="number" id="admCamFollowerDaily" value="299" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
+                </div>
+                <div>
+                    <label class="font-extrabold text-pink-950">เงินประกันเครื่อง (บาท)</label>
+                    <input type="number" id="admCamDeposit" value="1000" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
+                </div>
+
+                <!-- วางลิงก์รูปภาพ -->
+                <div class="sm:col-span-2 p-3.5 rounded-2xl bg-pink-50/60 border border-pink-200 space-y-2">
+                    <label class="font-extrabold text-pink-950 block"><i class="fa-regular fa-image text-pink-500 mr-1"></i> ลิงก์รูปภาพสินค้า (วาง URL รูปภาพ)</label>
+                    <input type="url" id="admCamImg1" oninput="refreshAdminCamImgPreviews()" placeholder="ลิงก์รูปหลัก (รูปที่ 1) *" class="w-full px-3 py-2 rounded-xl border border-pink-200 bg-white font-bold">
+                    <input type="url" id="admCamImg2" oninput="refreshAdminCamImgPreviews()" placeholder="ลิงก์รูปเพิ่มเติม (รูปที่ 2 - ไม่บังคับ)" class="w-full px-3 py-2 rounded-xl border border-pink-200 bg-white font-bold">
+                    <input type="url" id="admCamImg3" oninput="refreshAdminCamImgPreviews()" placeholder="ลิงก์รูปเพิ่มเติม (รูปที่ 3 - ไม่บังคับ)" class="w-full px-3 py-2 rounded-xl border border-pink-200 bg-white font-bold">
+                    <div id="admCamImgPreviewRow" class="flex gap-2 pt-1"></div>
+                </div>
+
+                <!-- จำนวนเครื่องและสถานะแต่ละตัว -->
+                <div class="sm:col-span-2 p-4 rounded-2xl bg-purple-50/50 border border-purple-200 space-y-3">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                            <h4 class="font-extrabold text-purple-950"><i class="fa-solid fa-layer-group text-purple-500 mr-1"></i> จำนวนเครื่องและสถานะแต่ละตัว</h4>
+                            <p class="text-[11px] text-purple-600">กรอกจำนวนเครื่องทั้งหมดเพื่อให้ระบบคำนวณตัดสต็อกคิวว่างอัตโนมัติเมื่อมีลูกค้าเช่า</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <label class="text-xs font-extrabold text-purple-900">จำนวนเครื่องทั้งหมด:</label>
+                            <input type="number" id="admCamTotalUnitsCount" min="1" max="50" value="1" oninput="setTotalUnitsInAdminModal(this.value)" class="w-20 px-3 py-1.5 rounded-xl border border-purple-300 bg-white text-xs font-extrabold text-purple-950 text-center">
+                            <button type="button" onclick="addUnitRowInAdminModal()" class="px-3 py-1.5 rounded-full bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-sm">
+                                + เพิ่มเครื่อง
+                            </button>
+                        </div>
+                    </div>
+                    <div id="admCamUnitsEditorList" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-2 pt-2 border-t border-pink-100">
+                <button type="button" onclick="closeAdminCameraModal()" class="px-4 py-2 rounded-full border border-pink-200 text-xs font-bold">ยกเลิก</button>
+                <button type="button" onclick="saveAdminCameraModal()" class="px-5 py-2.5 rounded-full boutique-btn-action text-xs font-extrabold">
+                    <i class="fa-solid fa-floppy-disk mr-1"></i> บันทึกข้อมูลกล้อง
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL 3: ป๊อปอัพดูรูปเอกสารผู้เช่า & สลิปโอนเงิน (Admin)
+    =========================================== -->
+    <div id="adminDocViewerModal" class="hidden fixed inset-0 z-50 bg-pink-950/60 backdrop-blur-sm flex items-center justify-center p-3">
+        <div class="bg-white rounded-[32px] max-w-lg w-full p-5 space-y-4 border border-pink-200 shadow-2xl">
+            <div class="flex items-center justify-between">
+                <div>
+                    <span id="docModalBookingCode" class="text-xs font-extrabold text-pink-500">CAM-000001</span>
+                    <h3 id="docModalTitle" class="text-base font-extrabold text-pink-950">ตรวจสอบเอกสารผู้เช่า</h3>
+                </div>
+                <button type="button" onclick="closeAdminDocModal()" class="w-8 h-8 rounded-full bg-pink-50 text-pink-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5">
+                <button type="button" id="docTabBtn_SELFIE" onclick="switchAdminDocTab('SELFIE')" class="py-2 rounded-xl text-xs font-extrabold border">1. รูปคู่บัตร ปชช.</button>
+                <button type="button" id="docTabBtn_IDCARD" onclick="switchAdminDocTab('IDCARD')" class="py-2 rounded-xl text-xs font-extrabold border">2. รูปบัตร ปชช.</button>
+                <button type="button" id="docTabBtn_FOLLOWER" onclick="switchAdminDocTab('FOLLOWER')" class="py-2 rounded-xl text-xs font-extrabold border">3. หลักฐานผู้ติดตาม</button>
+                <button type="button" id="docTabBtn_SLIP" onclick="switchAdminDocTab('SLIP')" class="py-2 rounded-xl text-xs font-extrabold border">4. สลิปโอนเงิน</button>
+            </div>
+
+            <div class="rounded-2xl bg-pink-50/50 border border-pink-200 p-3 flex items-center justify-center min-h-[280px]">
+                <img id="docModalImage" src="" alt="เอกสารผู้เช่า" class="max-h-[380px] w-auto object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL 4: SQL & Supabase Setup
+    =========================================== -->
+    <div id="sqlModal" class="hidden fixed inset-0 z-50 bg-pink-950/50 backdrop-blur-sm flex items-center justify-center p-3">
+        <div class="bg-white rounded-[32px] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-5 space-y-4 border border-pink-200 shadow-2xl">
+            <div class="flex items-center justify-between">
+                <h3 class="text-base font-extrabold text-pink-950">SQL ติดตั้งฐานข้อมูล Supabase PostgreSQL & RLS</h3>
+                <button type="button" onclick="closeSqlModal()" class="w-8 h-8 rounded-full bg-pink-50 text-pink-700 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <pre id="sqlCodeBlock" class="p-4 rounded-2xl bg-slate-900 text-pink-100 text-[11px] overflow-x-auto leading-relaxed">-- Supabase PostgreSQL Schema for diginae.cam
+create table if not exists public.cameras (
+  id text primary key,
+  name text not null,
+  description text,
+  image text,
+  gallery jsonb default '[]'::jsonb,
+  hourly_tiers jsonb default '[]'::jsonb,
+  daily_tiers jsonb default '[]'::jsonb,
+  deposit integer default 1000,
+  units jsonb default '[]'::jsonb
+);
+
+create table if not exists public.bookings (
+  code text primary key,
+  camera_id text references public.cameras(id),
+  unit_code text,
+  pickup_date date not null,
+  pickup_time text not null,
+  return_date date not null,
+  return_time text not null,
+  rent_price integer not null,
+  deposit integer not null,
+  total_amount integer not null,
+  pickup_location text not null,
+  renter_name text not null,
+  renter_phone text not null,
+  status text default 'รอตรวจสอบ',
+  created_at timestamptz default now()
+);
+
+alter table public.cameras enable row level security;
+alter table public.bookings enable row level security;</pre>
+        </div>
+    </div>
+
+    <!-- Hidden Canvas for Rental Slip PNG Download -->
+    <canvas id="slipDownloadCanvas" width="800" height="1000" class="hidden"></canvas>
+
+    <!-- Pastel Pill Toast Notification -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 pointer-events-none transition-all duration-300 opacity-0 translate-y-2">
+        <div class="px-4 py-2.5 rounded-full bg-white border-2 border-pink-200 shadow-lg flex items-center gap-2.5">
+            <span class="w-6 h-6 rounded-full bg-purple-600 text-white flex items-center justify-center text-xs">
+                <i class="fa-solid fa-check"></i>
+            </span>
+            <span id="toastMessage" class="text-xs sm:text-sm font-extrabold text-pink-950">แจ้งเตือน</span>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         APPLICATION JAVASCRIPT
+    =========================================== -->
+    <script>
+        const STORAGE_KEY = 'diginae_cam_store_v6';
+
+        function getOffsetDateStr(offsetDays = 0) {
+            const d = new Date();
+            d.setDate(d.getDate() + offsetDays);
+            const yyyy = d.getFullYear();
+            const mm = String(d.getMonth() + 1).padStart(2, '0');
+            const dd = String(d.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        const FOLLOWER_CONDITION_TEXT = `🎀 เงื่อนไขการรับสิทธิ์ราคาผู้ติดตาม
+1. ติดตามร้านอย่างน้อย 1 ช่องทาง (TikTok หรือ Instagram)
+2. แคปภาพหลักฐานการติดตามร้าน
+3. ส่งหลักฐานก่อนกรอกข้อมูลการเช่า
+
+หมายเหตุสำคัญ
+- หากไม่ส่งหลักฐานก่อนกรอกข้อมูล จะคิดราคาปกติทันที
+- ไม่มีการปรับราคาย้อนหลังทุกกรณี
+- เมื่อร้านแจ้งว่าคิวเต็มแล้ว กรุณาอ่านรายละเอียดก่อนกรอกข้อมูล`;
+
+        function getDefaultAppData() {
+            const today = getOffsetDateStr(0);
+            const tomorrow = getOffsetDateStr(1);
+            const dayAfter = getOffsetDateStr(2);
+
+            return {
+                shop: {
+                    name: 'diginae.cam',
+                    description: 'ร้านเช่ากล้องสุไหงโกลก',
+                    bankName: 'ธนาคารกสิกร',
+                    accountNumber: '1541435685',
+                    accountName: 'ตรีรินทร์ กิจสุวรรณวัชร์',
+                    qrCodeUrl: 'https://i.postimg.cc/6QWGYWzc/att-3WI5Ryjo1c-Cn3n-Jst-HZ-KFIOp4Y4Hn-QTNh17f-Ec-Gurg.jpg',
+                    rulesVersion: 'v1.2',
+                    pickupLocations: [
+                        'หน้าร้าน diginae.cam (ตัวเมืองสุไหงโกลก)',
+                        'ห้างบิ๊กซี สุไหงโกลก (Big C)',
+                        'สถานีรถไฟสุไหงโกลก',
+                        'สวนสาธารณะสิรินธร (สวนรื่นอรุณ)',
+                        'หน้าโรงพยาบาลสุไหงโกลก',
+                        'ด่านพรมแดนสุไหงโกลก'
+                    ],
+                    rules: [
+                        { title: '1. เงื่อนไขการจองและการชำระเงิน', body: 'ลูกค้าต้องชำระค่าเช่าพร้อมเงินประกันเต็มจำนวนเมื่อส่งคำขอจอง ระบบจะล็อกคิวเมื่อแอดมินตรวจสอบสลิปและอนุมัติแล้วเท่านั้น' },
+                        { title: '2. เงื่อนไขการรับและคืนกล้อง', body: 'กรุณารับและคืนกล้องตรงตามวัน-เวลาและสถานที่นัดรับที่เลือกไว้ หากคืนล่าช้ามีค่าปรับตามที่ร้านกำหนด' },
+                        { title: '3. ระยะเวลาการเช่า', body: 'รองรับทั้งการเช่ารายชั่วโมง (3, 6, 8 ชม.) และรายวัน (เช่า 12 ชั่วโมงขึ้นไป คิดเป็นราคา 1 วัน / เช่าเกิน 7 วัน เพิ่มวันละ 150 บาท)' },
+                        { title: '4. ข้อปฏิบัติในการใช้งานกล้อง', body: 'ห้ามนำกล้องไปโดนน้ำ ตกหล่น หรือแกะซ่อมเอง อุปกรณ์ทุกชิ้นต้องอยู่ครบเมื่อส่งคืน' },
+                        { title: '5. ความรับผิดชอบกรณีอุปกรณ์เสียหายหรือสูญหาย', body: 'หากเกิดความเสียหายจากผู้เช่า ทางร้านจำเป็นต้องหักค่าซ่อมตามจริงจากเงินประกัน หรือชดใช้ตามมูลค่าเครื่องกรณีสูญหาย' },
+                        { title: '6. เงื่อนไขการคืนเงินและยกเลิกการจอง', body: 'เงินประกันจะโอนคืนหลังตรวจเช็คสภาพกล้องเรียบร้อยแล้ว' }
+                    ]
+                },
+                cameras: [
+                    {
+                        id: 'cam-ixy-31s',
+                        name: '💗 รุ่น Canon IXY 31 S',
+                        description: FOLLOWER_CONDITION_TEXT,
+                        image: 'https://i.postimg.cc/LsffBwNw/att-6g9B-0a-NBMb4z-YOw-Ny-JZsj-Xzuc-Ap-Pkp2X4tz-Ym-Suoag.jpg',
+                        gallery: [
+                            'https://i.postimg.cc/LsffBwNw/att-6g9B-0a-NBMb4z-YOw-Ny-JZsj-Xzuc-Ap-Pkp2X4tz-Ym-Suoag.jpg'
+                        ],
+                        hourlyRate: 200,
+                        pack4HrRate: 260,
+                        dailyRate: 350,
+                        followerDailyRate: 299,
+                        deposit: 1000,
+                        hourlyTiers: [
+                            { hours: 3, normal: 200, follower: 179 },
+                            { hours: 6, normal: 260, follower: 249 },
+                            { hours: 8, normal: 290, follower: 269 }
+                        ],
+                        dailyTiers: [
+                            { days: 1, normal: 350, follower: 299 },
+                            { days: 2, normal: 650, follower: 599 },
+                            { days: 3, normal: 790, follower: 699 },
+                            { days: 5, normal: 990, follower: 899 },
+                            { days: 7, normal: 1199, follower: 1099 }
+                        ],
+                        extraDayRate: 150,
+                        units: [
+                            { code: 'IXY31S-01', status: 'READY' }
+                        ]
+                    },
+                    {
+                        id: 'cam-ixy-930is',
+                        name: '💜 รุ่น Canon IXY 930 IS',
+                        description: FOLLOWER_CONDITION_TEXT,
+                        image: 'https://i.postimg.cc/9FjkdHbk/att-EUd-IIFvo-W5AJi-Jv-Bk69u-C183Zw-CVFr-KA9pfay-Nuc4c.jpg',
+                        gallery: [
+                            'https://i.postimg.cc/9FjkdHbk/att-EUd-IIFvo-W5AJi-Jv-Bk69u-C183Zw-CVFr-KA9pfay-Nuc4c.jpg'
+                        ],
+                        hourlyRate: 190,
+                        pack4HrRate: 250,
+                        dailyRate: 300,
+                        followerDailyRate: 279,
+                        deposit: 1000,
+                        hourlyTiers: [
+                            { hours: 3, normal: 190, follower: 169 },
+                            { hours: 6, normal: 250, follower: 239 },
+                            { hours: 8, normal: 280, follower: 269 }
+                        ],
+                        dailyTiers: [
+                            { days: 1, normal: 300, follower: 279 },
+                            { days: 2, normal: 550, follower: 499 },
+                            { days: 3, normal: 690, follower: 599 },
+                            { days: 5, normal: 890, follower: 799 },
+                            { days: 7, normal: 1099, follower: 999 }
+                        ],
+                        extraDayRate: 150,
+                        units: [
+                            { code: 'IXY930-01', status: 'READY' },
+                            { code: 'IXY930-02', status: 'READY' }
+                        ]
+                    }
+                ],
+                blockedDates: [],
+                bookings: [
+                    {
+                        code: 'CAM-000001',
+                        cameraId: 'cam-ixy-930is',
+                        cameraName: '💜 รุ่น Canon IXY 930 IS',
+                        unitCode: 'IXY930-01',
+                        pickupDate: today,
+                        pickupTime: '10:00',
+                        returnDate: tomorrow,
+                        returnTime: '10:00',
+                        durationText: '1 วัน (ราคาผู้ติดตาม)',
+                        rentPrice: 279,
+                        deposit: 1000,
+                        totalAmount: 1279,
+                        pickupLocation: 'ห้างบิ๊กซี สุไหงโกลก (Big C)',
+                        renterName: 'น.ส. อารยา สายหวาน (ตัวอย่าง Demo)',
+                        renterPhone: '0812345678',
+                        renterAddress: '123 ถ.เจริญเขต ต.สุไหงโกลก อ.สุไหงโกลก จ.นราธิวาส',
+                        renterWorkplace: 'โรงเรียนสุไหงโกลก',
+                        status: 'ยืนยันการจอง',
+                        acceptedRulesVersion: 'v1.2',
+                        acceptedRulesAt: new Date().toLocaleString('th-TH'),
+                        selfieWithId: 'https://placehold.co/400x260/FCE8F0/9D174D?text=Demo+Selfie+With+ID',
+                        idCardOnly: 'https://placehold.co/400x260/F3E8FF/6B21A8?text=Demo+Masked+ID+Card',
+                        followerProof: 'https://placehold.co/400x260/FDF2F8/9D174D?text=Demo+Follower+Proof',
+                        paymentSlip: 'https://placehold.co/400x500/ECFDF5/047857?text=Demo+Payment+Slip'
+                    },
+                    {
+                        code: 'CAM-000002',
+                        cameraId: 'cam-ixy-31s',
+                        cameraName: '💗 รุ่น Canon IXY 31 S',
+                        unitCode: 'IXY31S-01',
+                        pickupDate: dayAfter,
+                        pickupTime: '13:00',
+                        returnDate: dayAfter,
+                        returnTime: '16:00',
+                        durationText: '3 ชั่วโมง (ราคาผู้ติดตาม)',
+                        rentPrice: 179,
+                        deposit: 1000,
+                        totalAmount: 1179,
+                        pickupLocation: 'หน้าร้าน diginae.cam (ตัวเมืองสุไหงโกลก)',
+                        renterName: 'คุณพิมพ์ดาว น่ารัก (ตัวอย่าง Demo)',
+                        renterPhone: '0898765432',
+                        renterAddress: '88 ต.สุไหงโกลก อ.สุไหงโกลก จ.นราธิวาส',
+                        renterWorkplace: 'คาเฟ่สุไหงโกลก',
+                        status: 'รอตรวจสอบ',
+                        acceptedRulesVersion: 'v1.2',
+                        acceptedRulesAt: new Date().toLocaleString('th-TH'),
+                        selfieWithId: 'https://placehold.co/400x260/FCE8F0/9D174D?text=Demo+Selfie+With+ID',
+                        idCardOnly: 'https://placehold.co/400x260/F3E8FF/6B21A8?text=Demo+Masked+ID+Card',
+                        followerProof: 'https://placehold.co/400x260/FDF2F8/9D174D?text=Demo+Follower+Proof',
+                        paymentSlip: 'https://placehold.co/400x500/ECFDF5/047857?text=Demo+Payment+Slip'
+                    }
+                ]
+            };
+        }
+
+        let appData = loadAppData();
+        let currentCameraCategory = 'ALL';
+        let bookmarkedCameras = {};
+        let customerCalYear = new Date().getFullYear();
+        let customerCalMonth = new Date().getMonth();
+        let calClickStage = 0;
+        let isSubmittingBooking = false;
+
+        let currentModalCamId = null;
+        let currentModalGallery = [];
+        let currentModalGalleryIdx = 0;
+
+        let editingAdminCameraId = null;
+        let modalTempUnits = [];
+        let activeDocModalBookingCode = null;
+
+        let currentBookingDraft = {
+            selectedCameraId: 'cam-ixy-31s',
+            rateType: 'NORMAL',
+            pickupDate: getOffsetDateStr(0),
+            pickupTime: '10:00',
+            returnDate: getOffsetDateStr(1),
+            returnTime: '10:00',
+            pickupLocation: '',
+            customPickupLocation: '',
+            durationText: '1 วัน (ราคาปกติ)',
+            rentPrice: 350,
+            deposit: 1000,
+            totalAmount: 1350,
+            acceptedRules: false,
+            acceptedRulesAt: null,
+            renterName: '',
+            renterPhone: '',
+            renterAddress: '',
+            renterWorkplace: '',
+            selfieWithId: '',
+            idCardOnly: '',
+            followerProof: '',
+            paymentSlip: '',
+            lastCreatedCode: 'CAM-000001'
+        };
+
+        function loadAppData() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) {
+                    return JSON.parse(raw);
+                }
+            } catch (e) {
+                console.warn('Load storage error:', e);
+            }
+            return getDefaultAppData();
+        }
+
+        function saveAppData() {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+            } catch (err) {
+                console.warn('Quota warning, trimming old image data:', err);
+                try {
+                    ['diginae_cam_store_v1', 'diginae_cam_store_v2', 'diginae_cam_store_v3', 'diginae_cam_store_v4', 'diginae_cam_store_v5'].forEach(k => localStorage.removeItem(k));
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+                } catch (e2) {
+                    showToast('พื้นที่จัดเก็บในเบราว์เซอร์เต็ม แต่ระบบยังทำงานต่อได้ค่ะ', 'info');
+                }
+            }
+        }
+
+        function resetDemoData() {
+            appData = getDefaultAppData();
+            saveAppData();
+            currentBookingDraft.selectedCameraId = appData.cameras[0].id;
+            initAppUI();
+            showToast('รีเซ็ตข้อมูลเริ่มต้นเรียบร้อยแล้วค่ะ 🌸');
+        }
+
+        function showToast(message) {
+            const container = document.getElementById('toastContainer');
+            const msgEl = document.getElementById('toastMessage');
+            if (!container || !msgEl) return;
+            msgEl.textContent = message;
+            container.classList.remove('opacity-0', 'translate-y-2');
+            container.classList.add('opacity-100', 'translate-y-0');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => {
+                container.classList.remove('opacity-100', 'translate-y-0');
+                container.classList.add('opacity-0', 'translate-y-2');
+            }, 2600);
+        }
+
+        function parseDateTime(dateStr, timeStr) {
+            return new Date(`${dateStr}T${timeStr || '10:00'}:00`).getTime();
+        }
+
+        function formatThaiDateShort(dateStr) {
+            if (!dateStr) return '-';
+            const parts = dateStr.split('-');
+            if (parts.length !== 3) return dateStr;
+            const months = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+            const y = (parseInt(parts[0], 10) + 543).toString().slice(-2);
+            const m = months[parseInt(parts[1], 10) - 1] || '';
+            const d = parseInt(parts[2], 10);
+            return `${d} ${m} ${y}`;
+        }
+
+        // ตรวจสอบจำนวนเครื่องที่ว่างตามช่วงเวลาจริง
+        function getAvailableUnitsInfo(cameraId, startMs, endMs) {
+            const cam = appData.cameras.find(c => c.id === cameraId);
+            if (!cam) return { totalUnits: 0, availableCount: 0, freeUnitCodes: [] };
+
+            const readyUnits = (cam.units || []).filter(u => u.status === 'READY');
+            const totalUnits = (cam.units || []).length;
+
+            // Check blocked dates
+            const startDayStr = new Date(startMs).toISOString().slice(0, 10);
+            const endDayStr = new Date(endMs).toISOString().slice(0, 10);
+            const isBlocked = (appData.blockedDates || []).some(d => d >= startDayStr && d <= endDayStr);
+            if (isBlocked) {
+                return { totalUnits, availableCount: 0, freeUnitCodes: [] };
+            }
+
+            const activeStatuses = ['รอตรวจสอบ', 'รอชำระเงิน', 'ยืนยันการจอง', 'กำลังเช่า'];
+            const overlappingBookings = (appData.bookings || []).filter(b => {
+                if (b.cameraId !== cameraId) return false;
+                if (!activeStatuses.includes(b.status)) return false;
+                const bStart = parseDateTime(b.pickupDate, b.pickupTime);
+                const bEnd = parseDateTime(b.returnDate, b.returnTime);
+                return startMs < bEnd && endMs > bStart;
+            });
+
+            const busyCodes = overlappingBookings.map(b => b.unitCode).filter(Boolean);
+            const freeUnits = readyUnits.filter(u => !busyCodes.includes(u.code));
+            const fallbackAvailCount = Math.max(0, readyUnits.length - overlappingBookings.length);
+            const availableCount = Math.min(readyUnits.length, Math.max(freeUnits.length, fallbackAvailCount));
+
+            return {
+                totalUnits,
+                availableCount,
+                freeUnitCodes: freeUnits.map(u => u.code)
+            };
+        }
+
+        function setBookingRateType(type) {
+            currentBookingDraft.rateType = type;
+            const btnNorm = document.getElementById('rateTypeBtn_NORMAL');
+            const btnFol = document.getElementById('rateTypeBtn_FOLLOWER');
+            if (btnNorm && btnFol) {
+                if (type === 'NORMAL') {
+                    btnNorm.className = 'py-2.5 px-3 rounded-2xl text-xs font-extrabold border transition boutique-pill-active';
+                    btnFol.className = 'py-2.5 px-3 rounded-2xl text-xs font-extrabold border transition bg-white text-pink-800 border-pink-200 hover:bg-pink-50';
+                } else {
+                    btnFol.className = 'py-2.5 px-3 rounded-2xl text-xs font-extrabold border transition boutique-pill-active';
+                    btnNorm.className = 'py-2.5 px-3 rounded-2xl text-xs font-extrabold border transition bg-white text-pink-800 border-pink-200 hover:bg-pink-50';
+                }
+            }
+            updateFollowerProofVisibility();
+            calculateAndRefreshPricing();
+        }
+
+        function updateFollowerProofVisibility() {
+            const sec = document.getElementById('followerProofUploadSection');
+            if (!sec) return;
+            if (currentBookingDraft.rateType === 'FOLLOWER') {
+                sec.classList.remove('hidden');
+            } else {
+                sec.classList.add('hidden');
+            }
+        }
+
+        function setCameraCategoryFilter(cat) {
+            currentCameraCategory = cat;
+            renderCameraCards();
+        }
+
+        function toggleBookmarkCamera(camId, event) {
+            if (event) event.stopPropagation();
+            bookmarkedCameras[camId] = !bookmarkedCameras[camId];
+            const cam = appData.cameras.find(c => c.id === camId);
+            renderCameraCards();
+            if (cam) {
+                showToast(bookmarkedCameras[camId] ? `บันทึก "${cam.name}" ในรายการโปรดแล้ว 💗` : `นำ "${cam.name}" ออกจากรายการโปรดแล้ว`);
+            }
+        }
+
+        function renderCameraCards() {
+            const container = document.getElementById('cameraCardsContainer');
+            if (!container) return;
+
+            const startMs = parseDateTime(currentBookingDraft.pickupDate, currentBookingDraft.pickupTime);
+            const endMs = parseDateTime(currentBookingDraft.returnDate, currentBookingDraft.returnTime);
+
+            const badgeTotal = document.getElementById('cameraTotalModelsBadge');
+            if (badgeTotal) badgeTotal.textContent = `ทั้งหมด ${appData.cameras.length} รุ่น`;
+
+            let list = [...appData.cameras];
+            if (currentCameraCategory === 'AVAILABLE') {
+                list = list.filter(c => getAvailableUnitsInfo(c.id, startMs, endMs).availableCount > 0);
+            } else if (currentCameraCategory === 'POPULAR') {
+                list = list.slice(0, 2);
+            }
+
+            container.innerHTML = list.map((cam, idx) => {
+                const availInfo = getAvailableUnitsInfo(cam.id, startMs, endMs);
+                const isSelected = currentBookingDraft.selectedCameraId === cam.id;
+                const isAvailable = availInfo.availableCount > 0;
+                const availBadgeText = isAvailable
+                    ? `ว่าง ${availInfo.availableCount}/${availInfo.totalUnits} เครื่อง ✨`
+                    : `คิวเต็ม (0/${availInfo.totalUnits})`;
+
+                const pastelFrameBg = idx % 2 === 0
+                    ? 'bg-gradient-to-b from-pink-100/90 to-pink-200/70'
+                    : 'bg-gradient-to-b from-purple-100/90 to-purple-200/70';
+
+                const isBookmarked = !!bookmarkedCameras[cam.id];
+
+                return `
+                    <div class="boutique-card p-3.5 sm:p-4 flex flex-col justify-between ${isSelected ? 'ring-2 ring-pink-500' : ''}">
+                        <div>
+                            <!-- Pastel Frame Image Header -->
+                            <div class="relative rounded-[22px] p-3 ${pastelFrameBg} aspect-[4/3] flex items-center justify-center overflow-hidden">
+                                <!-- Top-Left Availability Tag -->
+                                <div class="absolute top-3 left-3 z-10 flex items-center gap-1.5">
+                                    <span class="px-3 py-1 rounded-full bg-white/95 text-pink-950 text-[11px] font-extrabold shadow-sm">
+                                        ${availBadgeText}
+                                    </span>
+                                    ${isSelected ? `<span class="px-2.5 py-1 rounded-full bg-pink-600 text-white text-[10px] font-extrabold shadow-sm">เลือกอยู่ ✓</span>` : ''}
+                                </div>
+
+                                <!-- Top-Right Bookmark Button -->
+                                <button type="button" onclick="toggleBookmarkCamera('${cam.id}', event)" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/95 hover:bg-white text-pink-600 flex items-center justify-center shadow-sm">
+                                    <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-bookmark text-xs"></i>
+                                </button>
+
+                                <img src="${cam.image}"
+                                     alt="${cam.name}"
+                                     onclick="openCameraDetailModal('${cam.id}')"
+                                     onerror="this.src='https://placehold.co/600x450/FCE8F0/9D174D?text=diginae.cam'"
+                                     class="w-full h-full object-cover rounded-2xl cursor-pointer transition duration-300 hover:scale-105">
+                            </div>
+
+                            <!-- Title & Clean Organized Rate Box -->
+                            <div class="pt-3.5 px-1 space-y-2.5">
+                                <div class="flex items-center justify-between gap-2">
+                                    <h3 class="text-base sm:text-lg font-extrabold text-pink-950 truncate">${cam.name}</h3>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-pink-50 text-pink-700 border border-pink-100 text-[10px] font-extrabold shrink-0">
+                                        ทั้งหมด ${availInfo.totalUnits} เครื่อง
+                                    </span>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-2 p-2.5 rounded-2xl bg-pink-50/50 border border-pink-100/90 text-xs">
+                                    <div class="bg-white rounded-xl p-2 border border-pink-100/80 text-center">
+                                        <p class="text-[10px] font-bold text-pink-500">⏰ รายชั่วโมง (เริ่ม 3 ชม.)</p>
+                                        <p class="text-sm font-extrabold text-pink-950 mt-0.5">฿${cam.hourlyTiers?.[0]?.follower || cam.hourlyRate} <span class="text-[10px] font-normal text-pink-400 line-through">฿${cam.hourlyTiers?.[0]?.normal || cam.hourlyRate}</span></p>
+                                    </div>
+                                    <div class="bg-white rounded-xl p-2 border border-purple-100/80 text-center">
+                                        <p class="text-[10px] font-bold text-purple-600">📅 รายวัน (1 วัน)</p>
+                                        <p class="text-sm font-extrabold text-purple-950 mt-0.5">฿${cam.followerDailyRate || cam.dailyRate} <span class="text-[10px] font-normal text-purple-400 line-through">฿${cam.dailyRate}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Price & Dual Action Pills -->
+                        <div class="pt-3 mt-2.5 border-t border-pink-100/80 px-1 space-y-2.5">
+                            <div class="flex items-center justify-between gap-2">
+                                <div class="flex items-baseline gap-1">
+                                    <i class="fa-solid fa-tag text-pink-500 text-xs"></i>
+                                    <span class="text-xs font-bold text-pink-700">ราคาผู้ติดตามเริ่ม</span>
+                                    <span class="text-lg font-extrabold text-pink-950">฿${cam.followerDailyRate || cam.dailyRate}</span>
+                                    <span class="text-[11px] font-bold text-pink-500">/ วัน</span>
+                                </div>
+                                <span class="text-[11px] font-bold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100">ประกัน ฿${cam.deposit}</span>
+                            </div>
+
+                            <div class="grid grid-cols-12 gap-2">
+                                <button type="button" onclick="openCameraDetailModal('${cam.id}')" class="col-span-5 py-2.5 px-3 rounded-full bg-pink-50/90 hover:bg-pink-100 text-pink-900 border border-pink-200 text-xs font-extrabold flex items-center justify-center gap-1.5 transition">
+                                    <i class="fa-regular fa-eye"></i>
+                                    <span>ตัวอย่าง</span>
+                                </button>
+                                <button type="button" onclick="selectCameraForBooking('${cam.id}')" class="col-span-7 py-2.5 px-3 rounded-full boutique-btn-action text-xs font-extrabold flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid ${isSelected ? 'fa-circle-check' : 'fa-wand-magic-sparkles'}"></i>
+                                    <span>${isSelected ? 'เลือกรุ่นนี้แล้ว' : 'เลือกเช่ารุ่นนี้'}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function selectCameraForBooking(camId) {
+            currentBookingDraft.selectedCameraId = camId;
+            const filterSel = document.getElementById('calendarCameraFilter');
+            if (filterSel) filterSel.value = camId;
+            renderCameraCards();
+            renderCustomerCalendar();
+            calculateAndRefreshPricing();
+            const cam = appData.cameras.find(c => c.id === camId);
+            if (cam) {
+                showToast(`เลือกรุ่น "${cam.name}" แล้ว 🎀`);
+            }
+        }
+
+        // ==========================================
+        // 1:1 SQUARE CAMERA DETAIL MODAL & SLIDER
+        // ==========================================
+        function openCameraDetailModal(camId) {
+            const cam = appData.cameras.find(c => c.id === camId);
+            if (!cam) return;
+            currentModalCamId = cam.id;
+            currentModalGallery = Array.isArray(cam.gallery) && cam.gallery.length > 0
+                ? cam.gallery
+                : [cam.image];
+            currentModalGalleryIdx = 0;
+
+            document.getElementById('modalCamName').textContent = cam.name;
+            document.getElementById('modalCamDesc').innerHTML = `<div class="whitespace-pre-line bg-pink-50/80 border border-pink-200 rounded-2xl p-3.5 text-xs text-pink-900 font-medium leading-relaxed">${cam.description || FOLLOWER_CONDITION_TEXT}</div>`;
+
+            const hourlyTiers = Array.isArray(cam.hourlyTiers) && cam.hourlyTiers.length > 0
+                ? cam.hourlyTiers
+                : [
+                    { hours: 3, normal: cam.hourlyRate || 200, follower: Math.max(0, (cam.hourlyRate || 200) - 20) },
+                    { hours: 6, normal: cam.pack4HrRate || 260, follower: Math.max(0, (cam.pack4HrRate || 260) - 15) },
+                    { hours: 8, normal: (cam.pack4HrRate || 260) + 30, follower: (cam.pack4HrRate || 260) + 10 }
+                ];
+
+            const dailyTiers = Array.isArray(cam.dailyTiers) && cam.dailyTiers.length > 0
+                ? cam.dailyTiers
+                : [
+                    { days: 1, normal: cam.dailyRate || 350, follower: cam.followerDailyRate || (cam.dailyRate - 30) }
+                ];
+
+            const hourlyRowsHtml = hourlyTiers.map(t => `
+                <tr class="border-b border-pink-100/80">
+                    <td class="py-1.5 font-bold text-pink-950">${t.hours} ชั่วโมง</td>
+                    <td class="py-1.5 text-center font-bold text-pink-700">${t.normal.toLocaleString()} บาท</td>
+                    <td class="py-1.5 text-right font-extrabold text-purple-700">${t.follower.toLocaleString()} บาท</td>
+                </tr>
+            `).join('');
+
+            const dailyRowsHtml = dailyTiers.map(t => `
+                <tr class="border-b border-pink-100/80">
+                    <td class="py-1.5 font-bold text-pink-950">${t.days} วัน</td>
+                    <td class="py-1.5 text-center font-bold text-pink-700">${t.normal.toLocaleString()} บาท</td>
+                    <td class="py-1.5 text-right font-extrabold text-purple-700">${t.follower.toLocaleString()} บาท</td>
+                </tr>
+            `).join('');
+
+            document.getElementById('modalCamRates').innerHTML = `
+                <div class="space-y-3">
+                    <div>
+                        <p class="font-extrabold text-pink-950 mb-1">⏰ ราคาเช่ารายชั่วโมง</p>
+                        <table class="w-full text-left text-[11px] sm:text-xs">
+                            <thead>
+                                <tr class="border-b border-pink-200 text-pink-500">
+                                    <th class="pb-1">ระยะเวลา</th>
+                                    <th class="pb-1 text-center">ราคาปกติ</th>
+                                    <th class="pb-1 text-right text-purple-700">ราคาผู้ติดตาม</th>
+                                </tr>
+                            </thead>
+                            <tbody>${hourlyRowsHtml}</tbody>
+                        </table>
+                    </div>
+
+                    <div class="pt-1">
+                        <p class="font-extrabold text-pink-950 mb-1">📅 ราคาเช่ารายวัน</p>
+                        <table class="w-full text-left text-[11px] sm:text-xs">
+                            <thead>
+                                <tr class="border-b border-pink-200 text-pink-500">
+                                    <th class="pb-1">ระยะเวลา</th>
+                                    <th class="pb-1 text-center">ราคาปกติ</th>
+                                    <th class="pb-1 text-right text-purple-700">ราคาผู้ติดตาม</th>
+                                </tr>
+                            </thead>
+                            <tbody>${dailyRowsHtml}</tbody>
+                        </table>
+                    </div>
+
+                    <div class="pt-1 text-[11px] text-pink-800 font-bold space-y-0.5">
+                        <p>- เช่า 12 ชั่วโมงขึ้นไป คิดเป็นราคา 1 วัน</p>
+                        <p>- เช่าเกิน 7 วัน เพิ่มวันละ ${cam.extraDayRate || 150} บาท</p>
+                    </div>
+                </div>
+            `;
+
+            const selectBtn = document.getElementById('modalSelectBtn');
+            selectBtn.onclick = function() {
+                selectCameraForBooking(cam.id);
+                closeCameraDetailModal();
+            };
+
+            updateModalGallerySlide();
+            document.getElementById('cameraDetailModal').classList.remove('hidden');
+        }
+
+        function updateModalGallerySlide() {
+            const imgEl = document.getElementById('modalCamSquareImg');
+            const counterEl = document.getElementById('modalSlideCounter');
+            const prevBtn = document.getElementById('modalSlidePrevBtn');
+            const nextBtn = document.getElementById('modalSlideNextBtn');
+
+            const total = currentModalGallery.length;
+            imgEl.src = currentModalGallery[currentModalGalleryIdx] || '';
+            counterEl.textContent = `${currentModalGalleryIdx + 1} / ${total}`;
+
+            if (total <= 1) {
+                prevBtn.classList.add('hidden');
+                nextBtn.classList.add('hidden');
+            } else {
+                prevBtn.classList.remove('hidden');
+                nextBtn.classList.remove('hidden');
+            }
+        }
+
+        function stepModalGallery(delta) {
+            if (!currentModalGallery.length) return;
+            currentModalGalleryIdx = (currentModalGalleryIdx + delta + currentModalGallery.length) % currentModalGallery.length;
+            updateModalGallerySlide();
+        }
+
+        function closeCameraDetailModal() {
+            document.getElementById('cameraDetailModal').classList.add('hidden');
+        }
+
+        // ==========================================
+        // SMART QUEUE CALENDAR
+        // ==========================================
+        function populateCalendarCameraFilter() {
+            const sel = document.getElementById('calendarCameraFilter');
+            if (!sel) return;
+            sel.innerHTML = `<option value="ALL">แสดงคิวรวมทุกรุ่น</option>` +
+                appData.cameras.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+            sel.value = currentBookingDraft.selectedCameraId || 'ALL';
+        }
+
+        function onChangeCalendarFilter(val) {
+            if (val !== 'ALL') {
+                currentBookingDraft.selectedCameraId = val;
+                renderCameraCards();
+                calculateAndRefreshPricing();
+            }
+            renderCustomerCalendar();
+        }
+
+        function changeCustomerCalendarMonth(delta) {
+            customerCalMonth += delta;
+            if (customerCalMonth < 0) {
+                customerCalMonth = 11;
+                customerCalYear -= 1;
+            } else if (customerCalMonth > 11) {
+                customerCalMonth = 0;
+                customerCalYear += 1;
+            }
+            renderCustomerCalendar();
+        }
+
+        function jumpCalendarToToday() {
+            const now = new Date();
+            customerCalYear = now.getFullYear();
+            customerCalMonth = now.getMonth();
+            renderCustomerCalendar();
+        }
+
+        function renderCustomerCalendar() {
+            const grid = document.getElementById('customerCalendarGrid');
+            const label = document.getElementById('customerCalendarMonthLabel');
+            if (!grid || !label) return;
+
+            const thaiMonths = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+            label.textContent = `${thaiMonths[customerCalMonth]} ${customerCalYear + 543}`;
+
+            document.getElementById('calBannerPickup').textContent = `${formatThaiDateShort(currentBookingDraft.pickupDate)} (${currentBookingDraft.pickupTime})`;
+            document.getElementById('calBannerReturn').textContent = `${formatThaiDateShort(currentBookingDraft.returnDate)} (${currentBookingDraft.returnTime})`;
+
+            const firstDay = new Date(customerCalYear, customerCalMonth, 1).getDay();
+            const daysInMonth = new Date(customerCalYear, customerCalMonth + 1, 0).getDate();
+            const filterVal = document.getElementById('calendarCameraFilter')?.value || currentBookingDraft.selectedCameraId;
+
+            let html = '';
+            for (let i = 0; i < firstDay; i++) {
+                html += `<div class="h-14 sm:h-16 rounded-2xl bg-pink-50/20"></div>`;
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const mm = String(customerCalMonth + 1).padStart(2, '0');
+                const dd = String(day).padStart(2, '0');
+                const dateStr = `${customerCalYear}-${mm}-${dd}`;
+
+                const dayStartMs = parseDateTime(dateStr, '09:00');
+                const dayEndMs = parseDateTime(dateStr, '20:00');
+
+                let totalUnits = 0;
+                let availUnits = 0;
+
+                if (filterVal === 'ALL') {
+                    appData.cameras.forEach(c => {
+                        const info = getAvailableUnitsInfo(c.id, dayStartMs, dayEndMs);
+                        totalUnits += info.totalUnits;
+                        availUnits += info.availableCount;
+                    });
+                } else {
+                    const info = getAvailableUnitsInfo(filterVal, dayStartMs, dayEndMs);
+                    totalUnits = info.totalUnits;
+                    availUnits = info.availableCount;
+                }
+
+                const isBlocked = (appData.blockedDates || []).includes(dateStr);
+                if (isBlocked) availUnits = 0;
+
+                const isStart = dateStr === currentBookingDraft.pickupDate;
+                const isEnd = dateStr === currentBookingDraft.returnDate;
+                const isBetween = dateStr > currentBookingDraft.pickupDate && dateStr < currentBookingDraft.returnDate;
+                const isFull = availUnits <= 0;
+
+                let cellStyle = 'bg-white border-pink-100 text-pink-950 hover:border-pink-300';
+                let badgeHtml = `<span class="text-[9px] font-bold text-emerald-600">ว่าง ${availUnits}/${totalUnits}</span>`;
+
+                if (isFull) {
+                    cellStyle = 'cal-disabled bg-rose-50/80 border-rose-200 text-rose-400 cursor-not-allowed opacity-75';
+                    badgeHtml = `<span class="text-[9px] font-bold text-rose-500">${isBlocked ? 'ปิดวัน' : 'คิวเต็ม'}</span>`;
+                } else if (isStart || isEnd) {
+                    cellStyle = 'boutique-pill-active border-transparent shadow-md';
+                    badgeHtml = `<span class="text-[9px] font-extrabold text-white/95">${isStart && isEnd ? 'รับ-คืน' : (isStart ? 'วันรับ ✨' : 'วันคืน ✨')}</span>`;
+                } else if (isBetween) {
+                    cellStyle = 'cal-range-connector border-purple-300 text-purple-950';
+                    badgeHtml = `<span class="text-[9px] font-extrabold text-purple-700">เช่าอยู่ ✨</span>`;
+                }
+
+                // Unit indicator dots
+                let dotsHtml = '';
+                const maxDots = Math.min(totalUnits, 4);
+                for (let d = 0; d < maxDots; d++) {
+                    const dotColor = d < availUnits
+                        ? ((isStart || isEnd) ? 'bg-white' : 'bg-emerald-400')
+                        : 'bg-rose-400';
+                    dotsHtml += `<span class="w-1.5 h-1.5 rounded-full ${dotColor}"></span>`;
+                }
+
+                html += `
+                    <button type="button"
+                            ${isFull ? 'disabled' : `onclick="onCalendarDateClicked('${dateStr}')"`}
+                            class="cal-cell h-14 sm:h-16 rounded-2xl border p-1 flex flex-col items-center justify-between ${cellStyle}">
+                        <span class="text-xs sm:text-sm font-extrabold">${day}</span>
+                        <div class="flex items-center gap-0.5">${dotsHtml}</div>
+                        ${badgeHtml}
+                    </button>
+                `;
+            }
+
+            grid.innerHTML = html;
+        }
+
+        function onCalendarDateClicked(dateStr) {
+            if (calClickStage === 0 || dateStr < currentBookingDraft.pickupDate) {
+                currentBookingDraft.pickupDate = dateStr;
+                currentBookingDraft.returnDate = dateStr;
+                calClickStage = 1;
+            } else {
+                currentBookingDraft.returnDate = dateStr;
+                calClickStage = 0;
+            }
+
+            document.getElementById('inputPickupDate').value = currentBookingDraft.pickupDate;
+            document.getElementById('inputReturnDate').value = currentBookingDraft.returnDate;
+
+            renderCustomerCalendar();
+            renderCameraCards();
+            calculateAndRefreshPricing();
+        }
+
+        function onDateTimeInputChanged() {
+            currentBookingDraft.pickupDate = document.getElementById('inputPickupDate').value;
+            currentBookingDraft.pickupTime = document.getElementById('inputPickupTime').value;
+            currentBookingDraft.returnDate = document.getElementById('inputReturnDate').value;
+            currentBookingDraft.returnTime = document.getElementById('inputReturnTime').value;
+
+            renderCustomerCalendar();
+            renderCameraCards();
+            calculateAndRefreshPricing();
+        }
+
+        function applyQuickDurationHours(hours) {
+            const pDate = currentBookingDraft.pickupDate || getOffsetDateStr(0);
+            const pTime = currentBookingDraft.pickupTime || '10:00';
+            const startMs = parseDateTime(pDate, pTime);
+            const endObj = new Date(startMs + hours * 3600 * 1000);
+            const yyyy = endObj.getFullYear();
+            const mm = String(endObj.getMonth() + 1).padStart(2, '0');
+            const dd = String(endObj.getDate()).padStart(2, '0');
+            const hh = String(endObj.getHours()).padStart(2, '0');
+            const min = String(endObj.getMinutes()).padStart(2, '0');
+
+            currentBookingDraft.returnDate = `${yyyy}-${mm}-${dd}`;
+            currentBookingDraft.returnTime = `${hh}:${min}`;
+            document.getElementById('inputReturnDate').value = currentBookingDraft.returnDate;
+            document.getElementById('inputReturnTime').value = currentBookingDraft.returnTime;
+
+            renderCustomerCalendar();
+            renderCameraCards();
+            calculateAndRefreshPricing();
+        }
+
+        function applyQuickDurationDays(days) {
+            const base = new Date(`${currentBookingDraft.pickupDate}T10:00:00`);
+            base.setDate(base.getDate() + days);
+            const yyyy = base.getFullYear();
+            const mm = String(base.getMonth() + 1).padStart(2, '0');
+            const dd = String(base.getDate()).padStart(2, '0');
+
+            currentBookingDraft.returnDate = `${yyyy}-${mm}-${dd}`;
+            currentBookingDraft.returnTime = currentBookingDraft.pickupTime;
+            document.getElementById('inputReturnDate').value = currentBookingDraft.returnDate;
+            document.getElementById('inputReturnTime').value = currentBookingDraft.returnTime;
+
+            renderCustomerCalendar();
+            renderCameraCards();
+            calculateAndRefreshPricing();
+        }
+
+        // ==========================================
+        // PRICING ENGINE (Hourly 3/6/8 hrs & Daily 1/2/3/5/7 days, >=12 hrs = 1 day, >7 days +150/day)
+        // ==========================================
+        function calculateCameraTierPrice(cam, totalHours, rateType = 'NORMAL') {
+            const isFollower = rateType === 'FOLLOWER';
+            const rateLabel = isFollower ? 'ราคาผู้ติดตาม' : 'ราคาปกติ';
+
+            const hTiers = Array.isArray(cam.hourlyTiers) && cam.hourlyTiers.length > 0
+                ? cam.hourlyTiers
+                : [
+                    { hours: 3, normal: cam.hourlyRate || 200, follower: Math.max(0, (cam.hourlyRate || 200) - 20) },
+                    { hours: 6, normal: cam.pack4HrRate || 260, follower: Math.max(0, (cam.pack4HrRate || 260) - 15) },
+                    { hours: 8, normal: (cam.pack4HrRate || 260) + 30, follower: (cam.pack4HrRate || 260) + 10 }
+                ];
+
+            const dTiers = Array.isArray(cam.dailyTiers) && cam.dailyTiers.length > 0
+                ? cam.dailyTiers
+                : [
+                    { days: 1, normal: cam.dailyRate || 350, follower: cam.followerDailyRate || (cam.dailyRate - 30) },
+                    { days: 2, normal: (cam.dailyRate || 350) * 2, follower: (cam.followerDailyRate || 300) * 2 },
+                    { days: 3, normal: (cam.dailyRate || 350) * 3, follower: (cam.followerDailyRate || 300) * 3 },
+                    { days: 5, normal: (cam.dailyRate || 350) * 5, follower: (cam.followerDailyRate || 300) * 5 },
+                    { days: 7, normal: (cam.dailyRate || 350) * 7, follower: (cam.followerDailyRate || 300) * 7 }
+                ];
+
+            const getDayPrice = (dCount) => {
+                const exact = dTiers.find(t => t.days === dCount);
+                if (exact) return isFollower ? exact.follower : exact.normal;
+                const d1 = getDayPrice(1);
+                if (dCount === 4) {
+                    const d3 = getDayPrice(3);
+                    const d5 = getDayPrice(5);
+                    return Math.min(d3 + d1, d5);
+                }
+                if (dCount === 6) {
+                    const d5 = getDayPrice(5);
+                    const d7 = getDayPrice(7);
+                    return Math.min(d5 + d1, d7);
+                }
+                if (dCount > 7) {
+                    const d7 = getDayPrice(7);
+                    return d7 + ((dCount - 7) * (cam.extraDayRate || 150));
+                }
+                return dCount * d1;
+            };
+
+            if (totalHours < 12) {
+                const matchedTier = hTiers.find(t => totalHours <= t.hours);
+                if (matchedTier) {
+                    const price = isFollower ? matchedTier.follower : matchedTier.normal;
+                    return {
+                        rentPrice: price,
+                        durationText: `${totalHours} ชม. (เรท ${matchedTier.hours} ชม. • ${rateLabel})`
+                    };
+                }
+                const price1Day = getDayPrice(1);
+                return {
+                    rentPrice: price1Day,
+                    durationText: `${totalHours} ชม. (คิดเรท 1 วัน • ${rateLabel})`
+                };
+            }
+
+            let days = Math.floor(totalHours / 24);
+            const remHours = totalHours % 24;
+            if (days === 0) {
+                days = 1;
+            } else if (remHours >= 12) {
+                days += 1;
+            }
+
+            if (remHours > 0 && remHours < 12 && totalHours > 24) {
+                const matchedHourTier = hTiers.find(t => remHours <= t.hours);
+                const extraHourCost = matchedHourTier
+                    ? (isFollower ? matchedHourTier.follower : matchedHourTier.normal)
+                    : getDayPrice(1);
+                const costWithHours = getDayPrice(days) + extraHourCost;
+                const costNextDay = getDayPrice(days + 1);
+                if (costWithHours <= costNextDay) {
+                    return {
+                        rentPrice: costWithHours,
+                        durationText: `${days} วัน ${remHours} ชม. (${rateLabel})`
+                    };
+                } else {
+                    return {
+                        rentPrice: costNextDay,
+                        durationText: `${days + 1} วัน (${rateLabel})`
+                    };
+                }
+            }
+
+            const totalDayPrice = getDayPrice(days);
+            return {
+                rentPrice: totalDayPrice,
+                durationText: `${days} วัน (${rateLabel})`
+            };
+        }
+
+        function calculateAndRefreshPricing() {
+            const cam = appData.cameras.find(c => c.id === currentBookingDraft.selectedCameraId) || appData.cameras[0];
+            if (!cam) return;
+
+            const startMs = parseDateTime(currentBookingDraft.pickupDate, currentBookingDraft.pickupTime);
+            const endMs = parseDateTime(currentBookingDraft.returnDate, currentBookingDraft.returnTime);
+            const alertEl = document.getElementById('step1AvailabilityAlert');
+            const nextBtn = document.getElementById('btnStep1Next');
+
+            if (endMs <= startMs) {
+                alertEl.className = 'rounded-2xl p-3 text-xs font-bold flex items-center gap-2.5 bg-rose-50 text-rose-700 border border-rose-200';
+                alertEl.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <span>วันและเวลาคืนกล้องต้องอยู่หลังวันและเวลารับกล้องค่ะ</span>`;
+                nextBtn.disabled = true;
+                nextBtn.classList.add('opacity-40', 'cursor-not-allowed');
+                return;
+            }
+
+            const totalHours = Math.max(1, Math.ceil((endMs - startMs) / (1000 * 60 * 60)));
+            const calc = calculateCameraTierPrice(cam, totalHours, currentBookingDraft.rateType || 'NORMAL');
+            const rentPrice = calc.rentPrice;
+            const durationText = calc.durationText;
+
+            currentBookingDraft.durationText = durationText;
+            currentBookingDraft.rentPrice = rentPrice;
+            currentBookingDraft.deposit = cam.deposit;
+            currentBookingDraft.totalAmount = rentPrice + cam.deposit;
+
+            document.getElementById('sumStep1Camera').textContent = cam.name;
+            document.getElementById('sumStep1Start').textContent = `${formatThaiDateShort(currentBookingDraft.pickupDate)} เวลา ${currentBookingDraft.pickupTime} น.`;
+            document.getElementById('sumStep1End').textContent = `${formatThaiDateShort(currentBookingDraft.returnDate)} เวลา ${currentBookingDraft.returnTime} น.`;
+            document.getElementById('sumStep1Duration').textContent = durationText;
+            document.getElementById('sumStep1RentPrice').textContent = `฿${rentPrice.toLocaleString()}`;
+            document.getElementById('sumStep1Deposit').textContent = `฿${cam.deposit.toLocaleString()}`;
+            document.getElementById('sumStep1Total').textContent = `฿${currentBookingDraft.totalAmount.toLocaleString()}`;
+
+            const avail = getAvailableUnitsInfo(cam.id, startMs, endMs);
+            if (avail.availableCount > 0) {
+                alertEl.className = 'rounded-2xl p-3 text-xs font-bold flex items-center gap-2.5 bg-emerald-50 text-emerald-700 border border-emerald-200';
+                alertEl.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-500"></i> <span>${cam.name} ว่างพร้อมให้เช่า (${avail.availableCount}/${avail.totalUnits} เครื่อง) ในช่วงเวลานี้ค่ะ</span>`;
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+            } else {
+                alertEl.className = 'rounded-2xl p-3 text-xs font-bold flex items-center gap-2.5 bg-rose-50 text-rose-700 border border-rose-200';
+                alertEl.innerHTML = `<i class="fa-solid fa-calendar-xmark text-rose-500"></i> <span>ขออภัย ${cam.name} คิวเต็มในช่วงเวลาที่เลือก กรุณาเลือกวัน-เวลาอื่นหรือเปลี่ยนรุ่นกล้องค่ะ</span>`;
+                nextBtn.disabled = true;
+                nextBtn.classList.add('opacity-40', 'cursor-not-allowed');
+            }
+        }
+
+        function populatePickupLocations() {
+            const sel = document.getElementById('selectPickupLocation');
+            if (!sel) return;
+            const locs = appData.shop.pickupLocations || [];
+            sel.innerHTML = `<option value="">-- เลือกสถานที่นัดรับกล้อง --</option>` +
+                locs.map(l => `<option value="${l}">${l}</option>`).join('') +
+                `<option value="OTHER">อื่น ๆ (ระบุสถานที่เอง)</option>`;
+            if (currentBookingDraft.pickupLocation) {
+                sel.value = currentBookingDraft.pickupLocation;
+            }
+        }
+
+        function onPickupLocationChange(val) {
+            currentBookingDraft.pickupLocation = val;
+            const wrap = document.getElementById('customPickupLocationWrap');
+            if (val === 'OTHER') {
+                wrap.classList.remove('hidden');
+            } else {
+                wrap.classList.add('hidden');
+            }
+        }
+
+        // ==========================================
+        // STEP NAVIGATION & FORM VALIDATION
+        // ==========================================
+        function goToCustomerStep(stepNo) {
+            [1, 2, 3, 4, 5].forEach(s => {
+                const el = document.getElementById(`customerStep${s}`);
+                if (el) el.classList.toggle('hidden', s !== stepNo);
+            });
+
+            [1, 2, 3, 4].forEach(s => {
+                const ind = document.getElementById(`stepIndicator${s}`);
+                if (!ind) return;
+                if (s === stepNo || (stepNo === 5 && s === 4)) {
+                    ind.className = 'flex items-center justify-center gap-1.5 px-2.5 py-2.5 rounded-2xl font-extrabold text-[11px] sm:text-xs whitespace-nowrap transition boutique-pill-active';
+                } else {
+                    ind.className = 'flex items-center justify-center gap-1.5 px-2.5 py-2.5 rounded-2xl font-extrabold text-[11px] sm:text-xs whitespace-nowrap transition bg-pink-50/80 text-pink-900';
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function jumpToStepIfAllowed(targetStep) {
+            if (targetStep === 1) {
+                goToCustomerStep(1);
+            } else if (targetStep === 2) {
+                proceedFromStep1();
+            } else if (targetStep === 3) {
+                if (!currentBookingDraft.acceptedRules) {
+                    showToast('กรุณาอ่านและติ๊กยอมรับกฎการเช่าในขั้นตอนที่ 2 ก่อนค่ะ');
+                    return;
+                }
+                goToCustomerStep(3);
+            } else if (targetStep === 4) {
+                proceedFromStep3();
+            }
+        }
+
+        function proceedFromStep1() {
+            const startMs = parseDateTime(currentBookingDraft.pickupDate, currentBookingDraft.pickupTime);
+            const endMs = parseDateTime(currentBookingDraft.returnDate, currentBookingDraft.returnTime);
+            if (endMs <= startMs) {
+                showToast('วันและเวลาคืนกล้องต้องอยู่หลังเวลารับกล้องค่ะ');
+                return;
+            }
+            const avail = getAvailableUnitsInfo(currentBookingDraft.selectedCameraId, startMs, endMs);
+            if (avail.availableCount <= 0) {
+                showToast('ช่วงเวลาที่เลือกคิวเต็มแล้ว กรุณาเลือกวัน-เวลาอื่นค่ะ');
+                return;
+            }
+            if (!currentBookingDraft.pickupLocation) {
+                showToast('กรุณาเลือกสถานที่นัดรับกล้องก่อนดำเนินการต่อค่ะ');
+                return;
+            }
+            if (currentBookingDraft.pickupLocation === 'OTHER' && !currentBookingDraft.customPickupLocation.trim()) {
+                showToast('กรุณาระบุสถานที่นัดรับอื่นๆ ให้เรียบร้อยค่ะ');
+                return;
+            }
+            renderCustomerRules();
+            goToCustomerStep(2);
+        }
+
+        function renderCustomerRules() {
+            const badge = document.getElementById('rulesVersionBadge');
+            if (badge) badge.textContent = `เวอร์ชัน ${appData.shop.rulesVersion || 'v1.2'}`;
+        }
+
+        function onToggleAcceptRules(checked) {
+            currentBookingDraft.acceptedRules = checked;
+            currentBookingDraft.acceptedRulesAt = checked ? new Date().toLocaleString('th-TH') : null;
+            const btn = document.getElementById('btnStep2Next');
+            if (checked) {
+                btn.disabled = false;
+                btn.classList.remove('opacity-40', 'cursor-not-allowed');
+            } else {
+                btn.disabled = true;
+                btn.classList.add('opacity-40', 'cursor-not-allowed');
+            }
+        }
+
+        function proceedFromStep2() {
+            if (!currentBookingDraft.acceptedRules) {
+                showToast('กรุณาติ๊กยอมรับกฎและเงื่อนไขการเช่าก่อนค่ะ');
+                return;
+            }
+            updateFollowerProofVisibility();
+            goToCustomerStep(3);
+        }
+
+        // Client-Side Image Compression to prevent QuotaExceededError
+        function compressImageFile(file, maxWidth = 720, quality = 0.65) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        let w = img.width;
+                        let h = img.height;
+                        if (w > maxWidth) {
+                            h = Math.round((h * maxWidth) / w);
+                            w = maxWidth;
+                        }
+                        const canvas = document.createElement('canvas');
+                        canvas.width = w;
+                        canvas.height = h;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, w, h);
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                    };
+                    img.onerror = reject;
+                    img.src = e.target.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        async function handleSecureFileUpload(event, type) {
+            const file = event.target.files?.[0];
+            if (!file) return;
+            if (!file.type.startsWith('image/')) {
+                showToast('กรุณาเลือกไฟล์รูปภาพเท่านั้นค่ะ');
+                return;
+            }
+            try {
+                const compressedDataUrl = await compressImageFile(file, 720, 0.65);
+                if (type === 'SELFIE') {
+                    currentBookingDraft.selfieWithId = compressedDataUrl;
+                    document.getElementById('previewImgSelfie').src = compressedDataUrl;
+                    document.getElementById('previewWrapSelfie').classList.remove('hidden');
+                } else if (type === 'IDCARD') {
+                    currentBookingDraft.idCardOnly = compressedDataUrl;
+                    document.getElementById('previewImgIdCard').src = compressedDataUrl;
+                    document.getElementById('previewWrapIdCard').classList.remove('hidden');
+                } else if (type === 'FOLLOWER') {
+                    currentBookingDraft.followerProof = compressedDataUrl;
+                    document.getElementById('previewImgFollowerProof').src = compressedDataUrl;
+                    document.getElementById('previewWrapFollowerProof').classList.remove('hidden');
+                } else if (type === 'SLIP') {
+                    currentBookingDraft.paymentSlip = compressedDataUrl;
+                    document.getElementById('previewImgSlip').src = compressedDataUrl;
+                    document.getElementById('previewWrapSlip').classList.remove('hidden');
+                }
+                showToast('อัปโหลดรูปภาพเรียบร้อยแล้วค่ะ ✨');
+            } catch (err) {
+                console.error(err);
+                showToast('เกิดข้อผิดพลาดในการย่อรูปภาพ กรุณาลองใหม่อีกครั้งค่ะ');
+            }
+        }
+
+        function clearUploadedImage(type) {
+            if (type === 'SELFIE') {
+                currentBookingDraft.selfieWithId = '';
+                document.getElementById('previewWrapSelfie').classList.add('hidden');
+                document.getElementById('fileInputSelfie').value = '';
+            } else if (type === 'IDCARD') {
+                currentBookingDraft.idCardOnly = '';
+                document.getElementById('previewWrapIdCard').classList.add('hidden');
+                document.getElementById('fileInputIdCard').value = '';
+            } else if (type === 'FOLLOWER') {
+                currentBookingDraft.followerProof = '';
+                document.getElementById('previewWrapFollowerProof').classList.add('hidden');
+                document.getElementById('fileInputFollowerProof').value = '';
+            } else if (type === 'SLIP') {
+                currentBookingDraft.paymentSlip = '';
+                document.getElementById('previewWrapSlip').classList.add('hidden');
+                document.getElementById('fileInputSlip').value = '';
+            }
+        }
+
+        function proceedFromStep3() {
+            const name = document.getElementById('inputRenterName').value.trim();
+            const phone = document.getElementById('inputRenterPhone').value.trim();
+            const addr = document.getElementById('inputRenterAddress').value.trim();
+            const work = document.getElementById('inputRenterWorkplace').value.trim();
+
+            if (!name || !phone || !addr || !work) {
+                showToast('กรุณากรอกข้อมูลส่วนตัวผู้เช่าให้ครบทุกช่องค่ะ');
+                return;
+            }
+            if (!currentBookingDraft.selfieWithId || !currentBookingDraft.idCardOnly) {
+                showToast('กรุณาอัปโหลดรูปถ่ายคู่บัตรประชาชนและรูปบัตรประชาชนให้ครบทั้ง 2 รูปค่ะ');
+                return;
+            }
+            if (currentBookingDraft.rateType === 'FOLLOWER' && !currentBookingDraft.followerProof) {
+                showToast('กรุณาแนบรูปหลักฐานการติดตามร้านสำหรับสิทธิ์ราคาผู้ติดตามด้วยค่ะ 🎀');
+                return;
+            }
+
+            currentBookingDraft.renterName = name;
+            currentBookingDraft.renterPhone = phone;
+            currentBookingDraft.renterAddress = addr;
+            currentBookingDraft.renterWorkplace = work;
+
+            renderStep4Summary();
+            goToCustomerStep(4);
+        }
+
+        function renderStep4Summary() {
+            const cam = appData.cameras.find(c => c.id === currentBookingDraft.selectedCameraId) || appData.cameras[0];
+            const finalLoc = currentBookingDraft.pickupLocation === 'OTHER'
+                ? currentBookingDraft.customPickupLocation
+                : currentBookingDraft.pickupLocation;
+
+            document.getElementById('payStepTotalAmount').textContent = `฿${currentBookingDraft.totalAmount.toLocaleString()}`;
+            document.getElementById('payStepBankName').textContent = appData.shop.bankName;
+            document.getElementById('payStepAccNo').textContent = appData.shop.accountNumber;
+            document.getElementById('payStepAccName').textContent = appData.shop.accountName;
+            document.getElementById('payStepQrImg').src = appData.shop.qrCodeUrl;
+
+            document.getElementById('sumStep4Camera').textContent = cam ? cam.name : '-';
+            document.getElementById('sumStep4Pickup').textContent = `${formatThaiDateShort(currentBookingDraft.pickupDate)} เวลา ${currentBookingDraft.pickupTime} น.`;
+            document.getElementById('sumStep4Return').textContent = `${formatThaiDateShort(currentBookingDraft.returnDate)} เวลา ${currentBookingDraft.returnTime} น.`;
+            document.getElementById('sumStep4Duration').textContent = currentBookingDraft.durationText;
+            document.getElementById('sumStep4Location').textContent = finalLoc;
+            document.getElementById('sumStep4RenterName').textContent = currentBookingDraft.renterName;
+            document.getElementById('sumStep4RenterPhone').textContent = currentBookingDraft.renterPhone;
+            document.getElementById('sumStep4Rent').textContent = `฿${currentBookingDraft.rentPrice.toLocaleString()}`;
+            document.getElementById('sumStep4Deposit').textContent = `฿${currentBookingDraft.deposit.toLocaleString()}`;
+            document.getElementById('sumStep4Total').textContent = `฿${currentBookingDraft.totalAmount.toLocaleString()}`;
+        }
+
+        function copyTextFallback(text, msg) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast(msg);
+        }
+
+        function copyBankAccountNo() {
+            copyTextFallback(appData.shop.accountNumber, `คัดลอกเลขบัญชี ${appData.shop.accountNumber} แล้วค่ะ 🎀`);
+        }
+
+        function copyBookingCode() {
+            copyTextFallback(currentBookingDraft.lastCreatedCode, `คัดลอกรหัสการจอง ${currentBookingDraft.lastCreatedCode} แล้วค่ะ 🎀`);
+        }
+
+        function submitBookingRequest() {
+            if (isSubmittingBooking) return;
+            if (!currentBookingDraft.paymentSlip) {
+                showToast('กรุณาแนบรูปสลิปโอนเงินก่อนส่งคำขอจองค่ะ');
+                return;
+            }
+
+            const startMs = parseDateTime(currentBookingDraft.pickupDate, currentBookingDraft.pickupTime);
+            const endMs = parseDateTime(currentBookingDraft.returnDate, currentBookingDraft.returnTime);
+            const avail = getAvailableUnitsInfo(currentBookingDraft.selectedCameraId, startMs, endMs);
+
+            if (avail.availableCount <= 0) {
+                showToast('ขออภัยค่ะ คิวกล้องในช่วงเวลานี้เพิ่งเต็ม กรุณาเลือกเวลาใหม่');
+                return;
+            }
+
+            isSubmittingBooking = true;
+            const cam = appData.cameras.find(c => c.id === currentBookingDraft.selectedCameraId) || appData.cameras[0];
+            const nextNo = String((appData.bookings?.length || 0) + 1).padStart(6, '0');
+            const newCode = `CAM-${nextNo}`;
+            const assignedUnit = avail.freeUnitCodes[0] || (cam.units?.[0]?.code || 'UNIT-01');
+            const finalLoc = currentBookingDraft.pickupLocation === 'OTHER'
+                ? currentBookingDraft.customPickupLocation
+                : currentBookingDraft.pickupLocation;
+
+            const newBooking = {
+                code: newCode,
+                cameraId: cam.id,
+                cameraName: cam.name,
+                unitCode: assignedUnit,
+                pickupDate: currentBookingDraft.pickupDate,
+                pickupTime: currentBookingDraft.pickupTime,
+                returnDate: currentBookingDraft.returnDate,
+                returnTime: currentBookingDraft.returnTime,
+                durationText: currentBookingDraft.durationText,
+                rentPrice: currentBookingDraft.rentPrice,
+                deposit: currentBookingDraft.deposit,
+                totalAmount: currentBookingDraft.totalAmount,
+                pickupLocation: finalLoc,
+                renterName: currentBookingDraft.renterName,
+                renterPhone: currentBookingDraft.renterPhone,
+                renterAddress: currentBookingDraft.renterAddress,
+                renterWorkplace: currentBookingDraft.renterWorkplace,
+                status: 'รอตรวจสอบ',
+                acceptedRulesVersion: appData.shop.rulesVersion || 'v1.2',
+                acceptedRulesAt: currentBookingDraft.acceptedRulesAt || new Date().toLocaleString('th-TH'),
+                selfieWithId: currentBookingDraft.selfieWithId,
+                idCardOnly: currentBookingDraft.idCardOnly,
+                followerProof: currentBookingDraft.followerProof || '',
+                paymentSlip: currentBookingDraft.paymentSlip
+            };
+
+            appData.bookings.unshift(newBooking);
+            saveAppData();
+
+            currentBookingDraft.lastCreatedCode = newCode;
+            document.getElementById('successBookingCode').textContent = newCode;
+            document.getElementById('successCameraName').textContent = `${cam.name} (${assignedUnit})`;
+            document.getElementById('successDateTime').textContent = `${formatThaiDateShort(newBooking.pickupDate)} ${newBooking.pickupTime} - ${formatThaiDateShort(newBooking.returnDate)} ${newBooking.returnTime}`;
+            document.getElementById('successPickupLoc').textContent = finalLoc;
+            document.getElementById('successTotalPay').textContent = `฿${newBooking.totalAmount.toLocaleString()}`;
+
+            isSubmittingBooking = false;
+            renderCameraCards();
+            renderCustomerCalendar();
+            goToCustomerStep(5);
+            showToast(`ส่งคำขอจอง ${newCode} เรียบร้อยแล้วค่ะ 🌸`);
+        }
+
+        // ==========================================
+        // STATUS CHECKER & RENTAL SLIP PNG DOWNLOAD
+        // ==========================================
+        function openStatusCheckWithCurrentCode() {
+            document.getElementById('statusSearchCode').value = currentBookingDraft.lastCreatedCode;
+            document.getElementById('statusSearchPhone').value = currentBookingDraft.renterPhone;
+            switchMainView('STATUS');
+            searchBookingStatus();
+        }
+
+        function fillDemoStatusSearch(code, phone) {
+            document.getElementById('statusSearchCode').value = code;
+            document.getElementById('statusSearchPhone').value = phone;
+            searchBookingStatus();
+        }
+
+        function searchBookingStatus() {
+            const code = document.getElementById('statusSearchCode').value.trim().toUpperCase();
+            const phone = document.getElementById('statusSearchPhone').value.trim();
+            const box = document.getElementById('statusSearchResultBox');
+
+            if (!code || !phone) {
+                showToast('กรุณากรอกทั้งรหัสการจองและเบอร์โทรศัพท์ค่ะ');
+                return;
+            }
+
+            const found = (appData.bookings || []).find(b => b.code.toUpperCase() === code && b.renterPhone.replace(/\D/g, '') === phone.replace(/\D/g, ''));
+            if (!found) {
+                box.innerHTML = `
+                    <div class="p-5 rounded-2xl bg-rose-50 border border-rose-200 text-center text-xs text-rose-700 font-bold">
+                        ไม่พบข้อมูลการจองรหัส "${code}" ที่ตรงกับเบอร์โทรศัพท์ที่ระบุค่ะ
+                    </div>
+                `;
+                return;
+            }
+
+            const canDownload = ['ยืนยันการจอง', 'กำลังเช่า', 'คืนกล้องแล้ว'].includes(found.status);
+
+            box.innerHTML = `
+                <div class="p-5 rounded-3xl bg-pink-50/70 border-2 border-pink-200 space-y-3 text-xs">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-pink-200 pb-2.5">
+                        <div>
+                            <span class="text-[11px] font-bold text-pink-500">หมายเลขการจอง</span>
+                            <h3 class="text-lg font-extrabold text-pink-950">${found.code}</h3>
+                        </div>
+                        <span class="px-3.5 py-1 rounded-full bg-white border border-pink-200 font-extrabold text-pink-800">${found.status}</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div><span class="text-pink-600">ผู้เช่า:</span> <strong class="text-pink-950">${found.renterName}</strong></div>
+                        <div><span class="text-pink-600">รุ่นกล้อง:</span> <strong class="text-pink-950">${found.cameraName} (${found.unitCode})</strong></div>
+                        <div><span class="text-pink-600">วัน-เวลารับ:</span> <strong class="text-pink-950">${formatThaiDateShort(found.pickupDate)} ${found.pickupTime} น.</strong></div>
+                        <div><span class="text-pink-600">วัน-เวลาคืน:</span> <strong class="text-pink-950">${formatThaiDateShort(found.returnDate)} ${found.returnTime} น.</strong></div>
+                        <div class="sm:col-span-2"><span class="text-pink-600">สถานที่นัดรับ:</span> <strong class="text-pink-950">${found.pickupLocation}</strong></div>
+                        <div><span class="text-pink-600">ระยะเวลา:</span> <strong class="text-purple-700">${found.durationText}</strong></div>
+                        <div><span class="text-pink-600">ยอดชำระรวม:</span> <strong class="text-pink-600">฿${found.totalAmount.toLocaleString()}</strong></div>
+                    </div>
+                    ${canDownload ? `
+                        <div class="pt-2">
+                            <button type="button" onclick="downloadBookingSlipImage('${found.code}')" class="w-full py-3 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-download"></i>
+                                <span>ดาวน์โหลดใบยืนยันการเช่า (PNG)</span>
+                            </button>
+                        </div>
+                    ` : `
+                        <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-800 font-bold">
+                            ⏳ เมื่อแอดมินตรวจสอบและเปลี่ยนสถานะเป็น "ยืนยันการจอง" แล้ว ปุ่มดาวน์โหลดใบยืนยันการเช่าจะปรากฏที่นี่ค่ะ
+                        </div>
+                    `}
+                </div>
+            `;
+        }
+
+        function downloadBookingSlipImage(code) {
+            const b = appData.bookings.find(item => item.code === code);
+            if (!b) return;
+            const canvas = document.getElementById('slipDownloadCanvas');
+            const ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = '#FFF5F9';
+            ctx.fillRect(0, 0, 800, 1000);
+
+            ctx.fillStyle = '#DB2777';
+            ctx.fillRect(0, 0, 800, 140);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = 'bold 36px Prompt, sans-serif';
+            ctx.fillText('diginae.cam — ใบยืนยันการเช่ากล้อง', 45, 75);
+            ctx.font = '22px Prompt, sans-serif';
+            ctx.fillText('ร้านเช่ากล้องสุไหงโกลก | Official Rental Confirmation', 45, 112);
+
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(40, 180, 720, 740);
+            ctx.strokeStyle = '#FBCFE8';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(40, 180, 720, 740);
+
+            ctx.fillStyle = '#831843';
+            ctx.font = 'bold 28px Prompt, sans-serif';
+            ctx.fillText(`รหัสการจอง: ${b.code}`, 80, 245);
+
+            ctx.fillStyle = '#059669';
+            ctx.font = 'bold 24px Prompt, sans-serif';
+            ctx.fillText(`สถานะ: ${b.status}`, 500, 245);
+
+            const lines = [
+                ['ชื่อผู้เช่า', b.renterName],
+                ['เบอร์โทรศัพท์', b.renterPhone],
+                ['รุ่นกล้อง', `${b.cameraName} (${b.unitCode})`],
+                ['วันและเวลารับกล้อง', `${b.pickupDate} เวลา ${b.pickupTime} น.`],
+                ['วันและเวลาคืนกล้อง', `${b.returnDate} เวลา ${b.returnTime} น.`],
+                ['ระยะเวลาเช่า', b.durationText],
+                ['สถานที่นัดรับ', b.pickupLocation],
+                ['ค่าเช่ากล้อง', `฿${b.rentPrice.toLocaleString()}`],
+                ['เงินประกันเครื่อง', `฿${b.deposit.toLocaleString()}`],
+                ['ยอดชำระสุทธิ', `฿${b.totalAmount.toLocaleString()}`]
+            ];
+
+            let y = 315;
+            lines.forEach(([k, v]) => {
+                ctx.fillStyle = '#9D174D';
+                ctx.font = 'bold 21px Prompt, sans-serif';
+                ctx.fillText(`${k}:`, 80, y);
+                ctx.fillStyle = '#4A1D34';
+                ctx.font = '21px Prompt, sans-serif';
+                ctx.fillText(String(v), 310, y);
+                y += 54;
+            });
+
+            const link = document.createElement('a');
+            link.download = `${b.code}-diginae-cam.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            showToast(`ดาวน์โหลดใบยืนยันการเช่า ${b.code} เรียบร้อยแล้วค่ะ 🌸`);
+        }
+
+        // ==========================================
+        // ADMIN DASHBOARD FUNCTIONS
+        // ==========================================
+        function loginAdmin() {
+            const u = document.getElementById('adminUserInput').value.trim();
+            const p = document.getElementById('adminPassInput').value.trim();
+            if (u === 'admin' && p === '1234') {
+                document.getElementById('adminLoginCard').classList.add('hidden');
+                document.getElementById('adminDashboardWrap').classList.remove('hidden');
+                renderAdminAll();
+                showToast('เข้าสู่ระบบแอดมินสำเร็จค่ะ 👑');
+            } else {
+                showToast('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง (ทดสอบ: admin / 1234)');
+            }
+        }
+
+        function logoutAdmin() {
+            document.getElementById('adminDashboardWrap').classList.add('hidden');
+            document.getElementById('adminLoginCard').classList.remove('hidden');
+        }
+
+        function switchAdminTab(tab) {
+            ['OVERVIEW', 'BOOKINGS', 'CALENDAR', 'CAMERAS', 'SETTINGS'].forEach(t => {
+                document.getElementById(`admTab_${t}`).classList.toggle('hidden', t !== tab);
+                const btn = document.getElementById(`admTabBtn_${t}`);
+                if (btn) {
+                    btn.className = t === tab
+                        ? 'px-3.5 py-2 rounded-full text-xs font-extrabold boutique-pill-active'
+                        : 'px-3.5 py-2 rounded-full text-xs font-extrabold bg-white text-pink-900 border border-pink-200';
+                }
+            });
+            renderAdminAll();
+        }
+
+        function renderAdminAll() {
+            renderAdminOverview();
+            renderAdminBookings();
+            renderAdminBlockedDates();
+            renderAdminCameras();
+            loadAdminShopSettingsForm();
+        }
+
+        function renderAdminOverview() {
+            const bks = appData.bookings || [];
+            const stats = [
+                { label: 'การจองทั้งหมด', count: bks.length, color: 'bg-pink-50 text-pink-900 border-pink-200' },
+                { label: 'รอตรวจสอบ', count: bks.filter(b => b.status === 'รอตรวจสอบ').length, color: 'bg-amber-50 text-amber-800 border-amber-200' },
+                { label: 'ยืนยันแล้ว', count: bks.filter(b => b.status === 'ยืนยันการจอง').length, color: 'bg-emerald-50 text-emerald-800 border-emerald-200' },
+                { label: 'กำลังเช่า', count: bks.filter(b => b.status === 'กำลังเช่า').length, color: 'bg-purple-50 text-purple-800 border-purple-200' },
+                { label: 'คืนกล้องแล้ว', count: bks.filter(b => b.status === 'คืนกล้องแล้ว').length, color: 'bg-slate-100 text-slate-800 border-slate-200' }
+            ];
+
+            document.getElementById('adminOverviewCards').innerHTML = stats.map(s => `
+                <div class="p-4 rounded-2xl border ${s.color}">
+                    <p class="text-xs font-bold opacity-80">${s.label}</p>
+                    <p class="text-2xl font-extrabold mt-1">${s.count}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('adminRecentBookingsList').innerHTML = bks.slice(0, 5).map(b => `
+                <div class="p-3 rounded-2xl bg-pink-50/40 border border-pink-100 flex flex-wrap items-center justify-between gap-2 text-xs">
+                    <div>
+                        <span class="font-extrabold text-pink-950">${b.code}</span> •
+                        <span class="font-bold text-purple-700">${b.cameraName}</span> •
+                        <span>${b.renterName} (${b.renterPhone})</span>
+                    </div>
+                    <span class="px-3 py-1 rounded-full bg-white border border-pink-200 font-extrabold text-pink-800">${b.status}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminBookings() {
+            const q = (document.getElementById('adminBookingSearchInput')?.value || '').trim().toLowerCase();
+            const statusFilter = document.getElementById('adminBookingStatusFilter')?.value || 'ALL';
+
+            const filtered = (appData.bookings || []).filter(b => {
+                if (statusFilter !== 'ALL' && b.status !== statusFilter) return false;
+                if (!q) return true;
+                return b.code.toLowerCase().includes(q) ||
+                       b.renterName.toLowerCase().includes(q) ||
+                       b.renterPhone.toLowerCase().includes(q);
+            });
+
+            const allStatuses = ['รอตรวจสอบ', 'รอชำระเงิน', 'ยืนยันการจอง', 'กำลังเช่า', 'คืนกล้องแล้ว', 'ไม่อนุมัติ', 'ยกเลิก'];
+
+            document.getElementById('adminBookingsList').innerHTML = filtered.map(b => `
+                <div class="p-4 rounded-2xl bg-white border border-pink-200 space-y-3 text-xs shadow-sm">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-pink-100 pb-2">
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-extrabold text-pink-950">${b.code}</span>
+                            <span class="font-extrabold text-purple-700">${b.cameraName} (${b.unitCode})</span>
+                        </div>
+                        <select onchange="updateBookingStatusByAdmin('${b.code}', this.value)" class="px-3 py-1.5 rounded-full bg-pink-50 border border-pink-200 font-extrabold text-pink-900">
+                            ${allStatuses.map(st => `<option value="${st}" ${b.status === st ? 'selected' : ''}>สถานะ: ${st}</option>`).join('')}
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-pink-900">
+                        <div>
+                            <p><strong>ผู้เช่า:</strong> ${b.renterName} (${b.renterPhone})</p>
+                            <p><strong>ที่ทำงาน/เรียน:</strong> ${b.renterWorkplace}</p>
+                            <p><strong>ที่อยู่:</strong> ${b.renterAddress}</p>
+                        </div>
+                        <div>
+                            <p><strong>รับ-คืน:</strong> ${formatThaiDateShort(b.pickupDate)} ${b.pickupTime} - ${formatThaiDateShort(b.returnDate)} ${b.returnTime}</p>
+                            <p><strong>ระยะเวลา:</strong> ${b.durationText}</p>
+                            <p><strong>สถานที่รับ:</strong> ${b.pickupLocation}</p>
+                        </div>
+                        <div>
+                            <p><strong>ยอดชำระ:</strong> ฿${b.totalAmount.toLocaleString()} (ประกัน ฿${b.deposit.toLocaleString()})</p>
+                            <p><strong>ยอมรับกฎ:</strong> ${b.acceptedRulesVersion} (${b.acceptedRulesAt})</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 pt-1">
+                        <button type="button" onclick="openAdminDocModal('${b.code}', 'SELFIE')" class="px-3.5 py-1.5 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-900 border border-pink-200 font-extrabold">
+                            ดูรูปคู่บัตร ปชช.
+                        </button>
+                        <button type="button" onclick="openAdminDocModal('${b.code}', 'IDCARD')" class="px-3.5 py-1.5 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-900 border border-purple-200 font-extrabold">
+                            ดูรูปบัตร ปชช.
+                        </button>
+                        ${b.followerProof ? `
+                            <button type="button" onclick="openAdminDocModal('${b.code}', 'FOLLOWER')" class="px-3.5 py-1.5 rounded-full bg-fuchsia-50 hover:bg-fuchsia-100 text-fuchsia-900 border border-fuchsia-200 font-extrabold">
+                                🎀 ดูหลักฐานผู้ติดตาม
+                            </button>
+                        ` : ''}
+                        <button type="button" onclick="openAdminDocModal('${b.code}', 'SLIP')" class="px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 font-extrabold">
+                            ดูสลิปโอนเงิน
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateBookingStatusByAdmin(code, newStatus) {
+            const b = appData.bookings.find(item => item.code === code);
+            if (!b) return;
+            b.status = newStatus;
+            saveAppData();
+            initAppUI();
+            renderAdminAll();
+            showToast(`อัปเดตสถานะ ${code} เป็น "${newStatus}" เรียบร้อยแล้วค่ะ ✨`);
+        }
+
+        function openAdminDocModal(bookingCode, tabType) {
+            activeDocModalBookingCode = bookingCode;
+            document.getElementById('docModalBookingCode').textContent = bookingCode;
+            switchAdminDocTab(tabType);
+            document.getElementById('adminDocViewerModal').classList.remove('hidden');
+        }
+
+        function switchAdminDocTab(tabType) {
+            const b = appData.bookings.find(item => item.code === activeDocModalBookingCode);
+            if (!b) return;
+            ['SELFIE', 'IDCARD', 'FOLLOWER', 'SLIP'].forEach(t => {
+                const btn = document.getElementById(`docTabBtn_${t}`);
+                if (btn) {
+                    btn.className = t === tabType
+                        ? 'py-2 rounded-xl text-xs font-extrabold border boutique-pill-active'
+                        : 'py-2 rounded-xl text-xs font-extrabold border bg-white text-pink-900 border-pink-200';
+                }
+            });
+
+            const imgEl = document.getElementById('docModalImage');
+            if (tabType === 'SELFIE') imgEl.src = b.selfieWithId;
+            if (tabType === 'IDCARD') imgEl.src = b.idCardOnly;
+            if (tabType === 'FOLLOWER') imgEl.src = b.followerProof || 'https://placehold.co/400x260/FDF2F8/9D174D?text=No+Follower+Proof';
+            if (tabType === 'SLIP') imgEl.src = b.paymentSlip;
+        }
+
+        function closeAdminDocModal() {
+            document.getElementById('adminDocViewerModal').classList.add('hidden');
+        }
+
+        function toggleAdminBlockDate() {
+            const d = document.getElementById('adminBlockDateInput').value;
+            if (!d) {
+                showToast('กรุณาเลือกวันที่ก่อนค่ะ');
+                return;
+            }
+            const idx = appData.blockedDates.indexOf(d);
+            if (idx >= 0) {
+                appData.blockedDates.splice(idx, 1);
+                showToast(`ปลดบล็อกวันที่ ${formatThaiDateShort(d)} แล้วค่ะ`);
+            } else {
+                appData.blockedDates.push(d);
+                showToast(`บล็อกวันที่ ${formatThaiDateShort(d)} เรียบร้อยแล้วค่ะ`);
+            }
+            saveAppData();
+            initAppUI();
+            renderAdminBlockedDates();
+        }
+
+        function renderAdminBlockedDates() {
+            const el = document.getElementById('adminBlockedDatesList');
+            if (!el) return;
+            if (!appData.blockedDates.length) {
+                el.innerHTML = `<span class="text-xs text-pink-500">ยังไม่มีวันที่ถูกบล็อก</span>`;
+                return;
+            }
+            el.innerHTML = appData.blockedDates.map(d => `
+                <span class="px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-bold flex items-center gap-1.5">
+                    <span>${formatThaiDateShort(d)}</span>
+                    <button type="button" onclick="document.getElementById('adminBlockDateInput').value='${d}'; toggleAdminBlockDate();">×</button>
+                </span>
+            `).join('');
+        }
+
+        // ==========================================
+        // ADMIN CAMERA INVENTORY & UNIT STOCK MANAGEMENT
+        // ==========================================
+        function renderAdminCameras() {
+            const listEl = document.getElementById('adminCamerasList');
+            if (!listEl) return;
+
+            const startMs = parseDateTime(currentBookingDraft.pickupDate, currentBookingDraft.pickupTime);
+            const endMs = parseDateTime(currentBookingDraft.returnDate, currentBookingDraft.returnTime);
+
+            listEl.innerHTML = appData.cameras.map(cam => {
+                const units = cam.units || [];
+                const totalUnits = units.length;
+                const readyUnitsCount = units.filter(u => u.status === 'READY').length;
+                const maintenanceCount = units.filter(u => u.status === 'MAINTENANCE').length;
+                const disabledCount = units.filter(u => u.status === 'DISABLED').length;
+                const availNow = getAvailableUnitsInfo(cam.id, startMs, endMs);
+
+                const unitPillsHtml = units.map((u, uIdx) => `
+                    <div class="flex items-center gap-1.5 bg-pink-50/70 border border-pink-200 rounded-xl px-2.5 py-1.5">
+                        <span class="text-xs font-extrabold text-pink-950">${u.code}</span>
+                        <select onchange="quickChangeUnitStatus('${cam.id}', ${uIdx}, this.value)" class="text-[11px] font-bold bg-white border border-pink-200 rounded-lg px-2 py-0.5">
+                            <option value="READY" ${u.status === 'READY' ? 'selected' : ''}>🟢 พร้อมให้เช่า</option>
+                            <option value="MAINTENANCE" ${u.status === 'MAINTENANCE' ? 'selected' : ''}>🟡 ซ่อมบำรุง</option>
+                            <option value="DISABLED" ${u.status === 'DISABLED' ? 'selected' : ''}>🔴 งดเช่าชั่วคราว</option>
+                        </select>
+                        ${units.length > 1 ? `
+                            <button type="button" onclick="quickRemoveCameraUnit('${cam.id}', ${uIdx})" class="text-rose-500 hover:text-rose-700 px-1" title="ลบเครื่องนี้">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        ` : ''}
+                    </div>
+                `).join('');
+
+                return `
+                    <div class="p-4 rounded-2xl bg-white border border-pink-200 space-y-3">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex items-center gap-3">
+                                <img src="${cam.image}" alt="${cam.name}" class="w-14 h-14 rounded-2xl object-cover border border-pink-200">
+                                <div>
+                                    <h4 class="text-sm sm:text-base font-extrabold text-pink-950">${cam.name}</h4>
+                                    <p class="text-xs text-pink-600">1 วัน ปกติ ฿${cam.dailyRate} (ผู้ติดตาม ฿${cam.followerDailyRate || cam.dailyRate}) • ประกัน ฿${cam.deposit}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="openAdminCameraModal('${cam.id}')" class="px-3.5 py-1.5 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-900 border border-pink-200 text-xs font-extrabold">
+                                    แก้ไขข้อมูล
+                                </button>
+                                <button type="button" onclick="deleteAdminCamera('${cam.id}')" class="px-3 py-1.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-extrabold">
+                                    ลบ
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Live Availability Summary Bar & Unit Count Input -->
+                        <div class="p-3 rounded-2xl bg-gradient-to-r from-pink-50/80 via-purple-50/50 to-pink-50/80 border border-pink-100 flex flex-wrap items-center justify-between gap-2">
+                            <div class="space-y-0.5">
+                                <p class="text-[11px] font-extrabold text-pink-950">
+                                    สถานะเครื่อง: พร้อมเช่า <span class="text-emerald-600">${readyUnitsCount}/${totalUnits}</span> เครื่อง
+                                    ${maintenanceCount > 0 ? `<span class="text-amber-600">• ซ่อม ${maintenanceCount}</span>` : ''}
+                                    ${disabledCount > 0 ? `<span class="text-rose-600">• งดเช่า ${disabledCount}</span>` : ''}
+                                </p>
+                                <p class="text-[10px] text-pink-600">คิวว่างตามช่วงเวลาที่หน้าเว็บเลือกอยู่: <strong>ว่าง ${availNow.availableCount} เครื่อง</strong> (หักคิวจองอัตโนมัติ)</p>
+                            </div>
+                            <div class="flex items-center gap-1.5">
+                                <label class="text-[11px] font-bold text-pink-800">จำนวนเครื่อง:</label>
+                                <input type="number" min="1" max="50" value="${totalUnits}" onchange="quickSetCameraTotalUnits('${cam.id}', this.value)" class="w-16 px-2 py-1 rounded-xl border border-pink-300 bg-white text-xs font-extrabold text-pink-950 text-center focus:outline-none focus:border-pink-500">
+                                <button type="button" onclick="quickAddCameraUnit('${cam.id}')" class="px-3 py-1.5 rounded-full bg-white hover:bg-pink-50 text-pink-700 border border-pink-200 font-extrabold text-[11px] shadow-sm transition">
+                                    + เพิ่มเครื่อง
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">${unitPillsHtml}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function quickChangeUnitStatus(camId, unitIdx, newStatus) {
+            const cam = appData.cameras.find(c => c.id === camId);
+            if (!cam || !cam.units[unitIdx]) return;
+            cam.units[unitIdx].status = newStatus;
+            saveAppData();
+            initAppUI();
+            renderAdminAll();
+            showToast(`อัปเดตสถานะเครื่อง ${cam.units[unitIdx].code} เรียบร้อยแล้วค่ะ ✨`);
+        }
+
+        function quickAddCameraUnit(camId) {
+            const cam = appData.cameras.find(c => c.id === camId);
+            if (!cam) return;
+            const prefix = cam.name.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 5) || 'CAM';
+            const nextNo = String(cam.units.length + 1).padStart(2, '0');
+            const newCode = `${prefix}-${nextNo}`;
+            cam.units.push({ code: newCode, status: 'READY' });
+            saveAppData();
+            initAppUI();
+            renderAdminAll();
+            showToast(`เพิ่มเครื่อง "${newCode}" สำหรับ ${cam.name} แล้ว ✨`);
+        }
+
+        function quickSetCameraTotalUnits(camId, countValue) {
+            const cam = appData.cameras.find(c => c.id === camId);
+            if (!cam) return;
+            const targetCount = Math.max(1, Math.min(50, parseInt(countValue, 10) || 1));
+            const prefix = cam.name.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 5) || 'CAM';
+
+            while (cam.units.length < targetCount) {
+                const nextNo = String(cam.units.length + 1).padStart(2, '0');
+                cam.units.push({ code: `${prefix}-${nextNo}`, status: 'READY' });
+            }
+            if (cam.units.length > targetCount) {
+                cam.units = cam.units.slice(0, targetCount);
+            }
+
+            saveAppData();
+            initAppUI();
+            renderAdminAll();
+            showToast(`อัปเดตจำนวนเครื่องของ ${cam.name} เป็น ${targetCount} เครื่องแล้ว 🎀`);
+        }
+
+        function quickRemoveCameraUnit(camId, unitIdx) {
+            const cam = appData.cameras.find(c => c.id === camId);
+            if (!cam || cam.units.length <= 1) return;
+            cam.units.splice(unitIdx, 1);
+            saveAppData();
+            initAppUI();
+            renderAdminAll();
+        }
+
+        function openAdminCameraModal(camId) {
+            editingAdminCameraId = camId;
+            const cam = appData.cameras.find(c => c.id === camId);
+
+            if (cam) {
+                document.getElementById('admCamModalTitle').textContent = `แก้ไขข้อมูล: ${cam.name}`;
+                document.getElementById('admCamName').value = cam.name;
+                document.getElementById('admCamDesc').value = cam.description || FOLLOWER_CONDITION_TEXT;
+                document.getElementById('admCamHourly').value = cam.hourlyRate || 200;
+                document.getElementById('admCamDaily').value = cam.dailyRate || 350;
+                document.getElementById('admCamFollowerDaily').value = cam.followerDailyRate || 299;
+                document.getElementById('admCamDeposit').value = cam.deposit || 1000;
+                document.getElementById('admCamImg1').value = cam.gallery?.[0] || cam.image || '';
+                document.getElementById('admCamImg2').value = cam.gallery?.[1] || '';
+                document.getElementById('admCamImg3').value = cam.gallery?.[2] || '';
+                modalTempUnits = JSON.parse(JSON.stringify(cam.units || [{ code: 'CAM-01', status: 'READY' }]));
+            } else {
+                document.getElementById('admCamModalTitle').textContent = 'เพิ่มรุ่นกล้องใหม่เข้าระบบ';
+                document.getElementById('admCamName').value = '';
+                document.getElementById('admCamDesc').value = FOLLOWER_CONDITION_TEXT;
+                document.getElementById('admCamHourly').value = 200;
+                document.getElementById('admCamDaily').value = 350;
+                document.getElementById('admCamFollowerDaily').value = 299;
+                document.getElementById('admCamDeposit').value = 1000;
+                document.getElementById('admCamImg1').value = 'https://i.postimg.cc/LsffBwNw/att-6g9B-0a-NBMb4z-YOw-Ny-JZsj-Xzuc-Ap-Pkp2X4tz-Ym-Suoag.jpg';
+                document.getElementById('admCamImg2').value = '';
+                document.getElementById('admCamImg3').value = '';
+                modalTempUnits = [{ code: 'CAM-01', status: 'READY' }];
+            }
+
+            refreshAdminCamImgPreviews();
+            renderAdminModalUnitsList();
+            document.getElementById('adminCameraModal').classList.remove('hidden');
+        }
+
+        function refreshAdminCamImgPreviews() {
+            const urls = [
+                document.getElementById('admCamImg1').value.trim(),
+                document.getElementById('admCamImg2').value.trim(),
+                document.getElementById('admCamImg3').value.trim()
+            ].filter(Boolean);
+
+            const row = document.getElementById('admCamImgPreviewRow');
+            row.innerHTML = urls.map((u, idx) => `
+                <div class="relative w-14 h-14 rounded-xl overflow-hidden border border-pink-200 bg-white">
+                    <img src="${u}" class="w-full h-full object-cover">
+                    <span class="absolute bottom-0.5 right-0.5 px-1.5 rounded bg-pink-950/75 text-white text-[9px] font-bold">#${idx + 1}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderAdminModalUnitsList() {
+            const container = document.getElementById('admCamUnitsEditorList');
+            const countInput = document.getElementById('admCamTotalUnitsCount');
+            if (countInput) countInput.value = modalTempUnits.length;
+            if (!container) return;
+            container.innerHTML = modalTempUnits.map((u, idx) => `
+                <div class="flex items-center gap-2 bg-white p-2 rounded-xl border border-purple-200">
+                    <span class="text-xs font-bold text-purple-700 w-16 shrink-0">เครื่องที่ ${idx + 1}</span>
+                    <input type="text" value="${u.code}" oninput="modalTempUnits[${idx}].code = this.value" class="flex-1 px-3 py-1.5 rounded-lg border border-pink-200 text-xs font-bold text-pink-950">
+                    <select onchange="modalTempUnits[${idx}].status = this.value" class="px-2.5 py-1.5 rounded-lg border border-pink-200 text-xs font-bold text-pink-900 bg-pink-50/50">
+                        <option value="READY" ${u.status === 'READY' ? 'selected' : ''}>🟢 พร้อมให้เช่า</option>
+                        <option value="MAINTENANCE" ${u.status === 'MAINTENANCE' ? 'selected' : ''}>🟡 ซ่อมบำรุง</option>
+                        <option value="DISABLED" ${u.status === 'DISABLED' ? 'selected' : ''}>🔴 งดเช่าชั่วคราว</option>
+                    </select>
+                    ${modalTempUnits.length > 1 ? `
+                        <button type="button" onclick="removeUnitRowInAdminModal(${idx})" class="w-7 h-7 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        function setTotalUnitsInAdminModal(val) {
+            const count = Math.max(1, Math.min(50, parseInt(val, 10) || 1));
+            const nameVal = document.getElementById('admCamName').value.trim();
+            const prefix = nameVal ? nameVal.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 5) : 'CAM';
+
+            while (modalTempUnits.length < count) {
+                const nextIndex = String(modalTempUnits.length + 1).padStart(2, '0');
+                modalTempUnits.push({
+                    code: `${prefix}-${nextIndex}`,
+                    status: 'READY'
+                });
+            }
+            if (modalTempUnits.length > count) {
+                modalTempUnits = modalTempUnits.slice(0, count);
+            }
+            renderAdminModalUnitsList();
+        }
+
+        function addUnitRowInAdminModal() {
+            setTotalUnitsInAdminModal(modalTempUnits.length + 1);
+        }
+
+        function removeUnitRowInAdminModal(idx) {
+            if (modalTempUnits.length <= 1) return;
+            modalTempUnits.splice(idx, 1);
+            renderAdminModalUnitsList();
+        }
+
+        function closeAdminCameraModal() {
+            document.getElementById('adminCameraModal').classList.add('hidden');
+        }
+
+        function saveAdminCameraModal() {
+            const name = document.getElementById('admCamName').value.trim();
+            const desc = document.getElementById('admCamDesc').value.trim();
+            const hourly = Number(document.getElementById('admCamHourly').value) || 200;
+            const daily = Number(document.getElementById('admCamDaily').value) || 350;
+            const followerDaily = Number(document.getElementById('admCamFollowerDaily').value) || 299;
+            const deposit = Number(document.getElementById('admCamDeposit').value) || 1000;
+            const gallery = [
+                document.getElementById('admCamImg1').value.trim(),
+                document.getElementById('admCamImg2').value.trim(),
+                document.getElementById('admCamImg3').value.trim()
+            ].filter(Boolean);
+
+            if (!name || !gallery.length) {
+                showToast('กรุณากรอกชื่อรุ่นกล้องและวางลิงก์รูปภาพหลักอย่างน้อย 1 รูปค่ะ');
+                return;
+            }
+
+            if (editingAdminCameraId) {
+                const cam = appData.cameras.find(c => c.id === editingAdminCameraId);
+                if (cam) {
+                    cam.name = name;
+                    cam.description = desc;
+                    cam.hourlyRate = hourly;
+                    cam.dailyRate = daily;
+                    cam.followerDailyRate = followerDaily;
+                    cam.deposit = deposit;
+                    cam.image = gallery[0];
+                    cam.gallery = gallery;
+                    cam.units = modalTempUnits;
+                }
+            } else {
+                appData.cameras.push({
+                    id: 'cam-' + Date.now(),
+                    name,
+                    description: desc,
+                    image: gallery[0],
+                    gallery,
+                    hourlyRate: hourly,
+                    pack4HrRate: hourly + 60,
+                    dailyRate: daily,
+                    followerDailyRate: followerDaily,
+                    deposit,
+                    hourlyTiers: [
+                        { hours: 3, normal: hourly, follower: Math.max(0, hourly - 21) },
+                        { hours: 6, normal: hourly + 60, follower: hourly + 49 },
+                        { hours: 8, normal: hourly + 90, follower: hourly + 69 }
+                    ],
+                    dailyTiers: [
+                        { days: 1, normal: daily, follower: followerDaily },
+                        { days: 2, normal: daily * 2 - 50, follower: followerDaily * 2 },
+                        { days: 3, normal: daily * 3 - 260, follower: followerDaily * 3 - 200 },
+                        { days: 5, normal: daily * 3 - 60, follower: followerDaily * 3 },
+                        { days: 7, normal: daily * 3 + 149, follower: followerDaily * 3 + 200 }
+                    ],
+                    extraDayRate: 150,
+                    units: modalTempUnits
+                });
+            }
+
+            saveAppData();
+            closeAdminCameraModal();
+            initAppUI();
+            renderAdminAll();
+            showToast('บันทึกข้อมูลกล้องเรียบร้อยแล้วค่ะ 🎀');
+        }
+
+        function deleteAdminCamera(camId) {
+            if (appData.cameras.length <= 1) {
+                showToast('ต้องมีกล้องอย่างน้อย 1 รุ่นในระบบค่ะ');
+                return;
+            }
+            appData.cameras = appData.cameras.filter(c => c.id !== camId);
+            if (currentBookingDraft.selectedCameraId === camId) {
+                currentBookingDraft.selectedCameraId = appData.cameras[0].id;
+            }
+            saveAppData();
+            initAppUI();
+            renderAdminAll();
+            showToast('ลบรุ่นกล้องเรียบร้อยแล้วค่ะ');
+        }
+
+        function loadAdminShopSettingsForm() {
+            document.getElementById('admSetShopName').value = appData.shop.name;
+            document.getElementById('admSetShopDesc').value = appData.shop.description;
+            document.getElementById('admSetBankName').value = appData.shop.bankName;
+            document.getElementById('admSetAccNo').value = appData.shop.accountNumber;
+            document.getElementById('admSetAccName').value = appData.shop.accountName;
+            document.getElementById('admSetQrUrl').value = appData.shop.qrCodeUrl;
+        }
+
+        function saveAdminShopSettings() {
+            appData.shop.name = document.getElementById('admSetShopName').value.trim();
+            appData.shop.description = document.getElementById('admSetShopDesc').value.trim();
+            appData.shop.bankName = document.getElementById('admSetBankName').value.trim();
+            appData.shop.accountNumber = document.getElementById('admSetAccNo').value.trim();
+            appData.shop.accountName = document.getElementById('admSetAccName').value.trim();
+            appData.shop.qrCodeUrl = document.getElementById('admSetQrUrl').value.trim();
+            saveAppData();
+            initAppUI();
+            showToast('บันทึกข้อมูลการตั้งค่าร้านเรียบร้อยแล้วค่ะ 🌸');
+        }
+
+        // ==========================================
+        // MAIN VIEW SWITCHER & INITIALIZATION
+        // ==========================================
+        function switchMainView(view) {
+            document.getElementById('viewCustomer').classList.toggle('hidden', view !== 'CUSTOMER');
+            document.getElementById('viewStatus').classList.toggle('hidden', view !== 'STATUS');
+            document.getElementById('viewAdmin').classList.toggle('hidden', view !== 'ADMIN');
+
+            const mapBtn = {
+                CUSTOMER: 'navBtnBook',
+                STATUS: 'navBtnStatus',
+                ADMIN: 'navBtnAdmin'
+            };
+            Object.entries(mapBtn).forEach(([k, id]) => {
+                const btn = document.getElementById(id);
+                if (!btn) return;
+                if (k === view) {
+                    btn.className = 'px-3.5 py-2 rounded-full text-xs sm:text-sm font-extrabold boutique-pill-active transition flex items-center gap-1.5';
+                } else {
+                    btn.className = 'px-3.5 py-2 rounded-full text-xs sm:text-sm font-extrabold bg-white text-pink-900 border border-pink-200 hover:bg-pink-50 transition flex items-center gap-1.5';
+                }
+            });
+        }
+
+        function openSqlModal() {
+            document.getElementById('sqlModal').classList.remove('hidden');
+        }
+
+        function closeSqlModal() {
+            document.getElementById('sqlModal').classList.add('hidden');
+        }
+
+        function initAppUI() {
+            document.getElementById('headerShopName').textContent = appData.shop.name;
+            document.getElementById('headerShopDesc').textContent = `${appData.shop.description} 🌸`;
+
+            document.getElementById('inputPickupDate').value = currentBookingDraft.pickupDate;
+            document.getElementById('inputPickupTime').value = currentBookingDraft.pickupTime;
+            document.getElementById('inputReturnDate').value = currentBookingDraft.returnDate;
+            document.getElementById('inputReturnTime').value = currentBookingDraft.returnTime;
+
+            populateCalendarCameraFilter();
+            populatePickupLocations();
+            renderCameraCards();
+            renderCustomerCalendar();
+            updateFollowerProofVisibility();
+            calculateAndRefreshPricing();
+        }
+
+        window.onload = function() {
+            initAppUI();
+        };
+    </script>
+</body>
+</html>

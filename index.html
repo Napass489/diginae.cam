@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Supabase JS SDK v2 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
         tailwind.config = {
@@ -19,6 +21,34 @@
                 extend: {
                     fontFamily: {
                         sans: ['Prompt', 'sans-serif'],
+                    },
+                    colors: {
+                        pink: {
+                            50: '#FDF7F8',
+                            100: '#F9ECEF',
+                            200: '#F0D5DC',
+                            300: '#E2B6C1',
+                            400: '#CE92A1',
+                            500: '#B57282',
+                            600: '#A36372',
+                            700: '#8C5260',
+                            800: '#73414D',
+                            900: '#5E323D',
+                            950: '#4A252E',
+                        },
+                        purple: {
+                            50: '#FDF7F8',
+                            100: '#F9ECEF',
+                            200: '#F0D5DC',
+                            300: '#E2B6C1',
+                            400: '#CE92A1',
+                            500: '#B57282',
+                            600: '#A36372',
+                            700: '#8C5260',
+                            800: '#73414D',
+                            900: '#5E323D',
+                            950: '#4A252E',
+                        }
                     }
                 }
             }
@@ -28,63 +58,63 @@
     <style>
         body {
             font-family: 'Prompt', sans-serif;
-            background: linear-gradient(180deg, #FFF7FA 0%, #FDF2F8 45%, #F9F5FF 100%);
-            color: #4A1D34;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FDF7F8 50%, #F9ECEF 100%);
+            color: #5E323D;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
         .boutique-shell {
-            background: rgba(255, 255, 255, 0.94);
-            border: 1.5px solid #FCE8F0;
-            box-shadow: 0 16px 40px -10px rgba(219, 76, 135, 0.09);
+            background: rgba(255, 255, 255, 0.96);
+            border: 1.5px solid #F0D5DC;
+            box-shadow: 0 16px 40px -10px rgba(163, 99, 114, 0.10);
         }
 
         .boutique-card {
             background: #FFFFFF;
             border-radius: 28px;
-            border: 1.5px solid #F8E2EC;
-            box-shadow: 0 8px 26px -6px rgba(219, 76, 135, 0.08);
+            border: 1.5px solid #F0D5DC;
+            box-shadow: 0 8px 26px -6px rgba(163, 99, 114, 0.09);
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .boutique-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 16px 34px -8px rgba(219, 76, 135, 0.15);
+            box-shadow: 0 16px 34px -8px rgba(163, 99, 114, 0.16);
         }
 
         .boutique-pill-active {
-            background: linear-gradient(135deg, #9D4EDD 0%, #DB4C87 100%);
+            background: linear-gradient(135deg, #B57282 0%, #9E5D6D 100%);
             color: #FFFFFF !important;
             border-color: transparent !important;
-            box-shadow: 0 4px 14px rgba(181, 68, 168, 0.3);
+            box-shadow: 0 4px 14px rgba(158, 93, 109, 0.28);
         }
 
         .boutique-btn-action {
-            background: linear-gradient(135deg, #B55FE6 0%, #DB4C87 100%);
+            background: linear-gradient(135deg, #B57282 0%, #9E5D6D 100%);
             color: #FFFFFF;
             transition: all 0.25s ease;
         }
         .boutique-btn-action:hover {
             opacity: 0.95;
             transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(196, 47, 108, 0.3);
+            box-shadow: 0 6px 18px rgba(158, 93, 109, 0.32);
         }
 
         .btn-rose {
-            background: linear-gradient(135deg, #EC4899 0%, #BE185D 100%);
+            background: linear-gradient(135deg, #B57282 0%, #965464 100%);
             color: #FFFFFF;
-            box-shadow: 0 8px 20px -4px rgba(219, 39, 119, 0.35);
+            box-shadow: 0 8px 20px -4px rgba(150, 84, 100, 0.35);
             transition: all 0.25s ease;
         }
         .btn-rose:hover:not(:disabled) {
             transform: translateY(-1px);
-            box-shadow: 0 12px 24px -4px rgba(190, 24, 93, 0.45);
+            box-shadow: 0 12px 24px -4px rgba(140, 82, 96, 0.45);
         }
 
         .cal-aesthetic-box {
-            background: linear-gradient(180deg, #FFFFFF 0%, #FFF9FC 100%);
-            border: 1.5px solid #FCE8F0;
-            box-shadow: 0 14px 35px -8px rgba(219, 76, 135, 0.1);
+            background: linear-gradient(180deg, #FFFFFF 0%, #FDF7F8 100%);
+            border: 1.5px solid #F0D5DC;
+            box-shadow: 0 14px 35px -8px rgba(163, 99, 114, 0.10);
         }
 
         .cal-cell {
@@ -96,7 +126,25 @@
         }
 
         .cal-range-connector {
-            background: linear-gradient(90deg, rgba(251, 207, 232, 0.55) 0%, rgba(233, 213, 255, 0.55) 100%);
+            background: linear-gradient(90deg, rgba(240, 213, 220, 0.65) 0%, rgba(249, 236, 239, 0.85) 100%);
+        }
+
+        /* ปุ่มเลือกระยะเวลาเช่า */
+        .duration-preset-btn {
+            background-color: #FFFFFF;
+            border: 1.5px solid #F0D5DC;
+            color: #73414D;
+            transition: all 0.2s ease;
+        }
+        .duration-preset-btn:hover {
+            background-color: #FDF7F8;
+            border-color: #E2B6C1;
+        }
+        .duration-preset-btn-active {
+            background: linear-gradient(135deg, #B57282 0%, #965464 100%) !important;
+            border-color: #965464 !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 12px rgba(150, 84, 100, 0.28);
         }
 
         /* Marquee Animation */
@@ -128,9 +176,10 @@
     <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-pink-100 shadow-sm">
         <div class="max-w-5xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-2">
             <div class="flex items-center gap-3 cursor-pointer" onclick="switchMainView('CUSTOMER'); goToCustomerStep(1);">
-                <div class="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-pink-400 via-pink-500 to-purple-500 flex items-center justify-center text-white shadow-md">
-                    <i class="fa-solid fa-camera-retro text-lg"></i>
-                    <span class="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-purple-600 text-white text-[9px] flex items-center justify-center border-2 border-white">✦</span>
+                <div class="relative w-11 h-11 rounded-2xl overflow-hidden bg-pink-50 border border-pink-200 flex items-center justify-center shadow-md shrink-0">
+                    <img src="https://i.postimg.cc/NMm8qb9R/att-q-De-QXe-Usgwr-Kg8Gtoqwfe-SUKfb-J1v1a-BXj-Peg18e-Pl-A.jpg"
+                         alt="diginae.cam Logo"
+                         class="w-full h-full object-cover">
                 </div>
                 <div>
                     <div class="flex items-center gap-1.5">
@@ -338,14 +387,14 @@
 
                         <!-- Quick Hourly / Daily Preset Pills -->
                         <div class="space-y-1.5">
-                            <span class="text-[11px] font-bold text-pink-600">ปุ่มลัดเลือกระยะเวลาเช่าฮิต:</span>
+                            <span class="text-[11px] font-bold text-pink-700">ปุ่มลัดเลือกระยะเวลาเช่าฮิต:</span>
                             <div class="flex flex-wrap gap-1.5">
-                                <button type="button" onclick="applyQuickDurationHours(3)" class="px-2.5 py-1 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-800 border border-pink-200 text-[11px] font-bold transition">3 ชั่วโมง</button>
-                                <button type="button" onclick="applyQuickDurationHours(6)" class="px-2.5 py-1 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-800 border border-pink-200 text-[11px] font-bold transition">6 ชั่วโมง</button>
-                                <button type="button" onclick="applyQuickDurationHours(8)" class="px-2.5 py-1 rounded-full bg-pink-50 hover:bg-pink-100 text-pink-800 border border-pink-200 text-[11px] font-bold transition">8 ชั่วโมง</button>
-                                <button type="button" onclick="applyQuickDurationDays(1)" class="px-2.5 py-1 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-800 border border-purple-200 text-[11px] font-bold transition">1 วัน</button>
-                                <button type="button" onclick="applyQuickDurationDays(2)" class="px-2.5 py-1 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-800 border border-purple-200 text-[11px] font-bold transition">2 วัน</button>
-                                <button type="button" onclick="applyQuickDurationDays(3)" class="px-2.5 py-1 rounded-full bg-purple-50 hover:bg-purple-100 text-purple-800 border border-purple-200 text-[11px] font-bold transition">3 วัน</button>
+                                <button type="button" id="presetBtn_3H" onclick="applyQuickDurationHours(3)" class="duration-preset-btn px-3 py-1.5 rounded-full text-[11px] font-extrabold">3 ชั่วโมง</button>
+                                <button type="button" id="presetBtn_6H" onclick="applyQuickDurationHours(6)" class="duration-preset-btn px-3 py-1.5 rounded-full text-[11px] font-extrabold">6 ชั่วโมง</button>
+                                <button type="button" id="presetBtn_8H" onclick="applyQuickDurationHours(8)" class="duration-preset-btn px-3 py-1.5 rounded-full text-[11px] font-extrabold">8 ชั่วโมง</button>
+                                <button type="button" id="presetBtn_1D" onclick="applyQuickDurationDays(1)" class="duration-preset-btn duration-preset-btn-active px-3 py-1.5 rounded-full text-[11px] font-extrabold">1 วัน</button>
+                                <button type="button" id="presetBtn_2D" onclick="applyQuickDurationDays(2)" class="duration-preset-btn px-3 py-1.5 rounded-full text-[11px] font-extrabold">2 วัน</button>
+                                <button type="button" id="presetBtn_3D" onclick="applyQuickDurationDays(3)" class="duration-preset-btn px-3 py-1.5 rounded-full text-[11px] font-extrabold">3 วัน</button>
                             </div>
                         </div>
 
@@ -406,10 +455,6 @@
                             <div class="border-t border-pink-200/70 pt-2 flex justify-between">
                                 <span class="text-pink-600 font-medium">ค่าเช่ากล้อง:</span>
                                 <span id="sumStep1RentPrice" class="font-extrabold text-pink-900">฿0</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-pink-600 font-medium">เงินประกันเครื่อง (โอนคืนเมื่อคืนกล้อง):</span>
-                                <span id="sumStep1Deposit" class="font-bold text-pink-900">฿0</span>
                             </div>
                             <div class="border-t border-pink-200 pt-2 flex justify-between items-baseline">
                                 <span class="font-extrabold text-pink-950 text-sm">ยอดชำระรวมทั้งหมด:</span>
@@ -636,7 +681,6 @@
                             <div class="border-t border-pink-100 pt-2 flex justify-between"><span class="text-pink-600">ชื่อผู้เช่า:</span><span id="sumStep4RenterName" class="font-bold text-pink-950">-</span></div>
                             <div class="flex justify-between"><span class="text-pink-600">เบอร์โทรศัพท์:</span><span id="sumStep4RenterPhone" class="font-bold text-pink-950">-</span></div>
                             <div class="border-t border-pink-100 pt-2 flex justify-between"><span class="text-pink-600">ค่าเช่า:</span><span id="sumStep4Rent" class="font-bold text-pink-950">-</span></div>
-                            <div class="flex justify-between"><span class="text-pink-600">เงินประกันเครื่อง:</span><span id="sumStep4Deposit" class="font-bold text-pink-950">-</span></div>
                             <div class="border-t border-pink-200 pt-2 flex justify-between items-baseline">
                                 <span class="text-sm font-extrabold text-pink-950">ยอดรวมสุทธิ:</span>
                                 <span id="sumStep4Total" class="text-lg font-extrabold text-pink-600">-</span>
@@ -725,8 +769,8 @@
                 </button>
             </div>
 
-            <div class="text-[11px] text-pink-600 bg-pink-50/70 p-2.5 rounded-xl border border-pink-100">
-                💡 <strong>ทดสอบ Demo:</strong> ลองค้นหารหัส <button type="button" onclick="fillDemoStatusSearch('CAM-000001','0812345678')" class="underline font-extrabold text-pink-800">CAM-000001 (เบอร์ 0812345678)</button> เพื่อทดสอบดาวน์โหลดใบยืนยันการเช่า
+            <div class="text-[11px] text-pink-700 bg-pink-50/70 p-2.5 rounded-xl border border-pink-100">
+                💡 กรอก <strong>รหัสการจอง</strong> (เช่น CAM-000001) คู่กับ <strong>เบอร์โทรศัพท์ที่ใช้จอง</strong> เพื่อตรวจสอบสถานะล่าสุดจากฐานข้อมูลจริง และดาวน์โหลดใบยืนยันการเช่าเมื่อแอดมินอนุมัติแล้วค่ะ
             </div>
 
             <div id="statusSearchResultBox" class="space-y-4"></div>
@@ -736,20 +780,26 @@
              VIEW 3: ระบบหลังบ้าน (ADMIN DASHBOARD)
         =========================================== -->
         <section id="viewAdmin" class="hidden space-y-4">
-            <!-- Admin Login Card -->
+            <!-- Admin Login Card (Supabase Auth) -->
             <div id="adminLoginCard" class="boutique-shell rounded-[32px] p-6 max-w-md mx-auto space-y-4 text-center">
                 <div class="w-12 h-12 rounded-2xl bg-pink-100 text-pink-600 flex items-center justify-center mx-auto text-xl">
                     <i class="fa-solid fa-lock"></i>
                 </div>
                 <div>
                     <h2 class="text-xl font-extrabold text-pink-950">เข้าสู่ระบบแอดมิน diginae.cam</h2>
-                    <p class="text-xs text-pink-600">รหัสทดสอบ Demo: ชื่อผู้ใช้ <strong>admin</strong> / รหัสผ่าน <strong>1234</strong></p>
+                    <p class="text-xs text-pink-600">กรอกอีเมลและรหัสผ่านบัญชีแอดมินที่ลงทะเบียนใน Supabase Authentication</p>
                 </div>
                 <div class="space-y-2.5 text-left">
-                    <input type="text" id="adminUserInput" value="admin" placeholder="ชื่อผู้ใช้แอดมิน" class="w-full px-4 py-2.5 rounded-2xl border border-pink-200 text-xs font-bold text-pink-950">
-                    <input type="password" id="adminPassInput" value="1234" placeholder="รหัสผ่าน" class="w-full px-4 py-2.5 rounded-2xl border border-pink-200 text-xs font-bold text-pink-950">
+                    <div>
+                        <label class="block text-[11px] font-bold text-pink-800 mb-1">อีเมลแอดมิน (Email)</label>
+                        <input type="email" id="adminUserInput" placeholder="เช่น admin@diginae.cam" class="w-full px-4 py-2.5 rounded-2xl border border-pink-200 text-xs font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-pink-800 mb-1">รหัสผ่าน (Password)</label>
+                        <input type="password" id="adminPassInput" placeholder="รหัสผ่านของคุณ" onkeydown="if(event.key==='Enter') loginAdmin()" class="w-full px-4 py-2.5 rounded-2xl border border-pink-200 text-xs font-bold text-pink-950 focus:outline-none focus:border-pink-500">
+                    </div>
                 </div>
-                <button type="button" onclick="loginAdmin()" class="w-full py-3 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm">
+                <button type="button" id="btnAdminLoginSubmit" onclick="loginAdmin()" class="w-full py-3 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm">
                     เข้าสู่ระบบหลังบ้าน
                 </button>
             </div>
@@ -857,6 +907,33 @@
                             <input type="text" id="admSetQrUrl" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold">
                         </div>
                     </div>
+
+                    <!-- ตั้งค่าการแจ้งเตือน Telegram -->
+                    <div class="p-4 rounded-2xl bg-pink-50/70 border border-pink-200 space-y-3 text-xs">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div>
+                                <h4 class="text-sm font-extrabold text-pink-950 flex items-center gap-1.5">
+                                    <i class="fa-brands fa-telegram text-sky-500 text-base"></i>
+                                    <span>ตั้งค่าแจ้งเตือนออเดอร์ใหม่ผ่าน Telegram</span>
+                                </h4>
+                                <p class="text-[11px] text-pink-600">เมื่อลูกค้าส่งข้อมูลการจองใหม่ ระบบจะส่งรายละเอียดออเดอร์เข้าแชทหรือกลุ่ม Telegram ทันที</p>
+                            </div>
+                            <button type="button" onclick="testTelegramNotification()" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-pink-100 text-pink-900 border border-pink-200 font-extrabold text-[11px] shadow-sm transition">
+                                <i class="fa-regular fa-paper-plane mr-1"></i> ส่งข้อความทดสอบ
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label class="font-bold text-pink-900">Telegram Bot Token (จาก @BotFather)</label>
+                                <input type="text" id="admSetTgToken" placeholder="เช่น 123456789:AAH..." class="w-full px-3.5 py-2 rounded-xl border border-pink-200 bg-white font-bold mt-1">
+                            </div>
+                            <div>
+                                <label class="font-bold text-pink-900">Telegram Chat ID (จาก @userinfobot)</label>
+                                <input type="text" id="admSetTgChatId" placeholder="เช่น 987654321 หรือ -100..." class="w-full px-3.5 py-2 rounded-xl border border-pink-200 bg-white font-bold mt-1">
+                            </div>
+                        </div>
+                    </div>
+
                     <button type="button" onclick="saveAdminShopSettings()" class="px-5 py-2.5 rounded-2xl btn-rose text-xs font-extrabold">
                         บันทึกการตั้งค่าร้าน
                     </button>
@@ -937,10 +1014,6 @@
                     <label class="font-extrabold text-pink-950">ราคาเช่า 1 วัน (ราคาผู้ติดตาม)</label>
                     <input type="number" id="admCamFollowerDaily" value="299" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
                 </div>
-                <div>
-                    <label class="font-extrabold text-pink-950">เงินประกันเครื่อง (บาท)</label>
-                    <input type="number" id="admCamDeposit" value="1000" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 font-bold mt-1">
-                </div>
 
                 <!-- วางลิงก์รูปภาพ -->
                 <div class="sm:col-span-2 p-3.5 rounded-2xl bg-pink-50/60 border border-pink-200 space-y-2">
@@ -1008,6 +1081,29 @@
     </div>
 
     <!-- ==========================================
+         MODAL 3.5: ป๊อปอัพยืนยันการลบรายการจอง (Admin)
+    =========================================== -->
+    <div id="adminDeleteConfirmModal" class="hidden fixed inset-0 z-50 bg-pink-950/60 backdrop-blur-sm flex items-center justify-center p-3">
+        <div class="bg-white rounded-[32px] max-w-sm w-full p-6 space-y-4 border border-pink-200 shadow-2xl text-center">
+            <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mx-auto text-xl">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+            <div class="space-y-1">
+                <h3 class="text-base font-extrabold text-pink-950">ยืนยันการลบรายการจอง?</h3>
+                <p class="text-xs text-pink-600">คุณต้องการลบรายการจองรหัส <strong id="deleteConfirmBookingCode" class="text-rose-600">CAM-000001</strong> ออกจากระบบใช่หรือไม่? (เมื่อลบแล้วคิวเช่าจะกลับมาว่างทันที)</p>
+            </div>
+            <div class="flex items-center justify-center gap-2 pt-2">
+                <button type="button" onclick="closeDeleteBookingModal()" class="flex-1 py-2.5 rounded-full bg-white hover:bg-pink-50 text-pink-900 border border-pink-200 text-xs font-extrabold">
+                    ยกเลิก
+                </button>
+                <button type="button" id="btnConfirmDeleteBooking" onclick="confirmDeleteBookingNow()" class="flex-1 py-2.5 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-extrabold shadow-sm">
+                    🗑 ยืนยันลบ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
          MODAL 4: SQL & Supabase Setup
     =========================================== -->
     <div id="sqlModal" class="hidden fixed inset-0 z-50 bg-pink-950/50 backdrop-blur-sm flex items-center justify-center p-3">
@@ -1068,10 +1164,17 @@ alter table public.bookings enable row level security;</pre>
     </div>
 
     <!-- ==========================================
-         APPLICATION JAVASCRIPT
+         APPLICATION JAVASCRIPT (SUPABASE PRODUCTION)
     =========================================== -->
     <script>
-        const STORAGE_KEY = 'diginae_cam_store_v6';
+        // ==========================================
+        // 1. SUPABASE CONFIGURATION & INITIALIZATION
+        // ==========================================
+        const SUPABASE_URL = 'https://ykekuibywgrrhvnvdtuf.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_RApdkoppWIP3RLDLO47iCg_JKAqJtfa';
+        const ALLOWED_ADMIN_UID = '3f1a85d3-9b02-4aa9-bfcd-6f4152a5444e';
+
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         function getOffsetDateStr(offsetDays = 0) {
             const d = new Date();
@@ -1092,11 +1195,7 @@ alter table public.bookings enable row level security;</pre>
 - ไม่มีการปรับราคาย้อนหลังทุกกรณี
 - เมื่อร้านแจ้งว่าคิวเต็มแล้ว กรุณาอ่านรายละเอียดก่อนกรอกข้อมูล`;
 
-        function getDefaultAppData() {
-            const today = getOffsetDateStr(0);
-            const tomorrow = getOffsetDateStr(1);
-            const dayAfter = getOffsetDateStr(2);
-
+        function getInitialEmptyState() {
             return {
                 shop: {
                     name: 'diginae.cam',
@@ -1106,6 +1205,8 @@ alter table public.bookings enable row level security;</pre>
                     accountName: 'ตรีรินทร์ กิจสุวรรณวัชร์',
                     qrCodeUrl: 'https://i.postimg.cc/6QWGYWzc/att-3WI5Ryjo1c-Cn3n-Jst-HZ-KFIOp4Y4Hn-QTNh17f-Ec-Gurg.jpg',
                     rulesVersion: 'v1.2',
+                    telegramBotToken: '',
+                    telegramChatId: '',
                     pickupLocations: [
                         'หน้าร้าน diginae.cam (ตัวเมืองสุไหงโกลก)',
                         'ห้างบิ๊กซี สุไหงโกลก (Big C)',
@@ -1113,138 +1214,17 @@ alter table public.bookings enable row level security;</pre>
                         'สวนสาธารณะสิรินธร (สวนรื่นอรุณ)',
                         'หน้าโรงพยาบาลสุไหงโกลก',
                         'ด่านพรมแดนสุไหงโกลก'
-                    ],
-                    rules: [
-                        { title: '1. เงื่อนไขการจองและการชำระเงิน', body: 'ลูกค้าต้องชำระค่าเช่าพร้อมเงินประกันเต็มจำนวนเมื่อส่งคำขอจอง ระบบจะล็อกคิวเมื่อแอดมินตรวจสอบสลิปและอนุมัติแล้วเท่านั้น' },
-                        { title: '2. เงื่อนไขการรับและคืนกล้อง', body: 'กรุณารับและคืนกล้องตรงตามวัน-เวลาและสถานที่นัดรับที่เลือกไว้ หากคืนล่าช้ามีค่าปรับตามที่ร้านกำหนด' },
-                        { title: '3. ระยะเวลาการเช่า', body: 'รองรับทั้งการเช่ารายชั่วโมง (3, 6, 8 ชม.) และรายวัน (เช่า 12 ชั่วโมงขึ้นไป คิดเป็นราคา 1 วัน / เช่าเกิน 7 วัน เพิ่มวันละ 150 บาท)' },
-                        { title: '4. ข้อปฏิบัติในการใช้งานกล้อง', body: 'ห้ามนำกล้องไปโดนน้ำ ตกหล่น หรือแกะซ่อมเอง อุปกรณ์ทุกชิ้นต้องอยู่ครบเมื่อส่งคืน' },
-                        { title: '5. ความรับผิดชอบกรณีอุปกรณ์เสียหายหรือสูญหาย', body: 'หากเกิดความเสียหายจากผู้เช่า ทางร้านจำเป็นต้องหักค่าซ่อมตามจริงจากเงินประกัน หรือชดใช้ตามมูลค่าเครื่องกรณีสูญหาย' },
-                        { title: '6. เงื่อนไขการคืนเงินและยกเลิกการจอง', body: 'เงินประกันจะโอนคืนหลังตรวจเช็คสภาพกล้องเรียบร้อยแล้ว' }
                     ]
                 },
-                cameras: [
-                    {
-                        id: 'cam-ixy-31s',
-                        name: '💗 รุ่น Canon IXY 31 S',
-                        description: FOLLOWER_CONDITION_TEXT,
-                        image: 'https://i.postimg.cc/LsffBwNw/att-6g9B-0a-NBMb4z-YOw-Ny-JZsj-Xzuc-Ap-Pkp2X4tz-Ym-Suoag.jpg',
-                        gallery: [
-                            'https://i.postimg.cc/LsffBwNw/att-6g9B-0a-NBMb4z-YOw-Ny-JZsj-Xzuc-Ap-Pkp2X4tz-Ym-Suoag.jpg'
-                        ],
-                        hourlyRate: 200,
-                        pack4HrRate: 260,
-                        dailyRate: 350,
-                        followerDailyRate: 299,
-                        deposit: 1000,
-                        hourlyTiers: [
-                            { hours: 3, normal: 200, follower: 179 },
-                            { hours: 6, normal: 260, follower: 249 },
-                            { hours: 8, normal: 290, follower: 269 }
-                        ],
-                        dailyTiers: [
-                            { days: 1, normal: 350, follower: 299 },
-                            { days: 2, normal: 650, follower: 599 },
-                            { days: 3, normal: 790, follower: 699 },
-                            { days: 5, normal: 990, follower: 899 },
-                            { days: 7, normal: 1199, follower: 1099 }
-                        ],
-                        extraDayRate: 150,
-                        units: [
-                            { code: 'IXY31S-01', status: 'READY' }
-                        ]
-                    },
-                    {
-                        id: 'cam-ixy-930is',
-                        name: '💜 รุ่น Canon IXY 930 IS',
-                        description: FOLLOWER_CONDITION_TEXT,
-                        image: 'https://i.postimg.cc/9FjkdHbk/att-EUd-IIFvo-W5AJi-Jv-Bk69u-C183Zw-CVFr-KA9pfay-Nuc4c.jpg',
-                        gallery: [
-                            'https://i.postimg.cc/9FjkdHbk/att-EUd-IIFvo-W5AJi-Jv-Bk69u-C183Zw-CVFr-KA9pfay-Nuc4c.jpg'
-                        ],
-                        hourlyRate: 190,
-                        pack4HrRate: 250,
-                        dailyRate: 300,
-                        followerDailyRate: 279,
-                        deposit: 1000,
-                        hourlyTiers: [
-                            { hours: 3, normal: 190, follower: 169 },
-                            { hours: 6, normal: 250, follower: 239 },
-                            { hours: 8, normal: 280, follower: 269 }
-                        ],
-                        dailyTiers: [
-                            { days: 1, normal: 300, follower: 279 },
-                            { days: 2, normal: 550, follower: 499 },
-                            { days: 3, normal: 690, follower: 599 },
-                            { days: 5, normal: 890, follower: 799 },
-                            { days: 7, normal: 1099, follower: 999 }
-                        ],
-                        extraDayRate: 150,
-                        units: [
-                            { code: 'IXY930-01', status: 'READY' },
-                            { code: 'IXY930-02', status: 'READY' }
-                        ]
-                    }
-                ],
+                cameras: [],
                 blockedDates: [],
-                bookings: [
-                    {
-                        code: 'CAM-000001',
-                        cameraId: 'cam-ixy-930is',
-                        cameraName: '💜 รุ่น Canon IXY 930 IS',
-                        unitCode: 'IXY930-01',
-                        pickupDate: today,
-                        pickupTime: '10:00',
-                        returnDate: tomorrow,
-                        returnTime: '10:00',
-                        durationText: '1 วัน (ราคาผู้ติดตาม)',
-                        rentPrice: 279,
-                        deposit: 1000,
-                        totalAmount: 1279,
-                        pickupLocation: 'ห้างบิ๊กซี สุไหงโกลก (Big C)',
-                        renterName: 'น.ส. อารยา สายหวาน (ตัวอย่าง Demo)',
-                        renterPhone: '0812345678',
-                        renterAddress: '123 ถ.เจริญเขต ต.สุไหงโกลก อ.สุไหงโกลก จ.นราธิวาส',
-                        renterWorkplace: 'โรงเรียนสุไหงโกลก',
-                        status: 'ยืนยันการจอง',
-                        acceptedRulesVersion: 'v1.2',
-                        acceptedRulesAt: new Date().toLocaleString('th-TH'),
-                        selfieWithId: 'https://placehold.co/400x260/FCE8F0/9D174D?text=Demo+Selfie+With+ID',
-                        idCardOnly: 'https://placehold.co/400x260/F3E8FF/6B21A8?text=Demo+Masked+ID+Card',
-                        followerProof: 'https://placehold.co/400x260/FDF2F8/9D174D?text=Demo+Follower+Proof',
-                        paymentSlip: 'https://placehold.co/400x500/ECFDF5/047857?text=Demo+Payment+Slip'
-                    },
-                    {
-                        code: 'CAM-000002',
-                        cameraId: 'cam-ixy-31s',
-                        cameraName: '💗 รุ่น Canon IXY 31 S',
-                        unitCode: 'IXY31S-01',
-                        pickupDate: dayAfter,
-                        pickupTime: '13:00',
-                        returnDate: dayAfter,
-                        returnTime: '16:00',
-                        durationText: '3 ชั่วโมง (ราคาผู้ติดตาม)',
-                        rentPrice: 179,
-                        deposit: 1000,
-                        totalAmount: 1179,
-                        pickupLocation: 'หน้าร้าน diginae.cam (ตัวเมืองสุไหงโกลก)',
-                        renterName: 'คุณพิมพ์ดาว น่ารัก (ตัวอย่าง Demo)',
-                        renterPhone: '0898765432',
-                        renterAddress: '88 ต.สุไหงโกลก อ.สุไหงโกลก จ.นราธิวาส',
-                        renterWorkplace: 'คาเฟ่สุไหงโกลก',
-                        status: 'รอตรวจสอบ',
-                        acceptedRulesVersion: 'v1.2',
-                        acceptedRulesAt: new Date().toLocaleString('th-TH'),
-                        selfieWithId: 'https://placehold.co/400x260/FCE8F0/9D174D?text=Demo+Selfie+With+ID',
-                        idCardOnly: 'https://placehold.co/400x260/F3E8FF/6B21A8?text=Demo+Masked+ID+Card',
-                        followerProof: 'https://placehold.co/400x260/FDF2F8/9D174D?text=Demo+Follower+Proof',
-                        paymentSlip: 'https://placehold.co/400x500/ECFDF5/047857?text=Demo+Payment+Slip'
-                    }
-                ]
+                busySlots: [],
+                bookings: []
             };
         }
 
-        let appData = loadAppData();
+        let appData = getInitialEmptyState();
+        let isAdminLoggedIn = false;
         let currentCameraCategory = 'ALL';
         let bookmarkedCameras = {};
         let customerCalYear = new Date().getFullYear();
@@ -1259,6 +1239,7 @@ alter table public.bookings enable row level security;</pre>
         let editingAdminCameraId = null;
         let modalTempUnits = [];
         let activeDocModalBookingCode = null;
+        let activePresetKey = '1D';
 
         let currentBookingDraft = {
             selectedCameraId: 'cam-ixy-31s',
@@ -1271,8 +1252,8 @@ alter table public.bookings enable row level security;</pre>
             customPickupLocation: '',
             durationText: '1 วัน (ราคาปกติ)',
             rentPrice: 350,
-            deposit: 1000,
-            totalAmount: 1350,
+            deposit: 0,
+            totalAmount: 350,
             acceptedRules: false,
             acceptedRulesAt: null,
             renterName: '',
@@ -1283,41 +1264,148 @@ alter table public.bookings enable row level security;</pre>
             idCardOnly: '',
             followerProof: '',
             paymentSlip: '',
-            lastCreatedCode: 'CAM-000001'
+            lastCreatedCode: ''
         };
 
-        function loadAppData() {
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                if (raw) {
-                    return JSON.parse(raw);
-                }
-            } catch (e) {
-                console.warn('Load storage error:', e);
-            }
-            return getDefaultAppData();
+        // แปลงข้อมูลแถวจากตาราง cameras ของ Supabase ให้เข้ากับโครงสร้างของหน้าเว็บ
+        function mapDbCameraToUi(row) {
+            return {
+                id: row.id,
+                name: row.name,
+                description: row.description || FOLLOWER_CONDITION_TEXT,
+                image: row.image,
+                gallery: Array.isArray(row.gallery) && row.gallery.length ? row.gallery : [row.image],
+                hourlyRate: Number(row.hourly_rate) || 200,
+                pack4HrRate: Number(row.pack_4hr_rate) || 260,
+                dailyRate: Number(row.daily_rate) || 350,
+                followerDailyRate: Number(row.follower_daily_rate) || 299,
+                deposit: 0,
+                hourlyTiers: Array.isArray(row.hourly_tiers) ? row.hourly_tiers : [],
+                dailyTiers: Array.isArray(row.daily_tiers) ? row.daily_tiers : [],
+                extraDayRate: Number(row.extra_day_rate) || 150,
+                units: Array.isArray(row.units) ? row.units : [{ code: 'CAM-01', status: 'READY' }],
+                sortOrder: Number(row.sort_order) || 1
+            };
         }
 
-        function saveAppData() {
+        // แปลงข้อมูลแถวจากตาราง bookings ของ Supabase สำหรับหน้าแอดมิน
+        function mapDbBookingToUi(row) {
+            return {
+                code: row.code,
+                cameraId: row.camera_id,
+                cameraName: row.camera_name,
+                unitCode: row.unit_code,
+                pickupDate: row.pickup_date,
+                pickupTime: row.pickup_time,
+                returnDate: row.return_date,
+                returnTime: row.return_time,
+                durationText: row.duration_text,
+                rateType: row.rate_type || 'NORMAL',
+                rentPrice: Number(row.rent_price) || 0,
+                deposit: 0,
+                totalAmount: Number(row.total_amount) || 0,
+                pickupLocation: row.pickup_location,
+                renterName: row.renter_name,
+                renterPhone: row.renter_phone,
+                renterAddress: row.renter_address,
+                renterWorkplace: row.renter_workplace,
+                status: row.status,
+                acceptedRulesVersion: row.accepted_rules_version || 'v1.2',
+                acceptedRulesAt: row.accepted_rules_at || '',
+                selfieWithId: row.selfie_with_id || '',
+                idCardOnly: row.id_card_only || '',
+                followerProof: row.follower_proof || '',
+                paymentSlip: row.payment_slip || '',
+                createdAt: row.created_at
+            };
+        }
+
+        // โหลดข้อมูลสาธารณะสำหรับหน้าร้านจาก Supabase จริง
+        async function fetchPublicDataFromSupabase() {
             try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+                const [shopRes, camRes, blockRes, busyRes] = await Promise.all([
+                    supabaseClient.from('shop_settings').select('*').eq('id', 1).maybeSingle(),
+                    supabaseClient.from('cameras').select('*').order('sort_order', { ascending: true }),
+                    supabaseClient.from('blocked_dates').select('blocked_date').order('blocked_date', { ascending: true }),
+                    supabaseClient.rpc('get_busy_booking_slots')
+                ]);
+
+                if (shopRes.data) {
+                    const rawPickup = shopRes.data.pickup_locations;
+                    let parsedLocs = appData.shop.pickupLocations;
+                    let tgToken = '';
+                    let tgChatId = '';
+
+                    if (Array.isArray(rawPickup)) {
+                        parsedLocs = rawPickup;
+                    } else if (rawPickup && typeof rawPickup === 'object') {
+                        if (Array.isArray(rawPickup.locations) && rawPickup.locations.length) {
+                            parsedLocs = rawPickup.locations;
+                        }
+                        tgToken = rawPickup.telegramBotToken || '';
+                        tgChatId = rawPickup.telegramChatId || '';
+                    }
+
+                    appData.shop = {
+                        name: shopRes.data.name || 'diginae.cam',
+                        description: shopRes.data.description || 'ร้านเช่ากล้องสุไหงโกลก',
+                        bankName: shopRes.data.bank_name || 'ธนาคารกสิกร',
+                        accountNumber: shopRes.data.account_number || '1541435685',
+                        accountName: shopRes.data.account_name || 'ตรีรินทร์ กิจสุวรรณวัชร์',
+                        qrCodeUrl: shopRes.data.qr_code_url || 'https://i.postimg.cc/6QWGYWzc/att-3WI5Ryjo1c-Cn3n-Jst-HZ-KFIOp4Y4Hn-QTNh17f-Ec-Gurg.jpg',
+                        rulesVersion: shopRes.data.rules_version || 'v1.2',
+                        telegramBotToken: tgToken,
+                        telegramChatId: tgChatId,
+                        pickupLocations: parsedLocs
+                    };
+                }
+
+                if (camRes.data) {
+                    appData.cameras = camRes.data.map(mapDbCameraToUi);
+                    if (appData.cameras.length > 0 && !appData.cameras.some(c => c.id === currentBookingDraft.selectedCameraId)) {
+                        currentBookingDraft.selectedCameraId = appData.cameras[0].id;
+                    }
+                }
+
+                if (blockRes.data) {
+                    appData.blockedDates = blockRes.data.map(r => r.blocked_date);
+                }
+
+                if (busyRes.data) {
+                    appData.busySlots = busyRes.data.map(slot => ({
+                        cameraId: slot.camera_id,
+                        unitCode: slot.unit_code,
+                        pickupDate: slot.pickup_date,
+                        pickupTime: slot.pickup_time,
+                        returnDate: slot.return_date,
+                        returnTime: slot.return_time,
+                        status: slot.status
+                    }));
+                }
+
+                initAppUI();
             } catch (err) {
-                console.warn('Quota warning, trimming old image data:', err);
-                try {
-                    ['diginae_cam_store_v1', 'diginae_cam_store_v2', 'diginae_cam_store_v3', 'diginae_cam_store_v4', 'diginae_cam_store_v5'].forEach(k => localStorage.removeItem(k));
-                    localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
-                } catch (e2) {
-                    showToast('พื้นที่จัดเก็บในเบราว์เซอร์เต็ม แต่ระบบยังทำงานต่อได้ค่ะ', 'info');
-                }
+                console.error('Supabase fetch error:', err);
+                showToast('ไม่สามารถโหลดข้อมูลจากฐานข้อมูลได้ กรุณาตรวจสอบอินเทอร์เน็ตค่ะ');
             }
         }
 
-        function resetDemoData() {
-            appData = getDefaultAppData();
-            saveAppData();
-            currentBookingDraft.selectedCameraId = appData.cameras[0].id;
-            initAppUI();
-            showToast('รีเซ็ตข้อมูลเริ่มต้นเรียบร้อยแล้วค่ะ 🌸');
+        // โหลดรายการจองทั้งหมดสำหรับแอดมินที่ผ่านการยืนยันตัวตนแล้ว
+        async function fetchAdminBookingsFromSupabase() {
+            if (!isAdminLoggedIn) return;
+            try {
+                const { data, error } = await supabaseClient
+                    .from('bookings')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+                appData.bookings = (data || []).map(mapDbBookingToUi);
+                renderAdminAll();
+            } catch (err) {
+                console.error('Fetch admin bookings error:', err);
+                showToast('โหลดรายการจองแอดมินไม่สำเร็จ: ' + (err.message || 'ตรวจสอบสิทธิ์ RLS'));
+            }
         }
 
         function showToast(message) {
@@ -1331,7 +1419,7 @@ alter table public.bookings enable row level security;</pre>
             window._toastTimer = setTimeout(() => {
                 container.classList.remove('opacity-100', 'translate-y-0');
                 container.classList.add('opacity-0', 'translate-y-2');
-            }, 2600);
+            }, 2800);
         }
 
         function parseDateTime(dateStr, timeStr) {
@@ -1349,7 +1437,7 @@ alter table public.bookings enable row level security;</pre>
             return `${d} ${m} ${y}`;
         }
 
-        // ตรวจสอบจำนวนเครื่องที่ว่างตามช่วงเวลาจริง
+        // ตรวจสอบจำนวนเครื่องที่ว่างตามช่วงเวลาจริงจากฐานข้อมูล Supabase (busySlots)
         function getAvailableUnitsInfo(cameraId, startMs, endMs) {
             const cam = appData.cameras.find(c => c.id === cameraId);
             if (!cam) return { totalUnits: 0, availableCount: 0, freeUnitCodes: [] };
@@ -1357,7 +1445,6 @@ alter table public.bookings enable row level security;</pre>
             const readyUnits = (cam.units || []).filter(u => u.status === 'READY');
             const totalUnits = (cam.units || []).length;
 
-            // Check blocked dates
             const startDayStr = new Date(startMs).toISOString().slice(0, 10);
             const endDayStr = new Date(endMs).toISOString().slice(0, 10);
             const isBlocked = (appData.blockedDates || []).some(d => d >= startDayStr && d <= endDayStr);
@@ -1366,7 +1453,11 @@ alter table public.bookings enable row level security;</pre>
             }
 
             const activeStatuses = ['รอตรวจสอบ', 'รอชำระเงิน', 'ยืนยันการจอง', 'กำลังเช่า'];
-            const overlappingBookings = (appData.bookings || []).filter(b => {
+            const sourceBookings = (appData.busySlots && appData.busySlots.length > 0)
+                ? appData.busySlots
+                : (appData.bookings || []);
+
+            const overlappingBookings = sourceBookings.filter(b => {
                 if (b.cameraId !== cameraId) return false;
                 if (!activeStatuses.includes(b.status)) return false;
                 const bStart = parseDateTime(b.pickupDate, b.pickupTime);
@@ -1453,9 +1544,7 @@ alter table public.bookings enable row level security;</pre>
                     ? `ว่าง ${availInfo.availableCount}/${availInfo.totalUnits} เครื่อง ✨`
                     : `คิวเต็ม (0/${availInfo.totalUnits})`;
 
-                const pastelFrameBg = idx % 2 === 0
-                    ? 'bg-gradient-to-b from-pink-100/90 to-pink-200/70'
-                    : 'bg-gradient-to-b from-purple-100/90 to-purple-200/70';
+                const pastelFrameBg = 'bg-gradient-to-b from-pink-50 to-pink-100/90';
 
                 const isBookmarked = !!bookmarkedCameras[cam.id];
 
@@ -1485,7 +1574,7 @@ alter table public.bookings enable row level security;</pre>
                             </div>
 
                             <!-- Title & Clean Organized Rate Box -->
-                            <div class="pt-3.5 px-1 space-y-2.5">
+                            <div class="pt-3.5 px-1 space-y-2">
                                 <div class="flex items-center justify-between gap-2">
                                     <h3 class="text-base sm:text-lg font-extrabold text-pink-950 truncate">${cam.name}</h3>
                                     <span class="px-2.5 py-0.5 rounded-full bg-pink-50 text-pink-700 border border-pink-100 text-[10px] font-extrabold shrink-0">
@@ -1493,15 +1582,17 @@ alter table public.bookings enable row level security;</pre>
                                     </span>
                                 </div>
 
-                                <div class="grid grid-cols-2 gap-2 p-2.5 rounded-2xl bg-pink-50/50 border border-pink-100/90 text-xs">
-                                    <div class="bg-white rounded-xl p-2 border border-pink-100/80 text-center">
-                                        <p class="text-[10px] font-bold text-pink-500">⏰ รายชั่วโมง (เริ่ม 3 ชม.)</p>
-                                        <p class="text-sm font-extrabold text-pink-950 mt-0.5">฿${cam.hourlyTiers?.[0]?.follower || cam.hourlyRate} <span class="text-[10px] font-normal text-pink-400 line-through">฿${cam.hourlyTiers?.[0]?.normal || cam.hourlyRate}</span></p>
-                                    </div>
-                                    <div class="bg-white rounded-xl p-2 border border-purple-100/80 text-center">
-                                        <p class="text-[10px] font-bold text-purple-600">📅 รายวัน (1 วัน)</p>
-                                        <p class="text-sm font-extrabold text-purple-950 mt-0.5">฿${cam.followerDailyRate || cam.dailyRate} <span class="text-[10px] font-normal text-purple-400 line-through">฿${cam.dailyRate}</span></p>
-                                    </div>
+                                <div class="flex flex-wrap items-center gap-1.5 text-[11px]">
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-pink-50/80 border border-pink-100 text-pink-900 font-bold">
+                                        <span class="text-pink-500">3 ชม.</span>
+                                        <strong class="font-extrabold">฿${cam.hourlyTiers?.[0]?.follower || cam.hourlyRate}</strong>
+                                        <span class="text-[10px] text-pink-400 line-through">฿${cam.hourlyTiers?.[0]?.normal || cam.hourlyRate}</span>
+                                    </span>
+                                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-pink-50/80 border border-pink-100 text-pink-900 font-bold">
+                                        <span class="text-pink-500">1 วัน</span>
+                                        <strong class="font-extrabold">฿${cam.followerDailyRate || cam.dailyRate}</strong>
+                                        <span class="text-[10px] text-pink-400 line-through">฿${cam.dailyRate}</span>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -1509,13 +1600,12 @@ alter table public.bookings enable row level security;</pre>
                         <!-- Price & Dual Action Pills -->
                         <div class="pt-3 mt-2.5 border-t border-pink-100/80 px-1 space-y-2.5">
                             <div class="flex items-center justify-between gap-2">
-                                <div class="flex items-baseline gap-1">
+                                <div class="flex items-baseline gap-1 whitespace-nowrap">
                                     <i class="fa-solid fa-tag text-pink-500 text-xs"></i>
                                     <span class="text-xs font-bold text-pink-700">ราคาผู้ติดตามเริ่ม</span>
                                     <span class="text-lg font-extrabold text-pink-950">฿${cam.followerDailyRate || cam.dailyRate}</span>
                                     <span class="text-[11px] font-bold text-pink-500">/ วัน</span>
                                 </div>
-                                <span class="text-[11px] font-bold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-100">ประกัน ฿${cam.deposit}</span>
                             </div>
 
                             <div class="grid grid-cols-12 gap-2">
@@ -1820,9 +1910,43 @@ alter table public.bookings enable row level security;</pre>
             currentBookingDraft.returnDate = document.getElementById('inputReturnDate').value;
             currentBookingDraft.returnTime = document.getElementById('inputReturnTime').value;
 
+            syncDurationPresetButtonsFromInputs();
             renderCustomerCalendar();
             renderCameraCards();
             calculateAndRefreshPricing();
+        }
+
+        function updateDurationPresetButtonsUI(selectedKey) {
+            activePresetKey = selectedKey;
+            const keys = ['3H', '6H', '8H', '1D', '2D', '3D'];
+            keys.forEach(k => {
+                const btn = document.getElementById(`presetBtn_${k}`);
+                if (!btn) return;
+                if (k === selectedKey) {
+                    btn.classList.add('duration-preset-btn-active');
+                } else {
+                    btn.classList.remove('duration-preset-btn-active');
+                }
+            });
+        }
+
+        function syncDurationPresetButtonsFromInputs() {
+            const startMs = parseDateTime(currentBookingDraft.pickupDate, currentBookingDraft.pickupTime);
+            const endMs = parseDateTime(currentBookingDraft.returnDate, currentBookingDraft.returnTime);
+            if (endMs <= startMs) {
+                updateDurationPresetButtonsUI(null);
+                return;
+            }
+            const diffHours = Math.round((endMs - startMs) / (1000 * 60 * 60));
+            const mapHoursToKey = {
+                3: '3H',
+                6: '6H',
+                8: '8H',
+                24: '1D',
+                48: '2D',
+                72: '3D'
+            };
+            updateDurationPresetButtonsUI(mapHoursToKey[diffHours] || null);
         }
 
         function applyQuickDurationHours(hours) {
@@ -1841,6 +1965,7 @@ alter table public.bookings enable row level security;</pre>
             document.getElementById('inputReturnDate').value = currentBookingDraft.returnDate;
             document.getElementById('inputReturnTime').value = currentBookingDraft.returnTime;
 
+            updateDurationPresetButtonsUI(`${hours}H`);
             renderCustomerCalendar();
             renderCameraCards();
             calculateAndRefreshPricing();
@@ -1858,6 +1983,7 @@ alter table public.bookings enable row level security;</pre>
             document.getElementById('inputReturnDate').value = currentBookingDraft.returnDate;
             document.getElementById('inputReturnTime').value = currentBookingDraft.returnTime;
 
+            updateDurationPresetButtonsUI(`${days}D`);
             renderCustomerCalendar();
             renderCameraCards();
             calculateAndRefreshPricing();
@@ -1984,15 +2110,14 @@ alter table public.bookings enable row level security;</pre>
 
             currentBookingDraft.durationText = durationText;
             currentBookingDraft.rentPrice = rentPrice;
-            currentBookingDraft.deposit = cam.deposit;
-            currentBookingDraft.totalAmount = rentPrice + cam.deposit;
+            currentBookingDraft.deposit = 0;
+            currentBookingDraft.totalAmount = rentPrice;
 
             document.getElementById('sumStep1Camera').textContent = cam.name;
             document.getElementById('sumStep1Start').textContent = `${formatThaiDateShort(currentBookingDraft.pickupDate)} เวลา ${currentBookingDraft.pickupTime} น.`;
             document.getElementById('sumStep1End').textContent = `${formatThaiDateShort(currentBookingDraft.returnDate)} เวลา ${currentBookingDraft.returnTime} น.`;
             document.getElementById('sumStep1Duration').textContent = durationText;
             document.getElementById('sumStep1RentPrice').textContent = `฿${rentPrice.toLocaleString()}`;
-            document.getElementById('sumStep1Deposit').textContent = `฿${cam.deposit.toLocaleString()}`;
             document.getElementById('sumStep1Total').textContent = `฿${currentBookingDraft.totalAmount.toLocaleString()}`;
 
             const avail = getAvailableUnitsInfo(cam.id, startMs, endMs);
@@ -2249,7 +2374,6 @@ alter table public.bookings enable row level security;</pre>
             document.getElementById('sumStep4RenterName').textContent = currentBookingDraft.renterName;
             document.getElementById('sumStep4RenterPhone').textContent = currentBookingDraft.renterPhone;
             document.getElementById('sumStep4Rent').textContent = `฿${currentBookingDraft.rentPrice.toLocaleString()}`;
-            document.getElementById('sumStep4Deposit').textContent = `฿${currentBookingDraft.deposit.toLocaleString()}`;
             document.getElementById('sumStep4Total').textContent = `฿${currentBookingDraft.totalAmount.toLocaleString()}`;
         }
 
@@ -2271,78 +2395,172 @@ alter table public.bookings enable row level security;</pre>
             copyTextFallback(currentBookingDraft.lastCreatedCode, `คัดลอกรหัสการจอง ${currentBookingDraft.lastCreatedCode} แล้วค่ะ 🎀`);
         }
 
-        function submitBookingRequest() {
+        async function sendTelegramOrderAlert(orderInfo) {
+            const token = (appData.shop.telegramBotToken || '').trim();
+            const chatId = (appData.shop.telegramChatId || '').trim();
+            if (!token || !chatId) return;
+
+            const rateLabel = orderInfo.rateType === 'FOLLOWER' ? '🎀 ราคาผู้ติดตาม' : 'ราคาปกติ';
+            const msg = [
+                `🌸 *มีออเดอร์เช่ากล้องใหม่เข้า!* (${appData.shop.name})`,
+                `━━━━━━━━━━━━━━━━━━`,
+                `🔖 *รหัสการจอง:* \`${orderInfo.code}\``,
+                `📷 *รุ่นกล้อง:* ${orderInfo.cameraName} (${orderInfo.unitCode})`,
+                `👤 *ผู้เช่า:* ${orderInfo.renterName}`,
+                `📞 *เบอร์โทร:* ${orderInfo.renterPhone}`,
+                `🏢 *ที่ทำงาน/สถานศึกษา:* ${orderInfo.renterWorkplace}`,
+                `📍 *ที่อยู่:* ${orderInfo.renterAddress}`,
+                `━━━━━━━━━━━━━━━━━━`,
+                `📅 *รับกล้อง:* ${formatThaiDateShort(orderInfo.pickupDate)} เวลา ${orderInfo.pickupTime} น.`,
+                `📅 *คืนกล้อง:* ${formatThaiDateShort(orderInfo.returnDate)} เวลา ${orderInfo.returnTime} น.`,
+                `⏳ *ระยะเวลา:* ${orderInfo.durationText}`,
+                `🏷 *ประเภทราคา:* ${rateLabel}`,
+                `📌 *สถานที่นัดรับ:* ${orderInfo.pickupLocation}`,
+                `💰 *ยอดโอนสุทธิ:* ฿${Number(orderInfo.totalAmount || 0).toLocaleString()}`,
+                `━━━━━━━━━━━━━━━━━━`,
+                `⏳ *สถานะ:* รอตรวจสอบสลิปและเอกสารในระบบแอดมินค่ะ`
+            ].join('\n');
+
+            try {
+                await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: msg,
+                        parse_mode: 'Markdown'
+                    })
+                });
+            } catch (err) {
+                console.warn('Telegram notification failed:', err);
+            }
+        }
+
+        async function testTelegramNotification() {
+            const token = document.getElementById('admSetTgToken').value.trim();
+            const chatId = document.getElementById('admSetTgChatId').value.trim();
+
+            if (!token || !chatId) {
+                showToast('กรุณากรอกทั้ง Bot Token และ Chat ID ก่อนกดทดสอบค่ะ');
+                return;
+            }
+
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: `🎀 ทดสอบระบบแจ้งเตือนออเดอร์ร้าน ${appData.shop.name} สำเร็จ! เมื่อมีลูกค้าจองคิวใหม่ ระบบจะแจ้งเตือนเข้าแชทนี้ทันทีค่ะ 🌸`
+                    })
+                });
+                const result = await res.json();
+                if (!res.ok || !result.ok) {
+                    throw new Error(result.description || 'ส่งข้อความไม่สำเร็จ');
+                }
+                showToast('ส่งข้อความเข้า Telegram สำเร็จแล้วค่ะ! อย่าลืมกดบันทึกการตั้งค่าร้านนะคะ ✨');
+            } catch (err) {
+                console.error('Telegram test error:', err);
+                showToast('ส่งไม่สำเร็จ: กรุณาเช็ค Bot Token / Chat ID และกด Start ในแชทบอทก่อนค่ะ');
+            }
+        }
+
+        async function submitBookingRequest() {
             if (isSubmittingBooking) return;
             if (!currentBookingDraft.paymentSlip) {
                 showToast('กรุณาแนบรูปสลิปโอนเงินก่อนส่งคำขอจองค่ะ');
                 return;
             }
 
-            const startMs = parseDateTime(currentBookingDraft.pickupDate, currentBookingDraft.pickupTime);
-            const endMs = parseDateTime(currentBookingDraft.returnDate, currentBookingDraft.returnTime);
-            const avail = getAvailableUnitsInfo(currentBookingDraft.selectedCameraId, startMs, endMs);
-
-            if (avail.availableCount <= 0) {
-                showToast('ขออภัยค่ะ คิวกล้องในช่วงเวลานี้เพิ่งเต็ม กรุณาเลือกเวลาใหม่');
-                return;
+            const submitBtn = document.getElementById('btnSubmitBookingFinal');
+            isSubmittingBooking = true;
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin mr-1"></i> กำลังบันทึกข้อมูลเข้าฐานข้อมูล...`;
             }
 
-            isSubmittingBooking = true;
-            const cam = appData.cameras.find(c => c.id === currentBookingDraft.selectedCameraId) || appData.cameras[0];
-            const nextNo = String((appData.bookings?.length || 0) + 1).padStart(6, '0');
-            const newCode = `CAM-${nextNo}`;
-            const assignedUnit = avail.freeUnitCodes[0] || (cam.units?.[0]?.code || 'UNIT-01');
-            const finalLoc = currentBookingDraft.pickupLocation === 'OTHER'
-                ? currentBookingDraft.customPickupLocation
-                : currentBookingDraft.pickupLocation;
+            try {
+                const finalLoc = currentBookingDraft.pickupLocation === 'OTHER'
+                    ? currentBookingDraft.customPickupLocation.trim()
+                    : currentBookingDraft.pickupLocation;
 
-            const newBooking = {
-                code: newCode,
-                cameraId: cam.id,
-                cameraName: cam.name,
-                unitCode: assignedUnit,
-                pickupDate: currentBookingDraft.pickupDate,
-                pickupTime: currentBookingDraft.pickupTime,
-                returnDate: currentBookingDraft.returnDate,
-                returnTime: currentBookingDraft.returnTime,
-                durationText: currentBookingDraft.durationText,
-                rentPrice: currentBookingDraft.rentPrice,
-                deposit: currentBookingDraft.deposit,
-                totalAmount: currentBookingDraft.totalAmount,
-                pickupLocation: finalLoc,
-                renterName: currentBookingDraft.renterName,
-                renterPhone: currentBookingDraft.renterPhone,
-                renterAddress: currentBookingDraft.renterAddress,
-                renterWorkplace: currentBookingDraft.renterWorkplace,
-                status: 'รอตรวจสอบ',
-                acceptedRulesVersion: appData.shop.rulesVersion || 'v1.2',
-                acceptedRulesAt: currentBookingDraft.acceptedRulesAt || new Date().toLocaleString('th-TH'),
-                selfieWithId: currentBookingDraft.selfieWithId,
-                idCardOnly: currentBookingDraft.idCardOnly,
-                followerProof: currentBookingDraft.followerProof || '',
-                paymentSlip: currentBookingDraft.paymentSlip
-            };
+                const { data, error } = await supabaseClient.rpc('create_customer_booking', {
+                    p_camera_id: currentBookingDraft.selectedCameraId,
+                    p_pickup_date: currentBookingDraft.pickupDate,
+                    p_pickup_time: currentBookingDraft.pickupTime,
+                    p_return_date: currentBookingDraft.returnDate,
+                    p_return_time: currentBookingDraft.returnTime,
+                    p_duration_text: currentBookingDraft.durationText,
+                    p_rate_type: currentBookingDraft.rateType || 'NORMAL',
+                    p_rent_price: currentBookingDraft.rentPrice,
+                    p_total_amount: currentBookingDraft.totalAmount,
+                    p_pickup_location: finalLoc,
+                    p_renter_name: currentBookingDraft.renterName,
+                    p_renter_phone: currentBookingDraft.renterPhone,
+                    p_renter_address: currentBookingDraft.renterAddress,
+                    p_renter_workplace: currentBookingDraft.renterWorkplace,
+                    p_accepted_rules_version: appData.shop.rulesVersion || 'v1.2',
+                    p_accepted_rules_at: currentBookingDraft.acceptedRulesAt || new Date().toLocaleString('th-TH'),
+                    p_selfie_with_id: currentBookingDraft.selfieWithId,
+                    p_id_card_only: currentBookingDraft.idCardOnly,
+                    p_follower_proof: currentBookingDraft.followerProof || '',
+                    p_payment_slip: currentBookingDraft.paymentSlip
+                });
 
-            appData.bookings.unshift(newBooking);
-            saveAppData();
+                if (error) throw error;
 
-            currentBookingDraft.lastCreatedCode = newCode;
-            document.getElementById('successBookingCode').textContent = newCode;
-            document.getElementById('successCameraName').textContent = `${cam.name} (${assignedUnit})`;
-            document.getElementById('successDateTime').textContent = `${formatThaiDateShort(newBooking.pickupDate)} ${newBooking.pickupTime} - ${formatThaiDateShort(newBooking.returnDate)} ${newBooking.returnTime}`;
-            document.getElementById('successPickupLoc').textContent = finalLoc;
-            document.getElementById('successTotalPay').textContent = `฿${newBooking.totalAmount.toLocaleString()}`;
+                const created = data || {};
+                const newCode = created.code || 'CAM-000001';
+                currentBookingDraft.lastCreatedCode = newCode;
 
-            isSubmittingBooking = false;
-            renderCameraCards();
-            renderCustomerCalendar();
-            goToCustomerStep(5);
-            showToast(`ส่งคำขอจอง ${newCode} เรียบร้อยแล้วค่ะ 🌸`);
+                document.getElementById('successBookingCode').textContent = newCode;
+                document.getElementById('successCameraName').textContent = `${created.cameraName || ''} (${created.unitCode || ''})`;
+                document.getElementById('successDateTime').textContent = `${formatThaiDateShort(created.pickupDate)} ${created.pickupTime} - ${formatThaiDateShort(created.returnDate)} ${created.returnTime}`;
+                document.getElementById('successPickupLoc').textContent = created.pickupLocation || finalLoc;
+                document.getElementById('successTotalPay').textContent = `฿${Number(created.totalAmount || currentBookingDraft.totalAmount).toLocaleString()}`;
+
+                await sendTelegramOrderAlert({
+                    code: newCode,
+                    cameraName: created.cameraName || '',
+                    unitCode: created.unitCode || '',
+                    pickupDate: created.pickupDate || currentBookingDraft.pickupDate,
+                    pickupTime: created.pickupTime || currentBookingDraft.pickupTime,
+                    returnDate: created.returnDate || currentBookingDraft.returnDate,
+                    returnTime: created.returnTime || currentBookingDraft.returnTime,
+                    durationText: currentBookingDraft.durationText,
+                    rateType: currentBookingDraft.rateType || 'NORMAL',
+                    pickupLocation: created.pickupLocation || finalLoc,
+                    totalAmount: created.totalAmount || currentBookingDraft.totalAmount,
+                    renterName: currentBookingDraft.renterName,
+                    renterPhone: currentBookingDraft.renterPhone,
+                    renterAddress: currentBookingDraft.renterAddress,
+                    renterWorkplace: currentBookingDraft.renterWorkplace
+                });
+
+                await fetchPublicDataFromSupabase();
+                if (isAdminLoggedIn) {
+                    await fetchAdminBookingsFromSupabase();
+                }
+
+                goToCustomerStep(5);
+                showToast(`ส่งคำขอจอง ${newCode} บันทึกลงฐานข้อมูลเรียบร้อยแล้วค่ะ 🌸`);
+            } catch (err) {
+                console.error('Submit booking error:', err);
+                showToast(err.message || 'ไม่สามารถส่งข้อมูลการจองได้ กรุณาลองใหม่อีกครั้งค่ะ');
+            } finally {
+                isSubmittingBooking = false;
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="fa-solid fa-paper-plane mr-1"></i> ส่งข้อมูลการจอง`;
+                }
+            }
         }
 
         // ==========================================
-        // STATUS CHECKER & RENTAL SLIP PNG DOWNLOAD
+        // STATUS CHECKER & RENTAL SLIP PNG DOWNLOAD (SUPABASE RPC)
         // ==========================================
+        let lastCheckedBookingResult = null;
+
         function openStatusCheckWithCurrentCode() {
             document.getElementById('statusSearchCode').value = currentBookingDraft.lastCreatedCode;
             document.getElementById('statusSearchPhone').value = currentBookingDraft.renterPhone;
@@ -2350,13 +2568,7 @@ alter table public.bookings enable row level security;</pre>
             searchBookingStatus();
         }
 
-        function fillDemoStatusSearch(code, phone) {
-            document.getElementById('statusSearchCode').value = code;
-            document.getElementById('statusSearchPhone').value = phone;
-            searchBookingStatus();
-        }
-
-        function searchBookingStatus() {
+        async function searchBookingStatus() {
             const code = document.getElementById('statusSearchCode').value.trim().toUpperCase();
             const phone = document.getElementById('statusSearchPhone').value.trim();
             const box = document.getElementById('statusSearchResultBox');
@@ -2366,54 +2578,78 @@ alter table public.bookings enable row level security;</pre>
                 return;
             }
 
-            const found = (appData.bookings || []).find(b => b.code.toUpperCase() === code && b.renterPhone.replace(/\D/g, '') === phone.replace(/\D/g, ''));
-            if (!found) {
-                box.innerHTML = `
-                    <div class="p-5 rounded-2xl bg-rose-50 border border-rose-200 text-center text-xs text-rose-700 font-bold">
-                        ไม่พบข้อมูลการจองรหัส "${code}" ที่ตรงกับเบอร์โทรศัพท์ที่ระบุค่ะ
-                    </div>
-                `;
-                return;
-            }
-
-            const canDownload = ['ยืนยันการจอง', 'กำลังเช่า', 'คืนกล้องแล้ว'].includes(found.status);
-
             box.innerHTML = `
-                <div class="p-5 rounded-3xl bg-pink-50/70 border-2 border-pink-200 space-y-3 text-xs">
-                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-pink-200 pb-2.5">
-                        <div>
-                            <span class="text-[11px] font-bold text-pink-500">หมายเลขการจอง</span>
-                            <h3 class="text-lg font-extrabold text-pink-950">${found.code}</h3>
-                        </div>
-                        <span class="px-3.5 py-1 rounded-full bg-white border border-pink-200 font-extrabold text-pink-800">${found.status}</span>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <div><span class="text-pink-600">ผู้เช่า:</span> <strong class="text-pink-950">${found.renterName}</strong></div>
-                        <div><span class="text-pink-600">รุ่นกล้อง:</span> <strong class="text-pink-950">${found.cameraName} (${found.unitCode})</strong></div>
-                        <div><span class="text-pink-600">วัน-เวลารับ:</span> <strong class="text-pink-950">${formatThaiDateShort(found.pickupDate)} ${found.pickupTime} น.</strong></div>
-                        <div><span class="text-pink-600">วัน-เวลาคืน:</span> <strong class="text-pink-950">${formatThaiDateShort(found.returnDate)} ${found.returnTime} น.</strong></div>
-                        <div class="sm:col-span-2"><span class="text-pink-600">สถานที่นัดรับ:</span> <strong class="text-pink-950">${found.pickupLocation}</strong></div>
-                        <div><span class="text-pink-600">ระยะเวลา:</span> <strong class="text-purple-700">${found.durationText}</strong></div>
-                        <div><span class="text-pink-600">ยอดชำระรวม:</span> <strong class="text-pink-600">฿${found.totalAmount.toLocaleString()}</strong></div>
-                    </div>
-                    ${canDownload ? `
-                        <div class="pt-2">
-                            <button type="button" onclick="downloadBookingSlipImage('${found.code}')" class="w-full py-3 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-download"></i>
-                                <span>ดาวน์โหลดใบยืนยันการเช่า (PNG)</span>
-                            </button>
-                        </div>
-                    ` : `
-                        <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-800 font-bold">
-                            ⏳ เมื่อแอดมินตรวจสอบและเปลี่ยนสถานะเป็น "ยืนยันการจอง" แล้ว ปุ่มดาวน์โหลดใบยืนยันการเช่าจะปรากฏที่นี่ค่ะ
-                        </div>
-                    `}
+                <div class="p-5 rounded-2xl bg-pink-50/60 border border-pink-200 text-center text-xs text-pink-800 font-bold">
+                    <i class="fa-solid fa-spinner fa-spin mr-1.5"></i> กำลังค้นหาข้อมูลจากฐานข้อมูล...
                 </div>
             `;
+
+            try {
+                const { data: found, error } = await supabaseClient.rpc('check_booking_status', {
+                    p_code: code,
+                    p_phone: phone
+                });
+
+                if (error) throw error;
+
+                if (!found || !found.code) {
+                    box.innerHTML = `
+                        <div class="p-5 rounded-2xl bg-rose-50 border border-rose-200 text-center text-xs text-rose-700 font-bold">
+                            ไม่พบข้อมูลการจองรหัส "${code}" ที่ตรงกับเบอร์โทรศัพท์ที่ระบุค่ะ
+                        </div>
+                    `;
+                    return;
+                }
+
+                lastCheckedBookingResult = found;
+                const canDownload = ['ยืนยันการจอง', 'กำลังเช่า', 'คืนกล้องแล้ว'].includes(found.status);
+
+                box.innerHTML = `
+                    <div class="p-5 rounded-3xl bg-pink-50/70 border-2 border-pink-200 space-y-3 text-xs">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-pink-200 pb-2.5">
+                            <div>
+                                <span class="text-[11px] font-bold text-pink-500">หมายเลขการจอง</span>
+                                <h3 class="text-lg font-extrabold text-pink-950">${found.code}</h3>
+                            </div>
+                            <span class="px-3.5 py-1 rounded-full bg-white border border-pink-200 font-extrabold text-pink-800">${found.status}</span>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div><span class="text-pink-600">ผู้เช่า:</span> <strong class="text-pink-950">${found.renterName}</strong></div>
+                            <div><span class="text-pink-600">รุ่นกล้อง:</span> <strong class="text-pink-950">${found.cameraName} (${found.unitCode})</strong></div>
+                            <div><span class="text-pink-600">วัน-เวลารับ:</span> <strong class="text-pink-950">${formatThaiDateShort(found.pickupDate)} ${found.pickupTime} น.</strong></div>
+                            <div><span class="text-pink-600">วัน-เวลาคืน:</span> <strong class="text-pink-950">${formatThaiDateShort(found.returnDate)} ${found.returnTime} น.</strong></div>
+                            <div class="sm:col-span-2"><span class="text-pink-600">สถานที่นัดรับ:</span> <strong class="text-pink-950">${found.pickupLocation}</strong></div>
+                            <div><span class="text-pink-600">ระยะเวลา:</span> <strong class="text-purple-700">${found.durationText}</strong></div>
+                            <div><span class="text-pink-600">ยอดชำระรวม:</span> <strong class="text-pink-600">฿${Number(found.totalAmount || 0).toLocaleString()}</strong></div>
+                        </div>
+                        ${canDownload ? `
+                            <div class="pt-2">
+                                <button type="button" onclick="downloadBookingSlipImage('${found.code}')" class="w-full py-3 rounded-2xl btn-rose font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-download"></i>
+                                    <span>ดาวน์โหลดใบยืนยันการเช่า (PNG)</span>
+                                </button>
+                            </div>
+                        ` : `
+                            <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-[11px] text-amber-800 font-bold">
+                                ⏳ เมื่อแอดมินตรวจสอบและเปลี่ยนสถานะเป็น "ยืนยันการจอง" แล้ว ปุ่มดาวน์โหลดใบยืนยันการเช่าจะปรากฏที่นี่ค่ะ
+                            </div>
+                        `}
+                    </div>
+                `;
+            } catch (err) {
+                console.error('Check booking status error:', err);
+                box.innerHTML = `
+                    <div class="p-5 rounded-2xl bg-rose-50 border border-rose-200 text-center text-xs text-rose-700 font-bold">
+                        เกิดข้อผิดพลาดในการค้นหาสถานะ กรุณาลองใหม่อีกครั้งค่ะ
+                    </div>
+                `;
+            }
         }
 
         function downloadBookingSlipImage(code) {
-            const b = appData.bookings.find(item => item.code === code);
+            const b = (lastCheckedBookingResult && lastCheckedBookingResult.code === code)
+                ? lastCheckedBookingResult
+                : appData.bookings.find(item => item.code === code);
             if (!b) return;
             const canvas = document.getElementById('slipDownloadCanvas');
             const ctx = canvas.getContext('2d');
@@ -2421,7 +2657,7 @@ alter table public.bookings enable row level security;</pre>
             ctx.fillStyle = '#FFF5F9';
             ctx.fillRect(0, 0, 800, 1000);
 
-            ctx.fillStyle = '#DB2777';
+            ctx.fillStyle = '#B57282';
             ctx.fillRect(0, 0, 800, 140);
 
             ctx.fillStyle = '#FFFFFF';
@@ -2432,11 +2668,11 @@ alter table public.bookings enable row level security;</pre>
 
             ctx.fillStyle = '#FFFFFF';
             ctx.fillRect(40, 180, 720, 740);
-            ctx.strokeStyle = '#FBCFE8';
+            ctx.strokeStyle = '#F0D5DC';
             ctx.lineWidth = 3;
             ctx.strokeRect(40, 180, 720, 740);
 
-            ctx.fillStyle = '#831843';
+            ctx.fillStyle = '#5E323D';
             ctx.font = 'bold 28px Prompt, sans-serif';
             ctx.fillText(`รหัสการจอง: ${b.code}`, 80, 245);
 
@@ -2452,17 +2688,16 @@ alter table public.bookings enable row level security;</pre>
                 ['วันและเวลาคืนกล้อง', `${b.returnDate} เวลา ${b.returnTime} น.`],
                 ['ระยะเวลาเช่า', b.durationText],
                 ['สถานที่นัดรับ', b.pickupLocation],
-                ['ค่าเช่ากล้อง', `฿${b.rentPrice.toLocaleString()}`],
-                ['เงินประกันเครื่อง', `฿${b.deposit.toLocaleString()}`],
-                ['ยอดชำระสุทธิ', `฿${b.totalAmount.toLocaleString()}`]
+                ['ค่าเช่ากล้อง', `฿${Number(b.rentPrice || 0).toLocaleString()}`],
+                ['ยอดชำระสุทธิ', `฿${Number(b.totalAmount || 0).toLocaleString()}`]
             ];
 
             let y = 315;
             lines.forEach(([k, v]) => {
-                ctx.fillStyle = '#9D174D';
+                ctx.fillStyle = '#8C5260';
                 ctx.font = 'bold 21px Prompt, sans-serif';
                 ctx.fillText(`${k}:`, 80, y);
-                ctx.fillStyle = '#4A1D34';
+                ctx.fillStyle = '#4A252E';
                 ctx.font = '21px Prompt, sans-serif';
                 ctx.fillText(String(v), 310, y);
                 y += 54;
@@ -2476,24 +2711,83 @@ alter table public.bookings enable row level security;</pre>
         }
 
         // ==========================================
-        // ADMIN DASHBOARD FUNCTIONS
+        // ADMIN DASHBOARD FUNCTIONS (SUPABASE AUTH + DB)
         // ==========================================
-        function loginAdmin() {
-            const u = document.getElementById('adminUserInput').value.trim();
-            const p = document.getElementById('adminPassInput').value.trim();
-            if (u === 'admin' && p === '1234') {
-                document.getElementById('adminLoginCard').classList.add('hidden');
-                document.getElementById('adminDashboardWrap').classList.remove('hidden');
-                renderAdminAll();
-                showToast('เข้าสู่ระบบแอดมินสำเร็จค่ะ 👑');
-            } else {
-                showToast('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง (ทดสอบ: admin / 1234)');
+        async function verifyAndSetupAdminSession(session) {
+            if (!session || !session.user) {
+                isAdminLoggedIn = false;
+                document.getElementById('adminDashboardWrap').classList.add('hidden');
+                document.getElementById('adminLoginCard').classList.remove('hidden');
+                return false;
+            }
+
+            const uid = session.user.id;
+            const { data: adminRow } = await supabaseClient
+                .from('admin_users')
+                .select('user_id')
+                .eq('user_id', uid)
+                .maybeSingle();
+
+            if (uid !== ALLOWED_ADMIN_UID && !adminRow) {
+                await supabaseClient.auth.signOut();
+                isAdminLoggedIn = false;
+                showToast('บัญชีนี้ไม่มีสิทธิ์แอดมินของร้าน diginae.cam ค่ะ');
+                return false;
+            }
+
+            isAdminLoggedIn = true;
+            document.getElementById('adminLoginCard').classList.add('hidden');
+            document.getElementById('adminDashboardWrap').classList.remove('hidden');
+            await fetchAdminBookingsFromSupabase();
+            renderAdminAll();
+            return true;
+        }
+
+        async function loginAdmin() {
+            const email = document.getElementById('adminUserInput').value.trim();
+            const password = document.getElementById('adminPassInput').value.trim();
+            const btn = document.getElementById('btnAdminLoginSubmit');
+
+            if (!email || !password) {
+                showToast('กรุณากรอกอีเมลและรหัสผ่านแอดมินค่ะ');
+                return;
+            }
+
+            if (btn) {
+                btn.disabled = true;
+                btn.textContent = 'กำลังตรวจสอบสิทธิ์...';
+            }
+
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+                if (error) throw error;
+
+                const ok = await verifyAndSetupAdminSession(data.session);
+                if (ok) {
+                    showToast('เข้าสู่ระบบแอดมินสำเร็จค่ะ 👑');
+                }
+            } catch (err) {
+                console.error('Admin login error:', err);
+                showToast('เข้าสู่ระบบไม่สำเร็จ: อีเมลหรือรหัสผ่านไม่ถูกต้องค่ะ');
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = 'เข้าสู่ระบบหลังบ้าน';
+                }
             }
         }
 
-        function logoutAdmin() {
+        async function logoutAdmin() {
+            await supabaseClient.auth.signOut();
+            isAdminLoggedIn = false;
+            appData.bookings = [];
             document.getElementById('adminDashboardWrap').classList.add('hidden');
             document.getElementById('adminLoginCard').classList.remove('hidden');
+            showToast('ออกจากระบบแอดมินเรียบร้อยแล้วค่ะ');
         }
 
         function switchAdminTab(tab) {
@@ -2510,6 +2804,7 @@ alter table public.bookings enable row level security;</pre>
         }
 
         function renderAdminAll() {
+            if (!isAdminLoggedIn) return;
             renderAdminOverview();
             renderAdminBookings();
             renderAdminBlockedDates();
@@ -2534,7 +2829,13 @@ alter table public.bookings enable row level security;</pre>
                 </div>
             `).join('');
 
-            document.getElementById('adminRecentBookingsList').innerHTML = bks.slice(0, 5).map(b => `
+            const recentEl = document.getElementById('adminRecentBookingsList');
+            if (!bks.length) {
+                recentEl.innerHTML = `<div class="p-4 rounded-2xl bg-pink-50/40 border border-pink-100 text-center text-xs text-pink-600 font-bold">ยังไม่มีรายการจองในฐานข้อมูล</div>`;
+                return;
+            }
+
+            recentEl.innerHTML = bks.slice(0, 5).map(b => `
                 <div class="p-3 rounded-2xl bg-pink-50/40 border border-pink-100 flex flex-wrap items-center justify-between gap-2 text-xs">
                     <div>
                         <span class="font-extrabold text-pink-950">${b.code}</span> •
@@ -2558,18 +2859,30 @@ alter table public.bookings enable row level security;</pre>
                        b.renterPhone.toLowerCase().includes(q);
             });
 
+            const listEl = document.getElementById('adminBookingsList');
+            if (!filtered.length) {
+                listEl.innerHTML = `<div class="p-6 rounded-2xl bg-pink-50/40 border border-pink-100 text-center text-xs text-pink-600 font-bold">ไม่พบรายการจองตามเงื่อนไขที่เลือก</div>`;
+                return;
+            }
+
             const allStatuses = ['รอตรวจสอบ', 'รอชำระเงิน', 'ยืนยันการจอง', 'กำลังเช่า', 'คืนกล้องแล้ว', 'ไม่อนุมัติ', 'ยกเลิก'];
 
-            document.getElementById('adminBookingsList').innerHTML = filtered.map(b => `
+            listEl.innerHTML = filtered.map(b => `
                 <div class="p-4 rounded-2xl bg-white border border-pink-200 space-y-3 text-xs shadow-sm">
                     <div class="flex flex-wrap items-center justify-between gap-2 border-b border-pink-100 pb-2">
                         <div class="flex items-center gap-2">
                             <span class="text-sm font-extrabold text-pink-950">${b.code}</span>
                             <span class="font-extrabold text-purple-700">${b.cameraName} (${b.unitCode})</span>
                         </div>
-                        <select onchange="updateBookingStatusByAdmin('${b.code}', this.value)" class="px-3 py-1.5 rounded-full bg-pink-50 border border-pink-200 font-extrabold text-pink-900">
-                            ${allStatuses.map(st => `<option value="${st}" ${b.status === st ? 'selected' : ''}>สถานะ: ${st}</option>`).join('')}
-                        </select>
+                        <div class="flex items-center gap-2">
+                            <select onchange="updateBookingStatusByAdmin('${b.code}', this.value)" class="px-3 py-1.5 rounded-full bg-pink-50 border border-pink-200 font-extrabold text-pink-900">
+                                ${allStatuses.map(st => `<option value="${st}" ${b.status === st ? 'selected' : ''}>สถานะ: ${st}</option>`).join('')}
+                            </select>
+                            <button type="button" onclick="deleteBooking('${b.code}')" class="px-3 py-1.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-extrabold flex items-center gap-1 transition" title="ลบรายการจองนี้">
+                                <i class="fa-regular fa-trash-can"></i>
+                                <span>ลบรายการจอง</span>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-2 text-pink-900">
@@ -2584,7 +2897,7 @@ alter table public.bookings enable row level security;</pre>
                             <p><strong>สถานที่รับ:</strong> ${b.pickupLocation}</p>
                         </div>
                         <div>
-                            <p><strong>ยอดชำระ:</strong> ฿${b.totalAmount.toLocaleString()} (ประกัน ฿${b.deposit.toLocaleString()})</p>
+                            <p><strong>ยอดชำระ:</strong> ฿${b.totalAmount.toLocaleString()}</p>
                             <p><strong>ยอมรับกฎ:</strong> ${b.acceptedRulesVersion} (${b.acceptedRulesAt})</p>
                         </div>
                     </div>
@@ -2604,19 +2917,77 @@ alter table public.bookings enable row level security;</pre>
                         <button type="button" onclick="openAdminDocModal('${b.code}', 'SLIP')" class="px-3.5 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 font-extrabold">
                             ดูสลิปโอนเงิน
                         </button>
+                        <button type="button" onclick="deleteBooking('${b.code}')" class="ml-auto px-3.5 py-1.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-extrabold">
+                            🗑 ลบรายการจอง
+                        </button>
                     </div>
                 </div>
             `).join('');
         }
 
-        function updateBookingStatusByAdmin(code, newStatus) {
-            const b = appData.bookings.find(item => item.code === code);
-            if (!b) return;
-            b.status = newStatus;
-            saveAppData();
-            initAppUI();
-            renderAdminAll();
-            showToast(`อัปเดตสถานะ ${code} เป็น "${newStatus}" เรียบร้อยแล้วค่ะ ✨`);
+        let pendingDeleteBookingCode = null;
+
+        function deleteBooking(code) {
+            pendingDeleteBookingCode = code;
+            const codeEl = document.getElementById('deleteConfirmBookingCode');
+            if (codeEl) codeEl.textContent = code;
+            document.getElementById('adminDeleteConfirmModal').classList.remove('hidden');
+        }
+
+        function closeDeleteBookingModal() {
+            pendingDeleteBookingCode = null;
+            document.getElementById('adminDeleteConfirmModal').classList.add('hidden');
+        }
+
+        async function confirmDeleteBookingNow() {
+            if (!pendingDeleteBookingCode) return;
+            const code = pendingDeleteBookingCode;
+            const btn = document.getElementById('btnConfirmDeleteBooking');
+            if (btn) {
+                btn.disabled = true;
+                btn.textContent = 'กำลังลบ...';
+            }
+
+            try {
+                const { error } = await supabaseClient
+                    .from('bookings')
+                    .delete()
+                    .eq('code', code);
+
+                if (error) throw error;
+
+                appData.bookings = (appData.bookings || []).filter(b => b.code !== code);
+                closeDeleteBookingModal();
+                await fetchPublicDataFromSupabase();
+                await fetchAdminBookingsFromSupabase();
+                showToast(`ลบรายการจอง ${code} เรียบร้อยแล้ว 🗑`);
+            } catch (err) {
+                console.error('Delete booking error:', err);
+                showToast('ลบรายการจองไม่สำเร็จ: ' + (err.message || ''));
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.textContent = '🗑 ยืนยันลบ';
+                }
+            }
+        }
+
+        async function updateBookingStatusByAdmin(code, newStatus) {
+            try {
+                const { error } = await supabaseClient
+                    .from('bookings')
+                    .update({ status: newStatus })
+                    .eq('code', code);
+
+                if (error) throw error;
+
+                await fetchPublicDataFromSupabase();
+                await fetchAdminBookingsFromSupabase();
+                showToast(`อัปเดตสถานะ ${code} เป็น "${newStatus}" ลงฐานข้อมูลแล้วค่ะ ✨`);
+            } catch (err) {
+                console.error('Update status error:', err);
+                showToast('อัปเดตสถานะไม่สำเร็จ: ' + (err.message || ''));
+            }
         }
 
         function openAdminDocModal(bookingCode, tabType) {
@@ -2649,23 +3020,35 @@ alter table public.bookings enable row level security;</pre>
             document.getElementById('adminDocViewerModal').classList.add('hidden');
         }
 
-        function toggleAdminBlockDate() {
+        async function toggleAdminBlockDate() {
             const d = document.getElementById('adminBlockDateInput').value;
             if (!d) {
                 showToast('กรุณาเลือกวันที่ก่อนค่ะ');
                 return;
             }
-            const idx = appData.blockedDates.indexOf(d);
-            if (idx >= 0) {
-                appData.blockedDates.splice(idx, 1);
-                showToast(`ปลดบล็อกวันที่ ${formatThaiDateShort(d)} แล้วค่ะ`);
-            } else {
-                appData.blockedDates.push(d);
-                showToast(`บล็อกวันที่ ${formatThaiDateShort(d)} เรียบร้อยแล้วค่ะ`);
+
+            try {
+                const exists = appData.blockedDates.includes(d);
+                if (exists) {
+                    const { error } = await supabaseClient
+                        .from('blocked_dates')
+                        .delete()
+                        .eq('blocked_date', d);
+                    if (error) throw error;
+                    showToast(`ปลดบล็อกวันที่ ${formatThaiDateShort(d)} แล้วค่ะ`);
+                } else {
+                    const { error } = await supabaseClient
+                        .from('blocked_dates')
+                        .insert({ blocked_date: d });
+                    if (error) throw error;
+                    showToast(`บล็อกวันที่ ${formatThaiDateShort(d)} เรียบร้อยแล้วค่ะ`);
+                }
+                await fetchPublicDataFromSupabase();
+                renderAdminBlockedDates();
+            } catch (err) {
+                console.error('Block date error:', err);
+                showToast('บันทึกวันบล็อกไม่สำเร็จ: ' + (err.message || ''));
             }
-            saveAppData();
-            initAppUI();
-            renderAdminBlockedDates();
         }
 
         function renderAdminBlockedDates() {
@@ -2684,8 +3067,23 @@ alter table public.bookings enable row level security;</pre>
         }
 
         // ==========================================
-        // ADMIN CAMERA INVENTORY & UNIT STOCK MANAGEMENT
+        // ADMIN CAMERA INVENTORY & UNIT STOCK MANAGEMENT (SUPABASE)
         // ==========================================
+        async function persistCameraUnitsToSupabase(cam) {
+            try {
+                const { error } = await supabaseClient
+                    .from('cameras')
+                    .update({ units: cam.units })
+                    .eq('id', cam.id);
+                if (error) throw error;
+                await fetchPublicDataFromSupabase();
+                renderAdminAll();
+            } catch (err) {
+                console.error('Update camera units error:', err);
+                showToast('อัปเดตสถานะเครื่องลงฐานข้อมูลไม่สำเร็จค่ะ');
+            }
+        }
+
         function renderAdminCameras() {
             const listEl = document.getElementById('adminCamerasList');
             if (!listEl) return;
@@ -2724,7 +3122,7 @@ alter table public.bookings enable row level security;</pre>
                                 <img src="${cam.image}" alt="${cam.name}" class="w-14 h-14 rounded-2xl object-cover border border-pink-200">
                                 <div>
                                     <h4 class="text-sm sm:text-base font-extrabold text-pink-950">${cam.name}</h4>
-                                    <p class="text-xs text-pink-600">1 วัน ปกติ ฿${cam.dailyRate} (ผู้ติดตาม ฿${cam.followerDailyRate || cam.dailyRate}) • ประกัน ฿${cam.deposit}</p>
+                                    <p class="text-xs text-pink-600">1 วัน ปกติ ฿${cam.dailyRate} (ผู้ติดตาม ฿${cam.followerDailyRate || cam.dailyRate})</p>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2">
@@ -2737,7 +3135,6 @@ alter table public.bookings enable row level security;</pre>
                             </div>
                         </div>
 
-                        <!-- Live Availability Summary Bar & Unit Count Input -->
                         <div class="p-3 rounded-2xl bg-gradient-to-r from-pink-50/80 via-purple-50/50 to-pink-50/80 border border-pink-100 flex flex-wrap items-center justify-between gap-2">
                             <div class="space-y-0.5">
                                 <p class="text-[11px] font-extrabold text-pink-950">
@@ -2762,30 +3159,26 @@ alter table public.bookings enable row level security;</pre>
             }).join('');
         }
 
-        function quickChangeUnitStatus(camId, unitIdx, newStatus) {
+        async function quickChangeUnitStatus(camId, unitIdx, newStatus) {
             const cam = appData.cameras.find(c => c.id === camId);
             if (!cam || !cam.units[unitIdx]) return;
             cam.units[unitIdx].status = newStatus;
-            saveAppData();
-            initAppUI();
-            renderAdminAll();
+            await persistCameraUnitsToSupabase(cam);
             showToast(`อัปเดตสถานะเครื่อง ${cam.units[unitIdx].code} เรียบร้อยแล้วค่ะ ✨`);
         }
 
-        function quickAddCameraUnit(camId) {
+        async function quickAddCameraUnit(camId) {
             const cam = appData.cameras.find(c => c.id === camId);
             if (!cam) return;
             const prefix = cam.name.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 5) || 'CAM';
             const nextNo = String(cam.units.length + 1).padStart(2, '0');
             const newCode = `${prefix}-${nextNo}`;
             cam.units.push({ code: newCode, status: 'READY' });
-            saveAppData();
-            initAppUI();
-            renderAdminAll();
+            await persistCameraUnitsToSupabase(cam);
             showToast(`เพิ่มเครื่อง "${newCode}" สำหรับ ${cam.name} แล้ว ✨`);
         }
 
-        function quickSetCameraTotalUnits(camId, countValue) {
+        async function quickSetCameraTotalUnits(camId, countValue) {
             const cam = appData.cameras.find(c => c.id === camId);
             if (!cam) return;
             const targetCount = Math.max(1, Math.min(50, parseInt(countValue, 10) || 1));
@@ -2799,19 +3192,15 @@ alter table public.bookings enable row level security;</pre>
                 cam.units = cam.units.slice(0, targetCount);
             }
 
-            saveAppData();
-            initAppUI();
-            renderAdminAll();
+            await persistCameraUnitsToSupabase(cam);
             showToast(`อัปเดตจำนวนเครื่องของ ${cam.name} เป็น ${targetCount} เครื่องแล้ว 🎀`);
         }
 
-        function quickRemoveCameraUnit(camId, unitIdx) {
+        async function quickRemoveCameraUnit(camId, unitIdx) {
             const cam = appData.cameras.find(c => c.id === camId);
             if (!cam || cam.units.length <= 1) return;
             cam.units.splice(unitIdx, 1);
-            saveAppData();
-            initAppUI();
-            renderAdminAll();
+            await persistCameraUnitsToSupabase(cam);
         }
 
         function openAdminCameraModal(camId) {
@@ -2825,7 +3214,6 @@ alter table public.bookings enable row level security;</pre>
                 document.getElementById('admCamHourly').value = cam.hourlyRate || 200;
                 document.getElementById('admCamDaily').value = cam.dailyRate || 350;
                 document.getElementById('admCamFollowerDaily').value = cam.followerDailyRate || 299;
-                document.getElementById('admCamDeposit').value = cam.deposit || 1000;
                 document.getElementById('admCamImg1').value = cam.gallery?.[0] || cam.image || '';
                 document.getElementById('admCamImg2').value = cam.gallery?.[1] || '';
                 document.getElementById('admCamImg3').value = cam.gallery?.[2] || '';
@@ -2837,7 +3225,6 @@ alter table public.bookings enable row level security;</pre>
                 document.getElementById('admCamHourly').value = 200;
                 document.getElementById('admCamDaily').value = 350;
                 document.getElementById('admCamFollowerDaily').value = 299;
-                document.getElementById('admCamDeposit').value = 1000;
                 document.getElementById('admCamImg1').value = 'https://i.postimg.cc/LsffBwNw/att-6g9B-0a-NBMb4z-YOw-Ny-JZsj-Xzuc-Ap-Pkp2X4tz-Ym-Suoag.jpg';
                 document.getElementById('admCamImg2').value = '';
                 document.getElementById('admCamImg3').value = '';
@@ -2920,13 +3307,12 @@ alter table public.bookings enable row level security;</pre>
             document.getElementById('adminCameraModal').classList.add('hidden');
         }
 
-        function saveAdminCameraModal() {
+        async function saveAdminCameraModal() {
             const name = document.getElementById('admCamName').value.trim();
             const desc = document.getElementById('admCamDesc').value.trim();
             const hourly = Number(document.getElementById('admCamHourly').value) || 200;
             const daily = Number(document.getElementById('admCamDaily').value) || 350;
             const followerDaily = Number(document.getElementById('admCamFollowerDaily').value) || 299;
-            const deposit = Number(document.getElementById('admCamDeposit').value) || 1000;
             const gallery = [
                 document.getElementById('admCamImg1').value.trim(),
                 document.getElementById('admCamImg2').value.trim(),
@@ -2938,68 +3324,105 @@ alter table public.bookings enable row level security;</pre>
                 return;
             }
 
-            if (editingAdminCameraId) {
-                const cam = appData.cameras.find(c => c.id === editingAdminCameraId);
-                if (cam) {
-                    cam.name = name;
-                    cam.description = desc;
-                    cam.hourlyRate = hourly;
-                    cam.dailyRate = daily;
-                    cam.followerDailyRate = followerDaily;
-                    cam.deposit = deposit;
-                    cam.image = gallery[0];
-                    cam.gallery = gallery;
-                    cam.units = modalTempUnits;
-                }
-            } else {
-                appData.cameras.push({
-                    id: 'cam-' + Date.now(),
-                    name,
-                    description: desc,
-                    image: gallery[0],
-                    gallery,
-                    hourlyRate: hourly,
-                    pack4HrRate: hourly + 60,
-                    dailyRate: daily,
-                    followerDailyRate: followerDaily,
-                    deposit,
-                    hourlyTiers: [
+            try {
+                if (editingAdminCameraId) {
+                    const existingCam = appData.cameras.find(c => c.id === editingAdminCameraId);
+                    const updatedHourlyTiers = existingCam?.hourlyTiers?.length ? existingCam.hourlyTiers : [
                         { hours: 3, normal: hourly, follower: Math.max(0, hourly - 21) },
                         { hours: 6, normal: hourly + 60, follower: hourly + 49 },
                         { hours: 8, normal: hourly + 90, follower: hourly + 69 }
-                    ],
-                    dailyTiers: [
+                    ];
+                    const updatedDailyTiers = existingCam?.dailyTiers?.length ? existingCam.dailyTiers : [
                         { days: 1, normal: daily, follower: followerDaily },
                         { days: 2, normal: daily * 2 - 50, follower: followerDaily * 2 },
                         { days: 3, normal: daily * 3 - 260, follower: followerDaily * 3 - 200 },
                         { days: 5, normal: daily * 3 - 60, follower: followerDaily * 3 },
                         { days: 7, normal: daily * 3 + 149, follower: followerDaily * 3 + 200 }
-                    ],
-                    extraDayRate: 150,
-                    units: modalTempUnits
-                });
-            }
+                    ];
 
-            saveAppData();
-            closeAdminCameraModal();
-            initAppUI();
-            renderAdminAll();
-            showToast('บันทึกข้อมูลกล้องเรียบร้อยแล้วค่ะ 🎀');
+                    const { error } = await supabaseClient
+                        .from('cameras')
+                        .update({
+                            name,
+                            description: desc,
+                            image: gallery[0],
+                            gallery,
+                            hourly_rate: hourly,
+                            daily_rate: daily,
+                            follower_daily_rate: followerDaily,
+                            deposit: 0,
+                            hourly_tiers: updatedHourlyTiers,
+                            daily_tiers: updatedDailyTiers,
+                            units: modalTempUnits
+                        })
+                        .eq('id', editingAdminCameraId);
+
+                    if (error) throw error;
+                } else {
+                    const newId = 'cam-' + Date.now();
+                    const { error } = await supabaseClient
+                        .from('cameras')
+                        .insert({
+                            id: newId,
+                            name,
+                            description: desc,
+                            image: gallery[0],
+                            gallery,
+                            hourly_rate: hourly,
+                            pack_4hr_rate: hourly + 60,
+                            daily_rate: daily,
+                            follower_daily_rate: followerDaily,
+                            deposit: 0,
+                            hourly_tiers: [
+                                { hours: 3, normal: hourly, follower: Math.max(0, hourly - 21) },
+                                { hours: 6, normal: hourly + 60, follower: hourly + 49 },
+                                { hours: 8, normal: hourly + 90, follower: hourly + 69 }
+                            ],
+                            daily_tiers: [
+                                { days: 1, normal: daily, follower: followerDaily },
+                                { days: 2, normal: daily * 2 - 50, follower: followerDaily * 2 },
+                                { days: 3, normal: daily * 3 - 260, follower: followerDaily * 3 - 200 },
+                                { days: 5, normal: daily * 3 - 60, follower: followerDaily * 3 },
+                                { days: 7, normal: daily * 3 + 149, follower: followerDaily * 3 + 200 }
+                            ],
+                            extra_day_rate: 150,
+                            units: modalTempUnits,
+                            sort_order: appData.cameras.length + 1
+                        });
+
+                    if (error) throw error;
+                }
+
+                closeAdminCameraModal();
+                await fetchPublicDataFromSupabase();
+                renderAdminAll();
+                showToast('บันทึกข้อมูลกล้องลงฐานข้อมูลเรียบร้อยแล้วค่ะ 🎀');
+            } catch (err) {
+                console.error('Save camera error:', err);
+                showToast('ไม่สามารถบันทึกข้อมูลกล้องได้: ' + (err.message || ''));
+            }
         }
 
-        function deleteAdminCamera(camId) {
+        async function deleteAdminCamera(camId) {
             if (appData.cameras.length <= 1) {
                 showToast('ต้องมีกล้องอย่างน้อย 1 รุ่นในระบบค่ะ');
                 return;
             }
-            appData.cameras = appData.cameras.filter(c => c.id !== camId);
-            if (currentBookingDraft.selectedCameraId === camId) {
-                currentBookingDraft.selectedCameraId = appData.cameras[0].id;
+            try {
+                const { error } = await supabaseClient
+                    .from('cameras')
+                    .delete()
+                    .eq('id', camId);
+
+                if (error) throw error;
+
+                await fetchPublicDataFromSupabase();
+                renderAdminAll();
+                showToast('ลบรุ่นกล้องออกจากฐานข้อมูลเรียบร้อยแล้วค่ะ');
+            } catch (err) {
+                console.error('Delete camera error:', err);
+                showToast('ไม่สามารถลบรุ่นกล้องได้ (อาจมีรายการจองผูกอยู่ค่ะ)');
             }
-            saveAppData();
-            initAppUI();
-            renderAdminAll();
-            showToast('ลบรุ่นกล้องเรียบร้อยแล้วค่ะ');
         }
 
         function loadAdminShopSettingsForm() {
@@ -3009,18 +3432,49 @@ alter table public.bookings enable row level security;</pre>
             document.getElementById('admSetAccNo').value = appData.shop.accountNumber;
             document.getElementById('admSetAccName').value = appData.shop.accountName;
             document.getElementById('admSetQrUrl').value = appData.shop.qrCodeUrl;
+            document.getElementById('admSetTgToken').value = appData.shop.telegramBotToken || '';
+            document.getElementById('admSetTgChatId').value = appData.shop.telegramChatId || '';
         }
 
-        function saveAdminShopSettings() {
-            appData.shop.name = document.getElementById('admSetShopName').value.trim();
-            appData.shop.description = document.getElementById('admSetShopDesc').value.trim();
-            appData.shop.bankName = document.getElementById('admSetBankName').value.trim();
-            appData.shop.accountNumber = document.getElementById('admSetAccNo').value.trim();
-            appData.shop.accountName = document.getElementById('admSetAccName').value.trim();
-            appData.shop.qrCodeUrl = document.getElementById('admSetQrUrl').value.trim();
-            saveAppData();
-            initAppUI();
-            showToast('บันทึกข้อมูลการตั้งค่าร้านเรียบร้อยแล้วค่ะ 🌸');
+        async function saveAdminShopSettings() {
+            const name = document.getElementById('admSetShopName').value.trim();
+            const description = document.getElementById('admSetShopDesc').value.trim();
+            const bankName = document.getElementById('admSetBankName').value.trim();
+            const accountNumber = document.getElementById('admSetAccNo').value.trim();
+            const accountName = document.getElementById('admSetAccName').value.trim();
+            const qrCodeUrl = document.getElementById('admSetQrUrl').value.trim();
+            const telegramBotToken = document.getElementById('admSetTgToken').value.trim();
+            const telegramChatId = document.getElementById('admSetTgChatId').value.trim();
+
+            const pickupPayload = {
+                locations: Array.isArray(appData.shop.pickupLocations) ? appData.shop.pickupLocations : [],
+                telegramBotToken,
+                telegramChatId
+            };
+
+            try {
+                const { error } = await supabaseClient
+                    .from('shop_settings')
+                    .update({
+                        name,
+                        description,
+                        bank_name: bankName,
+                        account_number: accountNumber,
+                        account_name: accountName,
+                        qr_code_url: qrCodeUrl,
+                        pickup_locations: pickupPayload,
+                        updated_at: new Date().toISOString()
+                    })
+                    .eq('id', 1);
+
+                if (error) throw error;
+
+                await fetchPublicDataFromSupabase();
+                showToast('บันทึกการตั้งค่าร้านและ Telegram ลงฐานข้อมูลเรียบร้อยแล้วค่ะ 🌸');
+            } catch (err) {
+                console.error('Save shop settings error:', err);
+                showToast('บันทึกการตั้งค่าร้านไม่สำเร็จค่ะ');
+            }
         }
 
         // ==========================================
@@ -3064,6 +3518,7 @@ alter table public.bookings enable row level security;</pre>
             document.getElementById('inputReturnDate').value = currentBookingDraft.returnDate;
             document.getElementById('inputReturnTime').value = currentBookingDraft.returnTime;
 
+            syncDurationPresetButtonsFromInputs();
             populateCalendarCameraFilter();
             populatePickupLocations();
             renderCameraCards();
@@ -3072,8 +3527,12 @@ alter table public.bookings enable row level security;</pre>
             calculateAndRefreshPricing();
         }
 
-        window.onload = function() {
-            initAppUI();
+        window.onload = async function() {
+            await fetchPublicDataFromSupabase();
+            const { data } = await supabaseClient.auth.getSession();
+            if (data && data.session) {
+                await verifyAndSetupAdminSession(data.session);
+            }
         };
     </script>
 </body>
